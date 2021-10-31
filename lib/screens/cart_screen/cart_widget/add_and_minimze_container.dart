@@ -39,7 +39,6 @@ class AddAndMinimzeContainer extends GetWidget<AccountController> {
           Obx(
             () {
               cartContllors.getAllProduct();
-
               return CustomText(
                 text: cartContllors.cartItemList[index].quantity.toString(),
                 fontSize: 14,
