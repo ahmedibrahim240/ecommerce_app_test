@@ -15,7 +15,7 @@ class AddressController extends GetxController {
   @override
   void onReady() {
     super.onReady();
-    getAllUserAdress();
+    if ((userToken != null) && (userToken != 'null')) getAllUserAdress();
     if (adressList.isNotEmpty) {
       shooseNewAddress.value = true;
       addNewAddress.value = false;
@@ -71,17 +71,13 @@ class AddressController extends GetxController {
   }
 
   getAllUserAdress() async {
-    String userId = await MySharedPreferences.getGetuserID() ?? 'null';
-    // if (userId == 'null') {
-    //   userId = authControllers.userModel.value.id!;
-    // }
     AddressListModels addressListModels = AddressListModels();
     adressList.value = [];
     var newList = [];
 
     await firebaseFirestore
         .collection(addressCollection)
-        .doc(userId)
+        .doc(userToken)
         .get()
         .then(
       (value) {

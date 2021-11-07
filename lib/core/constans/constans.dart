@@ -4,3 +4,5 @@ export 'controllers.dart';
 export 'asset_paths.dart';
 export 'sharedPreferences.dart';
 export 'app_theme.dart';
+
+String? userToken;

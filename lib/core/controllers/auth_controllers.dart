@@ -206,14 +206,14 @@ class AuthControllers extends GetxController {
 
   void _checkUser(User? user) async {
     if (user == null) {
-      await MySharedPreferences.saveUserID('null');
       dismissLoadingWidget();
       routeController.routePage(
         type: 'offAll',
         page: Authenticate(),
       );
+      await MySharedPreferences.saveUserID('null');
+      userToken = await MySharedPreferences.getGetuserID();
     } else {
-      await MySharedPreferences.saveUserID(user.uid.toString());
       userModel.bindStream(listenToUser());
       dismissLoadingWidget();
       routeController.routePage(
@@ -221,6 +221,9 @@ class AuthControllers extends GetxController {
         page: CustonNavBar(),
         arguments: 0.obs,
       );
+      await MySharedPreferences.saveUserID(user.uid.toString());
+      userToken = await MySharedPreferences.getGetuserID();
+      addressController.getAllUserAdress();
     }
   }
 
