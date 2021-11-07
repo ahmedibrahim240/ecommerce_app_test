@@ -72,9 +72,9 @@ class AddressController extends GetxController {
 
   getAllUserAdress() async {
     String userId = await MySharedPreferences.getGetuserID() ?? 'null';
-    if (userId == 'null') {
-      userId = authControllers.userModel.value.id!;
-    }
+    // if (userId == 'null') {
+    //   userId = authControllers.userModel.value.id!;
+    // }
     AddressListModels addressListModels = AddressListModels();
     adressList.value = [];
     var newList = [];

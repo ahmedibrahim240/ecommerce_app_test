@@ -52,6 +52,7 @@ class CartContllors extends GetxController {
       }
     } else {
       totalPrice.value = 0.0;
+      bestSellingControllers.updataProduct(inCart: false, type: "all");
     }
     update();
   }
