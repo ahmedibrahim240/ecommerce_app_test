@@ -244,6 +244,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.1.2"
+  flutter_inappwebview:
+    dependency: transitive
+    description:
+      name: flutter_inappwebview
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "5.3.2"
   flutter_login_facebook:
     dependency: "direct main"
     description:
@@ -401,6 +408,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.7.0"
+  my_fatoorah:
+    dependency: "direct main"
+    description:
+      name: my_fatoorah
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.0.6"
   nested:
     dependency: transitive
     description:

@@ -1,7 +1,7 @@
 import 'package:ecommerce_app/core/constans/constans.dart';
 import 'package:ecommerce_app/core/cutom_widget/custom_text.dart';
 import 'package:ecommerce_app/core/cutom_widget/cutom_widget.dart';
-import 'package:ecommerce_app/core/services/showLoading.dart';
+import 'package:ecommerce_app/core/services/coustm_dialogs.dart';
 import 'package:ecommerce_app/models/models.dart';
 import 'package:ecommerce_app/screens/screens.dart';
 import 'package:firebase_auth/firebase_auth.dart';

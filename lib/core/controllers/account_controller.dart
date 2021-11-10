@@ -1,4 +1,4 @@
-import 'package:ecommerce_app/core/services/showLoading.dart';
+import 'package:ecommerce_app/core/services/coustm_dialogs.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:get/get.dart';
