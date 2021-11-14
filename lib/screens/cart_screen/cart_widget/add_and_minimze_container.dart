@@ -21,8 +21,8 @@ class AddAndMinimzeContainer extends GetWidget<AccountController> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 115,
-      height: 30,
+      width: defaultSize * 13.2,
+      height: defaultSize * 3,
       color: controller.darkMode.value ? Colors.black12 : Colors.grey.shade200,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,

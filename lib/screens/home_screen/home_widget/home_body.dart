@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/core/constans/constans.dart';
 import 'package:flutter/material.dart';
 import 'home_widget.dart';
 
@@ -10,14 +11,19 @@ class HomeScreenBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Container(
-        padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0.0),
+        padding: EdgeInsets.fromLTRB(
+          defaultSize * 2,
+          defaultSize * 2,
+          defaultSize * 2,
+          0.0,
+        ),
         child: SingleChildScrollView(
           child: Column(
             children: [
               CustomSearchTextForm(),
-              const SizedBox(height: 30),
+              SizedBox(height: defaultSize * 3),
               CategoriesSection(),
-              const SizedBox(height: 30),
+              SizedBox(height: defaultSize * 3),
               BestSellingSections(),
             ],
           ),

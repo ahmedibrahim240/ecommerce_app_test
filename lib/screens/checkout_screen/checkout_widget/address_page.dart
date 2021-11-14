@@ -163,7 +163,7 @@ class AddressListView extends StatelessWidget {
             );
           },
           separatorBuilder: (BuildContext context, int index) =>
-              SizedBox(height: 25),
+              SizedBox(height: defaultSize * 2.5),
         );
       },
     );

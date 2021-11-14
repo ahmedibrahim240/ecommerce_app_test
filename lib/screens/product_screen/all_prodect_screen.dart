@@ -27,7 +27,7 @@ class AllProductBody extends StatelessWidget {
     return ListView.separated(
       shrinkWrap: true,
       itemCount: bestSellingControllers.productModels.length,
-      padding: const EdgeInsets.only(top: 10, bottom: 10),
+      padding: EdgeInsets.only(top: defaultSize, bottom: defaultSize),
       itemBuilder: (_, index) {
         return BuildBestSellingItem(
           product: bestSellingControllers.productModels[index],
@@ -35,7 +35,7 @@ class AllProductBody extends StatelessWidget {
         );
       },
       separatorBuilder: (BuildContext context, int index) =>
-          const SizedBox(height: 20),
+          SizedBox(height: defaultSize * 2),
     );
   }
 }

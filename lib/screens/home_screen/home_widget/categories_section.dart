@@ -33,7 +33,7 @@ class CategoriesSection extends StatelessWidget {
                   );
                 },
                 separatorBuilder: (BuildContext context, int index) =>
-                    const SizedBox(width: 20),
+                    SizedBox(width: defaultSize * 2),
               ),
             ),
           ],
@@ -59,7 +59,7 @@ class _BuildCategorsItem extends StatelessWidget {
       child: Column(
         children: [
           CircleAvatar(
-            radius: 40,
+            radius: defaultSize * 4,
             backgroundColor: Colors.white,
             child: CustomCachedNetworkImage(
               context: context,
@@ -67,7 +67,7 @@ class _BuildCategorsItem extends StatelessWidget {
               boxFit: BoxFit.fitWidth,
             ),
           ),
-          const SizedBox(height: 10),
+          SizedBox(height: defaultSize),
           CustomText(
             text: categoriesModels.name!,
             fontSize: 14,

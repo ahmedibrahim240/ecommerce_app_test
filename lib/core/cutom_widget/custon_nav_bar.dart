@@ -47,7 +47,7 @@ class CustonNavBar extends StatelessWidget {
                       icon: Image.asset(
                         item.icon,
                         fit: BoxFit.contain,
-                        width: 20,
+                        width: defaultSize * 2.5,
                         color: (accountController.darkMode.value)
                             ? kPrimaryColor
                             : null,
@@ -66,7 +66,7 @@ class CustonNavBar extends StatelessWidget {
   _activeIcon(var item, int index1, int index2) {
     if (index1 == index2) {
       return Padding(
-        padding: const EdgeInsets.only(top: 10),
+        padding: EdgeInsets.only(top: defaultSize),
         child: Column(
           children: [
             CustomText(

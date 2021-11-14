@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/core/constans/constans.dart';
 import 'package:ecommerce_app/core/controllers/account_controller.dart';
 import 'package:ecommerce_app/core/cutom_widget/cutom_widget.dart';
 import 'package:ecommerce_app/models/models.dart';
@@ -17,7 +18,7 @@ class ProductDetailsContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.symmetric(horizontal: 10),
+      padding: EdgeInsets.symmetric(horizontal: defaultSize),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -57,7 +58,12 @@ class ProductStylesCart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.fromLTRB(5, 20, 5, 20),
+      padding: EdgeInsets.fromLTRB(
+        defaultSize / 2,
+        defaultSize * 2,
+        defaultSize / 2,
+        defaultSize * 2,
+      ),
       child: Row(
         children: [
           Expanded(
@@ -66,7 +72,7 @@ class ProductStylesCart extends StatelessWidget {
               lable: 'Size',
             ),
           ),
-          SizedBox(width: 10),
+          SizedBox(width: defaultSize),
           Expanded(
             child: _BuildProductStyels(
               product: product,
@@ -96,9 +102,9 @@ class _BuildProductStyels extends GetWidget<AccountController> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 15,
-        vertical: 15,
+      padding: EdgeInsets.symmetric(
+        horizontal: defaultSize * 1.5,
+        vertical: defaultSize * 1.5,
       ),
       decoration: BoxDecoration(
         borderRadius: const BorderRadius.all(
@@ -113,8 +119,8 @@ class _BuildProductStyels extends GetWidget<AccountController> {
             CustomText(text: lable, fontSize: 14),
             (isColor)
                 ? Container(
-                    height: 25,
-                    width: 25,
+                    height: defaultSize * 2.5,
+                    width: defaultSize * 2.5,
                     decoration: BoxDecoration(
                       color: product.color,
                       border: controller.darkMode.value

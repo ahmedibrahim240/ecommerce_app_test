@@ -33,7 +33,7 @@ class CustomCachedNetworkImage extends StatelessWidget {
               placeholder: (context, url) => Center(
                 child: SpinKitWave(
                   color: kPrimaryColor,
-                  size: 20,
+                  size: defaultSize * 2,
                 ),
 
                 //  CircularProgressIndicator(

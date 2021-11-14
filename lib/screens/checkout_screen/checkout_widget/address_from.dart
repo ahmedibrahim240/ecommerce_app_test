@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/core/constans/constans.dart';
 import 'package:ecommerce_app/core/controllers/controllers.dart';
 import 'package:ecommerce_app/core/cutom_widget/cutom_widget.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +15,8 @@ class AddressForm extends GetWidget<AddressController> {
         shrinkWrap: true,
         // ignore: invalid_use_of_protected_member
         primary: controller.adressList.value != [] ? false : true,
-        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+        padding: EdgeInsets.symmetric(
+            horizontal: defaultSize, vertical: defaultSize),
         children: [
           CustomTextFormField(
             lable: 'Street 1',
@@ -39,7 +41,7 @@ class AddressForm extends GetWidget<AddressController> {
             onSaved: (value) => controller.city = value,
             validator: (value) => value!.isEmpty ? "City Required" : null,
           ),
-          SizedBox(height: 20),
+          SizedBox(height: defaultSize * 2.2),
           Row(
             children: [
               Expanded(
@@ -52,7 +54,7 @@ class AddressForm extends GetWidget<AddressController> {
                       value!.isEmpty ? "State Required" : null,
                 ),
               ),
-              SizedBox(width: 10),
+              SizedBox(width: defaultSize),
               Expanded(
                 child: CustomTextFormField(
                   lable: 'Country',

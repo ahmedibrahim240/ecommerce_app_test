@@ -17,7 +17,12 @@ class RegisterScreen extends GetWidget<AccountController> {
       appBar: AppBar(),
       body: SafeArea(
         child: ListView(
-          padding: const EdgeInsets.fromLTRB(10, 20, 10, 20),
+          padding: EdgeInsets.fromLTRB(
+            defaultSize,
+            defaultSize * 2,
+            defaultSize,
+            defaultSize * 2,
+          ),
           shrinkWrap: true,
           children: [
             Card(
@@ -34,10 +39,13 @@ class RegisterScreen extends GetWidget<AccountController> {
                     )
                   : null,
               child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 30),
+                padding: EdgeInsets.symmetric(
+                  horizontal: defaultSize,
+                  vertical: defaultSize * 3,
+                ),
                 decoration: BoxDecoration(
                   color:
-                      controller.darkMode.value ? Colors.black12 : Colors.white,
+                      controller.darkMode.value ? Colors.black45 : Colors.white,
                   borderRadius: BorderRadius.circular(5),
                 ),
                 child: _RegisterFrom(fromKey: fromKey),

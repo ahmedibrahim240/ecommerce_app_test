@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/core/constans/constans.dart';
 import 'package:ecommerce_app/models/models.dart';
 import 'package:ecommerce_app/screens/product_screen/product_widget/product_widget.dart';
 import 'package:flutter/cupertino.dart';
@@ -15,8 +16,8 @@ class ProductBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Container(
-        width: double.infinity,
-        height: double.infinity,
+        width: screenWidth,
+        height: screenHeight,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [

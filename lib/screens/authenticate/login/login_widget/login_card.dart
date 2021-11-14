@@ -2,6 +2,7 @@ import 'package:ecommerce_app/core/constans/constans.dart';
 import 'package:ecommerce_app/core/controllers/account_controller.dart';
 import 'package:ecommerce_app/core/controllers/auth_controllers.dart';
 import 'package:ecommerce_app/core/cutom_widget/cutom_widget.dart';
+
 import 'package:ecommerce_app/screens/authenticate/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -29,9 +30,12 @@ class LoginCard extends GetWidget<AccountController> {
             )
           : null,
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+        padding: EdgeInsets.symmetric(
+          horizontal: defaultSize * 2,
+          vertical: defaultSize * 2,
+        ),
         decoration: BoxDecoration(
-          color: controller.darkMode.value ? Colors.black12 : Colors.white,
+          color: controller.darkMode.value ? Colors.black45 : Colors.white,
           borderRadius: BorderRadius.circular(5),
         ),
         child: _LoginFrom(
@@ -74,13 +78,13 @@ class _LoginFrom extends GetWidget<AuthControllers> {
               ),
             ],
           ),
-          const SizedBox(height: 10),
+          SizedBox(height: defaultSize),
           CustomText(
             text: 'Sign in to Continue',
             color: kGrayColor,
             fontSize: 14,
           ),
-          const SizedBox(height: 20),
+          SizedBox(height: defaultSize * 2),
           CustomTextFormField(
             onSaved: (value) {
               controller.email = value;
@@ -90,7 +94,7 @@ class _LoginFrom extends GetWidget<AuthControllers> {
             lable: 'Email',
             hintText: 'iamdavid@gmail.com',
           ),
-          const SizedBox(height: 40),
+          SizedBox(height: defaultSize * 4),
           CustomTextFormField(
             lable: 'Password',
             hintText: '********',
@@ -101,13 +105,13 @@ class _LoginFrom extends GetWidget<AuthControllers> {
               controller.password = value;
             },
           ),
-          const SizedBox(height: 20),
+          SizedBox(height: defaultSize * 2),
           CustomText(
             alignment: Alignment.centerRight,
             text: 'Forgot Password?',
             fontSize: 14,
           ),
-          SizedBox(height: 20),
+          SizedBox(height: defaultSize * 2),
           CustomButtom(
             bgColor: kPrimaryColor,
             child: CustomText(

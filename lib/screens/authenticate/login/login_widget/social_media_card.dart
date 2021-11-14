@@ -14,7 +14,7 @@ class SocialMediaCard extends StatelessWidget {
       child: Column(
         children: [
           Container(
-            margin: EdgeInsets.symmetric(vertical: 30),
+            margin: EdgeInsets.symmetric(vertical: defaultSize * 3),
             child: CustomText(
               text: '-OR-',
               alignment: Alignment.center,
@@ -29,7 +29,7 @@ class SocialMediaCard extends StatelessWidget {
             icon: FontAwesomeIcons.facebookSquare,
             iconColor: Colors.blue,
           ),
-          SizedBox(height: 20),
+          SizedBox(height: defaultSize * 2),
           SocialMediaButton(
             onPressed: () {
               authControllers.googleSignInMethod();

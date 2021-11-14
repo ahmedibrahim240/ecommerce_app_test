@@ -17,8 +17,6 @@ class BuildBestSellingItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _screenSized = MediaQuery.of(context).size;
-
     return GestureDetector(
       onTap: () {
         routeController.routePage(
@@ -29,11 +27,11 @@ class BuildBestSellingItem extends StatelessWidget {
         );
       },
       child: Container(
-        width: (isAll) ? _screenSized.width : _screenSized.width * 0.4,
+        width: (isAll) ? screenWidth : defaultSize * 20,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _buildImage(_screenSized, context),
+            _buildImage(context),
             _BuildDettails(
               isAll: isAll,
               product: product,
@@ -44,11 +42,12 @@ class BuildBestSellingItem extends StatelessWidget {
     );
   }
 
-  _buildImage(Size _screenSized, BuildContext context) {
+  _buildImage(BuildContext context) {
     return Container(
-      height: (isAll) ? 150 : 240,
-      width: (isAll) ? _screenSized.width : null,
-      padding: (isAll) ? const EdgeInsets.symmetric(horizontal: 5) : null,
+      height: (isAll) ? defaultSize * 15 : defaultSize * 24,
+      width: (isAll) ? screenWidth : null,
+      padding:
+          (isAll) ? EdgeInsets.symmetric(horizontal: defaultSize / 2) : null,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(5),
       ),
@@ -78,18 +77,18 @@ class _BuildDettails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: (isAll) ? const EdgeInsets.symmetric(horizontal: 10) : null,
+      padding: (isAll) ? EdgeInsets.symmetric(horizontal: defaultSize) : null,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SizedBox(height: 20),
+          SizedBox(height: defaultSize * 2),
           CustomText(
             text: product.title ?? '',
             maxLines: 1,
             fontSize: 14,
             alignment: Alignment.centerLeft,
           ),
-          const SizedBox(height: 10),
+          SizedBox(height: defaultSize),
           CustomText(
             text: product.descraptions ?? '',
             maxLines: (isAll) ? 5 : 1,
@@ -97,7 +96,7 @@ class _BuildDettails extends StatelessWidget {
             color: kGrayColor,
             alignment: Alignment.centerLeft,
           ),
-          const SizedBox(height: 10),
+          SizedBox(height: defaultSize),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [

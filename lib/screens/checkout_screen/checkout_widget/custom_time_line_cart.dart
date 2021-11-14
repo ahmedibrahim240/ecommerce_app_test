@@ -19,13 +19,13 @@ class CustomTimeLineCart extends GetWidget<AccountController> {
   Widget build(BuildContext context) {
     return GetBuilder<CheckoutController>(
       builder: (controller) => Container(
-        height: 100,
+        height: defaultSize * 11.2,
         child: Timeline.tileBuilder(
           scrollDirection: Axis.horizontal,
           shrinkWrap: true,
           dragStartBehavior: DragStartBehavior.start,
           builder: TimelineTileBuilder.connected(
-            itemExtent: MediaQuery.of(context).size.width / _pagesTitle.length,
+            itemExtent: screenWidth / _pagesTitle.length,
             connectionDirection: ConnectionDirection.after,
             connectorBuilder: _connectorBuilder,
             indicatorBuilder: _indicatorBuilder,
@@ -40,7 +40,7 @@ class CustomTimeLineCart extends GetWidget<AccountController> {
 
   Widget _contentsBuilder(context, index) {
     return Padding(
-      padding: const EdgeInsets.only(top: 15.0),
+      padding: EdgeInsets.only(top: defaultSize * 1.5),
       child: Text(
         _pagesTitle[index],
         style: TextStyle(
@@ -54,11 +54,11 @@ class CustomTimeLineCart extends GetWidget<AccountController> {
   Widget _indicatorBuilder(_, index) {
     if (index <= checkoutController.pageIndex.value) {
       return DotIndicator(
-        size: 35.0,
+        size: defaultSize * 3.5,
         border: Border.all(color: Colors.green, width: 1),
         color: Colors.white,
         child: Padding(
-          padding: const EdgeInsets.all(6.0),
+          padding: EdgeInsets.all(defaultSize - 3),
           child: Container(
             decoration: BoxDecoration(
               shape: BoxShape.circle,
@@ -69,7 +69,7 @@ class CustomTimeLineCart extends GetWidget<AccountController> {
       );
     } else {
       return OutlinedDotIndicator(
-        size: 30,
+        size: defaultSize * 3.2,
         borderWidth: 1.0,
         color: todoColor,
       );

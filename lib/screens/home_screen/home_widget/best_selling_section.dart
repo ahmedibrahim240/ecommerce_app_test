@@ -34,7 +34,7 @@ class BestSellingSections extends StatelessWidget {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 20),
+                  SizedBox(height: defaultSize * 2),
                   Container(
                     height: 350,
                     child: ListView.separated(
@@ -47,7 +47,7 @@ class BestSellingSections extends StatelessWidget {
                         );
                       },
                       separatorBuilder: (BuildContext context, int index) =>
-                          const SizedBox(width: 20),
+                          SizedBox(width: defaultSize * 2),
                     ),
                   ),
                 ],

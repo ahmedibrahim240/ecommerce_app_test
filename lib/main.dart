@@ -1,4 +1,5 @@
 import 'package:ecommerce_app/core/constans/constans.dart';
+
 import 'package:ecommerce_app/screens/splashscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

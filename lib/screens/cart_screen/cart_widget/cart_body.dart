@@ -48,14 +48,15 @@ class _BuildCartItemList extends StatelessWidget {
           return ListView.separated(
             shrinkWrap: true,
             itemCount: cartContllors.cartItemList.length,
-            padding: const EdgeInsets.fromLTRB(10, 20, 10, 0),
+            padding: EdgeInsets.fromLTRB(
+                defaultSize, defaultSize * 2, defaultSize, 0),
             itemBuilder: (context, index) {
               CartProductMoldes product = cartContllors.cartItemList[index];
 
               return CartItemCard(product: product, index: index);
             },
             separatorBuilder: (BuildContext context, int index) =>
-                SizedBox(height: 10),
+                SizedBox(height: defaultSize),
           );
         }
       },
@@ -77,8 +78,8 @@ class _EmptyCart extends StatelessWidget {
         children: [
           LottieBuilder.asset(
             emptyCartJson,
-            height: 200,
-            width: 200,
+            height: defaultSize * 23.2,
+            width: defaultSize * 23.2,
           ),
           Center(
             child: CustomText(

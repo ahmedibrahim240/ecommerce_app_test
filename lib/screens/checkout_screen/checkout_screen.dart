@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/core/constans/constans.dart';
 import 'package:flutter/material.dart';
 import 'checkout_widget/checkout_widget.dart';
 import 'checkout_widget/time_line_pages.dart';
@@ -15,12 +16,13 @@ class CheckOutScreen extends StatelessWidget {
         ),
       ),
       body: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+        padding: EdgeInsets.symmetric(
+            horizontal: defaultSize, vertical: defaultSize),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             CustomTimeLineCart(),
-            SizedBox(height: 50),
+            SizedBox(height: defaultSize * 5.5),
             Expanded(
               child: TimeLinePages(),
             ),

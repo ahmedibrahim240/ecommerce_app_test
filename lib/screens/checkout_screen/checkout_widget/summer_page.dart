@@ -18,7 +18,6 @@ class SummerPage extends StatelessWidget {
         children: [
           _productsReview(),
           productList(),
-          SizedBox(height: 5),
           _totalPrice(),
           newDivider(),
           _userAddrees(address),
@@ -36,7 +35,7 @@ class SummerPage extends StatelessWidget {
           alignment: Alignment.centerLeft,
           fontSize: 14,
         ),
-        SizedBox(height: 5),
+        SizedBox(height: defaultSize / 2),
         CustomText(
           text: ": ${cartContllors.totalPrice.toStringAsFixed(2)} \$",
           color: kPrimaryColor,
@@ -51,7 +50,7 @@ class SummerPage extends StatelessWidget {
 
   Container productList() {
     return Container(
-      height: 220,
+      height: defaultSize * 25,
       child: _BuildSummerItemList(),
     );
   }
@@ -76,7 +75,8 @@ class SummerPage extends StatelessWidget {
 
   Padding newDivider() {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+      padding:
+          EdgeInsets.symmetric(horizontal: defaultSize, vertical: defaultSize),
       child: Divider(
         color: kGrayColor,
         thickness: 1,
@@ -92,7 +92,7 @@ class SummerPage extends StatelessWidget {
           color: kPrimaryColor,
           size: 20,
         ),
-        SizedBox(width: 8),
+        SizedBox(width: defaultSize),
         CustomText(
           text: 'Products back review',
           fontSize: 15,
@@ -116,7 +116,8 @@ class _BuildSummerItemList extends StatelessWidget {
         shrinkWrap: true,
         scrollDirection: Axis.horizontal,
         itemCount: cartContllors.cartItemList.length,
-        padding: const EdgeInsets.fromLTRB(10, 20, 10, 0),
+        padding:
+            EdgeInsets.fromLTRB(defaultSize, defaultSize * 2, defaultSize, 0),
         itemBuilder: (context, index) {
           CartProductMoldes product = cartContllors.cartItemList[index];
           return _ProductCard(
@@ -125,7 +126,7 @@ class _BuildSummerItemList extends StatelessWidget {
           );
         },
         separatorBuilder: (BuildContext context, int index) =>
-            SizedBox(width: 10),
+            SizedBox(width: defaultSize),
       );
     });
   }
@@ -148,7 +149,7 @@ class _ProductCard extends GetWidget<AccountController> {
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         productImage(context),
-        SizedBox(height: 8),
+        SizedBox(height: defaultSize),
         CustomText(
           text: product.tilte ?? '',
           fontSize: 12,
@@ -170,8 +171,8 @@ class _ProductCard extends GetWidget<AccountController> {
 
   Container productImage(BuildContext context) {
     return Container(
-      width: 150,
-      height: 140,
+      width: defaultSize * 17,
+      height: defaultSize * 15,
       decoration: controller.darkMode.value
           ? BoxDecoration(
               border: Border.all(

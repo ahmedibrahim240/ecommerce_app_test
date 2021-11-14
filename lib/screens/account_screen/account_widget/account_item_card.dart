@@ -27,11 +27,12 @@ class AccountItemCard extends GetWidget {
               child: Row(
                 children: [
                   Container(
-                    height: 40,
-                    width: 40,
+                    height: defaultSize * 5,
+                    width: defaultSize * 5,
                     padding: (data.icon == null)
-                        ? const EdgeInsets.fromLTRB(5, 5, 8, 10)
-                        : const EdgeInsets.all(8),
+                        ? EdgeInsets.fromLTRB(defaultSize / 2, defaultSize / 2,
+                            defaultSize - 2, defaultSize)
+                        : EdgeInsets.all(defaultSize - 2),
                     decoration: BoxDecoration(
                       color: controller.darkMode.value
                           ? Colors.grey.shade200
@@ -45,7 +46,7 @@ class AccountItemCard extends GetWidget {
                       icon: data.icon,
                     ),
                   ),
-                  SizedBox(width: 20),
+                  SizedBox(width: defaultSize * 2),
                   (index == accountList.length - 3) &&
                           (controller.darkMode.value)
                       ? CustomText(
@@ -93,14 +94,14 @@ class AccountItemCard extends GetWidget {
                   Icons.arrow_back_ios,
                   color:
                       controller.darkMode.value ? Colors.white : Colors.black,
-                  size: 20,
+                  size: defaultSize * 2,
                 ),
               ),
             SizedBox(
               width: (index == accountList.length - 2) ||
                       (index == accountList.length - 3)
-                  ? 5
-                  : 20,
+                  ? defaultSize / 2
+                  : defaultSize * 2,
             ),
           ],
         ),
@@ -117,14 +118,14 @@ class AccountItemCard extends GetWidget {
               : CupertinoIcons.moon_stars,
           color:
               accountController.darkMode.value ? kPrimaryColor : Colors.black,
-          size: 30,
+          size: defaultSize * 4,
         );
       } else {
         return Icon(
           Icons.color_lens,
           color:
               accountController.darkMode.value ? kPrimaryColor : Colors.black,
-          size: 30,
+          size: defaultSize * 4,
         );
       }
     } else {

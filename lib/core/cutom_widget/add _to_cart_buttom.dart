@@ -19,7 +19,10 @@ class AddtoCartButtom extends StatelessWidget {
     return GetBuilder<BestSellingControllers>(
       builder: (controller) => CustomButtom(
         bgColor: (!product.inCart!) ? kPrimaryColor : Colors.redAccent,
-        margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+        margin: EdgeInsets.symmetric(
+          vertical: defaultSize * 1.2,
+          horizontal: defaultSize * 1.2,
+        ),
         child: CustomText(
           text: (!product.inCart!) ? "Add to Cart" : "Remove from Cart",
           color: Colors.white,
@@ -30,7 +33,10 @@ class AddtoCartButtom extends StatelessWidget {
           if (product.inCart!) {
             cartContllors.delateProduct(product.id!);
             bestSellingControllers.updataProduct(
-                inCart: false, type: 'id', id: product.id);
+              inCart: false,
+              type: 'id',
+              id: product.id,
+            );
           } else {
             cartContllors.addProduct(
               CartProductMoldes(
@@ -42,7 +48,10 @@ class AddtoCartButtom extends StatelessWidget {
               ),
             );
             bestSellingControllers.updataProduct(
-                inCart: true, type: 'id', id: product.id);
+              inCart: true,
+              type: 'id',
+              id: product.id,
+            );
           }
         },
       ),

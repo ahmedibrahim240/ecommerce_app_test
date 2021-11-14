@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/core/constans/constans.dart';
 import 'package:ecommerce_app/core/cutom_widget/custom_text.dart';
 import 'package:ecommerce_app/core/cutom_widget/cutom_cached_net_image.dart';
 import 'package:ecommerce_app/core/cutom_widget/cutom_widget.dart';
@@ -39,7 +40,7 @@ class ProductImageCard extends StatelessWidget {
                   ),
                   Center(
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      padding: EdgeInsets.symmetric(horizontal: defaultSize),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -65,9 +66,9 @@ class ProductImageCard extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(height: 10),
+          SizedBox(height: defaultSize),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
+            padding: EdgeInsets.symmetric(horizontal: defaultSize),
             child: CustomText(
               text: product.title ?? '',
               fontSize: 20,

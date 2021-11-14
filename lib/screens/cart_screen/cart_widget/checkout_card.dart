@@ -34,7 +34,7 @@ class _RemoveAllButtom extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 50,
+      height: defaultSize * 5.5,
       child: CustomButtom(
         bgColor: Colors.redAccent,
         margin: EdgeInsets.symmetric(vertical: 0),
@@ -60,7 +60,8 @@ class _ChackOutRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+      padding:
+          EdgeInsets.symmetric(horizontal: defaultSize, vertical: defaultSize),
       child: Obx(() {
         return Row(
           children: [
@@ -75,7 +76,7 @@ class _ChackOutRow extends StatelessWidget {
                     alignment: Alignment.centerLeft,
                     fontSize: 14,
                   ),
-                  SizedBox(height: 5),
+                  SizedBox(height: defaultSize / 2),
                   CustomText(
                     text: "\$ ${cartContllors.totalPrice.toStringAsFixed(2)}",
                     color: kPrimaryColor,
@@ -91,9 +92,9 @@ class _ChackOutRow extends StatelessWidget {
                 bgColor: cartContllors.cartItemList.isEmpty
                     ? Colors.redAccent
                     : kPrimaryColor,
-                margin: const EdgeInsets.symmetric(
-                  vertical: 10,
-                  horizontal: 10,
+                margin: EdgeInsets.symmetric(
+                  vertical: defaultSize,
+                  horizontal: defaultSize,
                 ),
                 child: CustomText(
                   text: cartContllors.cartItemList.isEmpty

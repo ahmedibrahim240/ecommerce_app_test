@@ -11,8 +11,7 @@ class CustomSearchTextForm extends GetWidget<AccountController> {
   Widget build(BuildContext context) {
     return TextFormField(
       decoration: InputDecoration(
-        fillColor:
-            controller.darkMode.value ? Colors.black12 : Colors.grey.shade200,
+        fillColor: Colors.grey.shade400,
         filled: true,
         border: InputBorder.none,
         prefixIcon: Icon(

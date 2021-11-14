@@ -17,7 +17,8 @@ class PriceCard extends GetWidget<AccountController> {
   Widget build(BuildContext context) {
     return Container(
       color: controller.darkMode.value ? Colors.black12 : Colors.white,
-      padding: EdgeInsets.symmetric(horizontal: 25, vertical: 15),
+      padding: EdgeInsets.symmetric(
+          horizontal: defaultSize * 2.5, vertical: defaultSize * 1.5),
       child: Row(
         children: [
           Expanded(
@@ -31,7 +32,7 @@ class PriceCard extends GetWidget<AccountController> {
                   alignment: Alignment.centerLeft,
                   fontSize: 14,
                 ),
-                SizedBox(height: 5),
+                SizedBox(height: defaultSize / 2),
                 CustomText(
                   text: "\$${product.price}",
                   color: kPrimaryColor,

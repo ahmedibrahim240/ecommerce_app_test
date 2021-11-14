@@ -13,7 +13,7 @@ class AccountBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Container(
-        padding: const EdgeInsets.only(top: 40, bottom: 20),
+        padding: EdgeInsets.only(top: defaultSize * 4, bottom: defaultSize * 2),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -37,7 +37,8 @@ class _BuildAccountItems extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.separated(
       itemCount: accountList.length,
-      padding: const EdgeInsets.fromLTRB(20, 60, 20, 0),
+      padding: EdgeInsets.fromLTRB(
+          defaultSize * 2, defaultSize * 6, defaultSize * 2, 0),
       itemBuilder: (context, index) {
         AccountModels data = accountList[index];
         return GestureDetector(
@@ -48,7 +49,7 @@ class _BuildAccountItems extends StatelessWidget {
           ),
         );
       },
-      separatorBuilder: (context, index) => SizedBox(height: 30),
+      separatorBuilder: (context, index) => SizedBox(height: defaultSize * 3),
     );
   }
 }

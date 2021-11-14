@@ -50,7 +50,7 @@ class AccountAvater extends StatelessWidget {
           fontWeight: FontWeight.bold,
         ),
         Container(
-          width: 200,
+          width: defaultSize * 20,
           child: CustomText(
             text: email,
             fontSize: 14,
@@ -68,9 +68,9 @@ class AccountAvater extends StatelessWidget {
       child: GestureDetector(
         onTap: () => _eidImageDialog(),
         child: Container(
-          height: 40,
-          width: 40,
-          padding: const EdgeInsets.all(8),
+          height: defaultSize * 4.5,
+          width: defaultSize * 4.5,
+          padding: EdgeInsets.all(defaultSize),
           decoration: BoxDecoration(
             color: Colors.white,
             shape: BoxShape.circle,
@@ -95,18 +95,18 @@ class AccountAvater extends StatelessWidget {
         builder: (controller) => GestureDetector(
           onTap: () => _eidImageDialog(),
           child: CircleAvatar(
-            radius: 55,
+            radius: defaultSize * 5.5,
             backgroundColor:
                 controller.darkMode.value ? Colors.black12 : Colors.white,
             child: SizedBox(
-              height: 120,
-              width: 120,
+              height: defaultSize * 13,
+              width: defaultSize * 13,
               child: ClipOval(
                 child: Center(
                   child: Icon(
                     Icons.cameraswitch,
                     color: kPrimaryColor,
-                    size: 80,
+                    size: defaultSize * 8,
                   ),
                 ),
               ),
@@ -118,17 +118,17 @@ class AccountAvater extends StatelessWidget {
 
     return GetBuilder<AccountController>(
       builder: (controller) => CircleAvatar(
-        radius: controller.darkMode.value ? 57 : 55,
+        radius: controller.darkMode.value ? defaultSize * 6 : defaultSize * 5.8,
         backgroundColor: controller.darkMode.value
             ? Colors.grey.withOpacity(.5)
             : Colors.white,
         child: CircleAvatar(
-          radius: 55,
+          radius: defaultSize * 5.8,
           backgroundColor:
               controller.darkMode.value ? Colors.black12 : Colors.white,
           child: SizedBox(
-            height: 120,
-            width: 120,
+            height: defaultSize * 13,
+            width: defaultSize * 13,
             child: ClipOval(
               child: CustomCachedNetworkImage(
                 context: context,

@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/core/constans/constans.dart';
 import 'package:ecommerce_app/core/controllers/controllers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -44,7 +45,10 @@ class CustomButtom extends StatelessWidget {
           ),
           child: Container(
             margin: margin ??
-                const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+                EdgeInsets.symmetric(
+                  vertical: defaultSize * 2,
+                  horizontal: defaultSize * 2,
+                ),
             child: child,
           ),
         ),

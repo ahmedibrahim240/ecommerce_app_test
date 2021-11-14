@@ -21,7 +21,7 @@ class CartItemCard extends GetWidget<AccountController> {
   Widget build(BuildContext context) {
     return Obx(
       () => Container(
-        height: 120,
+        height: defaultSize * 14,
         decoration: controller.darkMode.value
             ? BoxDecoration(
                 border: Border.all(
@@ -36,8 +36,8 @@ class CartItemCard extends GetWidget<AccountController> {
         child: Row(
           children: [
             Container(
-              height: 120,
-              width: 120,
+              height: defaultSize * 13.5,
+              width: defaultSize * 13.5,
               child: ClipRRect(
                 borderRadius: controller.darkMode.value
                     ? const BorderRadius.only(
@@ -53,21 +53,22 @@ class CartItemCard extends GetWidget<AccountController> {
                 ),
               ),
             ),
-            SizedBox(width: 10),
+            SizedBox(width: defaultSize),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                SizedBox(height: defaultSize),
                 CustomText(
                   text: product.tilte ?? '',
                   fontSize: 16,
                   maxLines: 1,
                 ),
-                SizedBox(height: 10),
+                SizedBox(height: defaultSize),
                 CustomText(
                   text: '\$${product.price!}',
                   color: kPrimaryColor,
                 ),
-                SizedBox(height: 20),
+                SizedBox(height: defaultSize * 2),
                 AddAndMinimzeContainer(
                   index: index,
                   product: product,
