@@ -4,12 +4,14 @@ class AddressModel {
   static const CITY = "city";
   static const STATE = "state";
   static const COUNTRY = "country";
+  static const ID = "id";
 
   String? street1;
   String? street2;
   String? city;
   String? state;
   String? country;
+  int? id;
 
   AddressModel({
     this.street1,
@@ -17,6 +19,7 @@ class AddressModel {
     this.city,
     this.state,
     this.country,
+    this.id,
   });
 
   AddressModel.fromJson(snapshot) {
@@ -25,6 +28,7 @@ class AddressModel {
     street1 = snapshot[STREET1];
     state = snapshot[STATE];
     country = snapshot[COUNTRY];
+    id = snapshot[ID];
   }
   toJson() {
     return {
@@ -33,6 +37,7 @@ class AddressModel {
       CITY: city,
       STATE: state,
       COUNTRY: country,
+      ID: id,
     };
   }
 }

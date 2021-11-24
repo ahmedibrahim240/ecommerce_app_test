@@ -1,4 +1,5 @@
 import 'package:ecommerce_app/core/constans/constans.dart';
+import 'package:ecommerce_app/core/cutom_widget/custom_snakBar.dart';
 import 'package:ecommerce_app/models/models.dart';
 import 'package:get/get.dart';
 
@@ -11,12 +12,14 @@ class AddressController extends GetxController {
   RxBool shooseNewAddress = false.obs;
   String addressCollection = "users_address";
   List listOfAddress = [];
+  var adreesLenght = 0.obs;
   AddressListModels addressListModels = AddressListModels();
   @override
   void onReady() {
     super.onReady();
     if ((userToken != null) && (userToken != 'null')) getAllUserAdress();
-    if (adressList.isNotEmpty) {
+    // ignore: invalid_use_of_protected_member
+    if ((adressList.isNotEmpty) && (adressList.value != [])) {
       shooseNewAddress.value = true;
       addNewAddress.value = false;
     }
@@ -36,7 +39,7 @@ class AddressController extends GetxController {
 
   createNewaddress(AddressModel address) async {
     String userId = authControllers.userModel.value.id!;
-    await getAllUserAdress();
+
     listOfAddress = [];
     newAddress = address.toJson();
     if (adressList.isEmpty) {
@@ -53,6 +56,8 @@ class AddressController extends GetxController {
 
         listOfAddress.add(addressModel.toJson());
       }
+      print(adressList.length);
+
       listOfAddress.add(newAddress);
       addressListModels = new AddressListModels(
         addresses: listOfAddress,
@@ -60,12 +65,12 @@ class AddressController extends GetxController {
       await firebaseFirestore.collection(addressCollection).doc(userId).update(
             addressListModels.toJson(),
           );
-      await getAllUserAdress();
-      addressController.addNewAddress.value = false;
-      addressController.shooseNewAddress.value = true;
-      checkoutController.addressGroupValue.value = 1;
-      checkoutController.userAddress.value = address;
     }
+    addNewAddress.value = false;
+    shooseNewAddress.value = true;
+    checkoutController.addressGroupValue.value = 1;
+    checkoutController.userAddress.value = address;
+    customSnakBar(mass: 'Address Was Added..');
 
     update();
   }
@@ -92,11 +97,15 @@ class AddressController extends GetxController {
             );
           }
         } else {
-          adressList.value = [];
+          return;
         }
       },
     );
 
     update();
+  }
+
+  getAddressLength() {
+    adreesLenght.value = adressList.length;
   }
 }

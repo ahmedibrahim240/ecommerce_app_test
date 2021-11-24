@@ -16,11 +16,13 @@ class AddressPage extends StatelessWidget {
       return Container(
         height: double.infinity,
         width: double.infinity,
-        child: Column(
+        child: ListView(
+          shrinkWrap: true,
+          primary: true,
           children: [
             _BillingAddressText(),
-            // ignore: invalid_use_of_protected_member
-            (addressController.adressList.value != [])
+            (addressController.adressList.isNotEmpty) &&
+                    (addressController.adressList != [])
                 ? Expanded(
                     child: ChooseEXAddress(),
                   )
@@ -40,7 +42,7 @@ class ChooseEXAddress extends StatelessWidget {
     return Obx(
       () => ListView(
         shrinkWrap: true,
-        primary: true,
+        primary: false,
         children: [
           TextButton.icon(
             icon: Icon(
