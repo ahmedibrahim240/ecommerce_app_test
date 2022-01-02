@@ -1,9 +1,7 @@
 import 'package:ecommerce_app/core/constans/constans.dart';
 import 'package:ecommerce_app/core/controllers/controllers.dart';
-import 'package:ecommerce_app/core/cutom_widget/custom_text.dart';
 import 'package:ecommerce_app/core/cutom_widget/cutom_widget.dart';
 import 'package:ecommerce_app/models/models.dart';
-import 'package:ecommerce_app/models/user_addrees_models.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

@@ -1,7 +1,5 @@
 import 'package:ecommerce_app/core/constans/constans.dart';
 
-import 'package:ecommerce_app/core/cutom_widget/custom_text.dart';
-import 'package:ecommerce_app/core/cutom_widget/cutom_buttom.dart';
 import 'package:ecommerce_app/core/cutom_widget/cutom_widget.dart';
 
 import 'package:get/get.dart';

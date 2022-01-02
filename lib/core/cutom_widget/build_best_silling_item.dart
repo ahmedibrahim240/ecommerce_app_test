@@ -1,5 +1,4 @@
 import 'package:ecommerce_app/core/constans/constans.dart';
-import 'package:ecommerce_app/core/constans/controllers.dart';
 import 'package:ecommerce_app/core/cutom_widget/cutom_widget.dart';
 import 'package:ecommerce_app/models/product_models.dart';
 import 'package:ecommerce_app/screens/product_screen/product_screen.dart';

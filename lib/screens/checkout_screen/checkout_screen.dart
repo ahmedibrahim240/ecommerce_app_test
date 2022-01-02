@@ -1,7 +1,6 @@
 import 'package:ecommerce_app/core/constans/constans.dart';
 import 'package:flutter/material.dart';
 import 'checkout_widget/checkout_widget.dart';
-import 'checkout_widget/time_line_pages.dart';
 
 class CheckOutScreen extends StatelessWidget {
   const CheckOutScreen({Key? key}) : super(key: key);

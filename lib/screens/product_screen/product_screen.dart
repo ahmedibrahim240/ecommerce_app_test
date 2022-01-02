@@ -1,6 +1,5 @@
 import 'package:ecommerce_app/core/services/network_services/network_sensitive.dart';
 import 'package:ecommerce_app/models/models.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'product_widget/product_widget.dart';
 
