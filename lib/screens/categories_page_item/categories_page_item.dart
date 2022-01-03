@@ -19,6 +19,7 @@ class CategoriesPageItem extends StatelessWidget {
       appBar: AppBar(
         centerTitle: false,
         title: _appBarTitle(context),
+        toolbarHeight: 70,
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -44,15 +45,19 @@ class CategoriesPageItem extends StatelessWidget {
 
   Row _appBarTitle(BuildContext context) {
     return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Hero(
           tag: 'icon$icon',
-          child: CustomCachedNetworkImage(
-            context: context,
-            url: icon,
-            boxFit: BoxFit.fitWidth,
+          child: CircleAvatar(
+            radius: defaultSize * 3,
+            backgroundColor: Colors.white,
+            child: CustomCachedNetworkImage(
+              context: context,
+              url: icon,
+              boxFit: BoxFit.fitWidth,
+            ),
           ),
         ),
         SizedBox(
