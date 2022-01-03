@@ -26,7 +26,9 @@ class BestSellingSections extends StatelessWidget {
                       ),
                       TextButton(
                         onPressed: () => routeController.routePage(
-                            type: 'to', page: AllProcutScreen()),
+                          type: 'to',
+                          page: AllProcutScreen(),
+                        ),
                         child: CustomText(
                           text: 'Seee all',
                           fontSize: 14,

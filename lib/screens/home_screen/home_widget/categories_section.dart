@@ -1,5 +1,6 @@
 import 'package:ecommerce_app/core/constans/constans.dart';
 import 'package:ecommerce_app/core/cutom_widget/cutom_widget.dart';
+import 'package:ecommerce_app/screens/categories_page_item/categories_page_item.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerce_app/models/models.dart';
 import 'package:get/get.dart';
@@ -56,23 +57,38 @@ class _BuildCategorsItem extends StatelessWidget {
       onTap: () {
         print(categoriesModels.name);
       },
-      child: Column(
-        children: [
-          CircleAvatar(
-            radius: defaultSize * 4,
-            backgroundColor: Colors.white,
-            child: CustomCachedNetworkImage(
-              context: context,
-              url: categoriesModels.icon!,
-              boxFit: BoxFit.fitWidth,
+      child: GestureDetector(
+        onTap: () => routeController.routePage(
+          type: 'to',
+          page: CategoriesPageItem(
+            title: categoriesModels.name!,
+            icon: categoriesModels.icon!,
+          ),
+        ),
+        child: Column(
+          children: [
+            Hero(
+              tag: 'icon${categoriesModels.icon}',
+              child: CircleAvatar(
+                radius: defaultSize * 4,
+                backgroundColor: Colors.white,
+                child: CustomCachedNetworkImage(
+                  context: context,
+                  url: categoriesModels.icon!,
+                  boxFit: BoxFit.fitWidth,
+                ),
+              ),
             ),
-          ),
-          SizedBox(height: defaultSize),
-          CustomText(
-            text: categoriesModels.name!,
-            fontSize: 14,
-          ),
-        ],
+            SizedBox(height: defaultSize),
+            Hero(
+              tag: 'title${categoriesModels.name}',
+              child: CustomText(
+                text: categoriesModels.name!,
+                fontSize: 14,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
