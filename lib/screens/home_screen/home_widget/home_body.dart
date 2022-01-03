@@ -1,4 +1,5 @@
 import 'package:ecommerce_app/core/constans/constans.dart';
+import 'package:ecommerce_app/core/cutom_widget/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'home_widget.dart';
 
@@ -20,6 +21,8 @@ class HomeScreenBody extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
+              _noteTest(),
+              SizedBox(height: defaultSize * 1.5),
               CustomSearchTextForm(),
               SizedBox(height: defaultSize * 3),
               CategoriesSection(),
@@ -29,6 +32,14 @@ class HomeScreenBody extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+
+  _noteTest() {
+    return CustomText(
+      text: 'Note => This app for test and learn GETX.....',
+      fontSize: 10,
+      color: Colors.grey.shade500,
     );
   }
 }
