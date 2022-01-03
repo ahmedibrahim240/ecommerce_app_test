@@ -21,15 +21,15 @@ class SocialMediaCard extends StatelessWidget {
               fontSize: 20,
             ),
           ),
-          SocialMediaButton(
-            onPressed: () {
-              authControllers.faceBookSignInMethod();
-            },
-            text: "Sign In With Facebook",
-            icon: FontAwesomeIcons.facebookSquare,
-            iconColor: Colors.blue,
-          ),
-          SizedBox(height: defaultSize * 2),
+          // SocialMediaButton(
+          //   onPressed: () {
+          //     authControllers.faceBookSignInMethod();
+          //   },
+          //   text: "Sign In With Facebook",
+          //   icon: FontAwesomeIcons.facebookSquare,
+          //   iconColor: Colors.blue,
+          // ),
+          // SizedBox(height: defaultSize * 2),
           SocialMediaButton(
             onPressed: () {
               authControllers.googleSignInMethod();
