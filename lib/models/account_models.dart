@@ -11,26 +11,26 @@ class AccountModels {
 }
 
 List<AccountModels> accountList = [
-  AccountModels(
-    icon: editIcon,
-    title: 'Edit Profile',
-  ),
-  AccountModels(
-    icon: addressIcon,
-    title: 'Shipping Address',
-  ),
+  // AccountModels(
+  //   icon: editIcon,
+  //   title: 'Edit Profile',
+  // ),
+  // AccountModels(
+  //   icon: addressIcon,
+  //   title: 'Shipping Address',
+  // ),
   AccountModels(
     icon: historyIcon,
     title: 'Order History',
   ),
-  AccountModels(
-    icon: cardsIcon,
-    title: 'Cards',
-  ),
-  AccountModels(
-    icon: notificationIcon,
-    title: 'Notifications',
-  ),
+  // AccountModels(
+  //   icon: cardsIcon,
+  //   title: 'Cards',
+  // ),
+  // AccountModels(
+  //   icon: notificationIcon,
+  //   title: 'Notifications',
+  // ),
   AccountModels(
     title: 'Dark',
   ),
