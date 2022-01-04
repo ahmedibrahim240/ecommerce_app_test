@@ -37,6 +37,7 @@ showSuccessDialog() {
             page: CustonNavBar(),
             arguments: 0.obs,
           );
+          cartContllors.delateAllPrdect();
         },
         child: Text(
           'Submit',

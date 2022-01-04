@@ -19,6 +19,7 @@ class SummerPage extends StatelessWidget {
           _totalPrice(),
           newDivider(),
           _userAddrees(address),
+          _userDeliveryDatetime(),
         ],
       );
     });
@@ -65,6 +66,22 @@ class SummerPage extends StatelessWidget {
       ),
       subtitle: CustomText(
         text: userAddress,
+        maxLines: 3,
+        fontSize: 12,
+      ),
+    );
+  }
+
+  ListTile _userDeliveryDatetime() {
+    return ListTile(
+      title: CustomText(
+        text: 'Delivery Date',
+        fontSize: 16,
+        color: kPrimaryColor,
+        fontWeight: FontWeight.bold,
+      ),
+      subtitle: CustomText(
+        text: checkoutController.deliveryDate.value,
         maxLines: 3,
         fontSize: 12,
       ),
