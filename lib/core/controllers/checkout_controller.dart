@@ -1,5 +1,5 @@
 import 'package:ecommerce_app/core/constans/constans.dart';
-import 'package:ecommerce_app/models/user_addrees_models.dart';
+import 'package:ecommerce_app/models/models.dart';
 import 'package:ecommerce_app/screens/screens.dart';
 import 'package:get/get.dart';
 
@@ -8,7 +8,9 @@ class CheckoutController extends GetxController {
   var pageIndex = 0.obs;
   var deliveryGroupValue = 0.obs;
   var addressGroupValue = 0.obs;
+  var deliveryRadioListModel = DeliveryModel().obs;
   Rx<AddressModel> userAddress = AddressModel().obs;
+  late Rx<String> deliveryDate = ''.obs;
   nextPage() {
     if (pageIndex.value == 2) {
       routeController.routePage(type: "to", page: FinishScreen());

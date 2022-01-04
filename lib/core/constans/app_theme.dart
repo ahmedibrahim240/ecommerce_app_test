@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 
 import 'constans.dart';
 
@@ -58,5 +59,15 @@ class AppTheme {
         ),
       ),
     ),
+  );
+  static final DatePickerTheme datePickerTheme = DatePickerTheme(
+    cancelStyle: const TextStyle(color: Colors.white, fontSize: 16),
+    doneStyle: const TextStyle(color: Colors.blueAccent, fontSize: 16),
+    itemStyle: const TextStyle(color: Colors.white, fontSize: 18),
+    backgroundColor: Colors.black54,
+    headerColor: kPrimaryColor,
+    containerHeight: 210.0,
+    titleHeight: 44.0,
+    itemHeight: 36.0,
   );
 }

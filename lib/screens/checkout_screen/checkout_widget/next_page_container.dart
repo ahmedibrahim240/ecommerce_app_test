@@ -38,6 +38,12 @@ class NextPageContainer extends StatelessWidget {
                     customErrorSnakBar(
                       error: 'Choose Delivery State first',
                     );
+                  } else if ((checkoutController.deliveryGroupValue.value ==
+                          3) &&
+                      (checkoutController.deliveryDate.value == '')) {
+                    customErrorSnakBar(
+                      error: 'Choose Delivery Date first',
+                    );
                   } else if (checkoutController.pageIndex.value == 1) {
                     if (addressController.adressList.isEmpty) {
                       customErrorSnakBar(

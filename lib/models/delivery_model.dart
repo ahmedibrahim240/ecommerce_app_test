@@ -1,11 +1,11 @@
 class DeliveryModel {
-  final int value;
-  final String title, subTitle;
+  final int? value;
+  final String? title, subTitle;
 
   DeliveryModel({
-    required this.value,
-    required this.title,
-    required this.subTitle,
+    this.value,
+    this.title,
+    this.subTitle,
   });
 }
 
