@@ -22,6 +22,7 @@ void main() async {
     Get.put(CheckoutController());
     Get.put(AddressController());
     Get.put(SplachController());
+    Get.put(OrderController());
   });
   var initialData = await ConnectivityService().getIntState();
 

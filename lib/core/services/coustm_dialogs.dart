@@ -1,6 +1,7 @@
 import 'package:ecommerce_app/core/constans/constans.dart';
 import 'package:ecommerce_app/core/cutom_widget/custom_text.dart';
 import 'package:ecommerce_app/core/cutom_widget/custon_nav_bar.dart';
+import 'package:ecommerce_app/models/order_history_models.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -20,7 +21,7 @@ dismissLoadingWidget() {
   Get.back();
 }
 
-showSuccessDialog() {
+showSuccessDialog(OrderHistoryModels order) {
   Get.defaultDialog(
     title: 'Success Payment',
     titleStyle: TextStyle(
@@ -37,7 +38,7 @@ showSuccessDialog() {
             page: CustonNavBar(),
             arguments: 0.obs,
           );
-          cartContllors.delateAllPrdect();
+          orderController.createOders(order);
         },
         child: Text(
           'Submit',

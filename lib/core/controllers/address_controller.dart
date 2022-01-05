@@ -56,7 +56,6 @@ class AddressController extends GetxController {
 
         listOfAddress.add(addressModel.toJson());
       }
-      print(adressList.length);
 
       listOfAddress.add(newAddress);
       addressListModels = new AddressListModels(

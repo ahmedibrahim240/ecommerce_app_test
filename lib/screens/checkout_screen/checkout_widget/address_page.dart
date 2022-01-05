@@ -158,7 +158,6 @@ class AddressListView extends StatelessWidget {
                         addressController.adressList[revIndex];
                     checkoutController.updataAddressVale(value);
                     checkoutController.userAddress.value = newAddress;
-                    print(checkoutController.userAddress.toJson());
                   },
                 ),
               ),

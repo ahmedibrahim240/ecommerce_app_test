@@ -12,4 +12,5 @@ RouteController routeController = RouteController.instance;
 CheckoutController checkoutController = CheckoutController.instance;
 AddressController addressController = AddressController.instance;
 SplachController splachController = SplachController.instance;
+OrderController orderController = OrderController.instance;
 var dbHelper = DbHelper();

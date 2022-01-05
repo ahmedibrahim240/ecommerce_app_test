@@ -1,5 +1,6 @@
 import 'package:ecommerce_app/core/constans/constans.dart';
 import 'package:ecommerce_app/models/models.dart';
+import 'package:ecommerce_app/models/order_history_models.dart';
 import 'package:ecommerce_app/screens/screens.dart';
 import 'package:get/get.dart';
 
@@ -13,8 +14,7 @@ class CheckoutController extends GetxController {
   late Rx<String> deliveryDate = ''.obs;
   nextPage() {
     if (pageIndex.value == 2) {
-      routeController.routePage(type: "to", page: FinishScreen());
-      pageIndex.value = 0;
+      getOderDEtails();
       return;
     } else {
       pageIndex.value++;
@@ -40,5 +40,30 @@ class CheckoutController extends GetxController {
   createUsercheckOutAddress(AddressModel address) {
     userAddress.value = address;
     update();
+  }
+
+  getOderDEtails() {
+    AddressModel address = checkoutController.userAddress.value;
+    orderController.address =
+        '${address.country}-${address.state}-${address.city}-${address.street1}-${address.street2}';
+    orderController.orrderDate = checkoutController.deliveryDate.value;
+    orderController.getOrderID();
+    for (var item in cartContllors.cartItemList) {
+      orderController.titles?.add(item.tilte);
+    }
+
+    OrderHistoryModels order = OrderHistoryModels(
+      titles: orderController.titles,
+      address: orderController.address,
+      orderDate: orderController.orrderDate,
+      id: orderController.orderID.value,
+    );
+
+    pageIndex.value = 0;
+    routeController.routePage(
+      type: "offAll",
+      page: FinishScreen(),
+      arguments: order,
+    );
   }
 }

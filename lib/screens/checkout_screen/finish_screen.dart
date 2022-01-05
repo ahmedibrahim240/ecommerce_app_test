@@ -69,7 +69,7 @@ class FinishScreen extends StatelessWidget {
               onResult: (PaymentResponse res) {
                 print("res.status:${res.status}");
                 if (res.status == PaymentStatus.Success) {
-                  showSuccessDialog();
+                  showSuccessDialog(Get.arguments);
                 } else {
                   showFailedDialog();
                 }
