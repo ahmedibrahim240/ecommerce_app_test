@@ -13,6 +13,13 @@ class OrderController extends GetxController {
   var orderID = 0.obs;
   var newOrder;
   OrderHistoryListModels orderHistoryListModels = OrderHistoryListModels();
+  @override
+  void onReady() {
+    super.onReady();
+    if ((userToken != null) && (userToken != 'null')) getAllOderHistory();
+    // ignore: invalid_use_of_protected_member
+  }
+
   createOders(OrderHistoryModels order) async {
     String userId = authControllers.userModel.value.id!;
     listOforders = [];
@@ -49,6 +56,36 @@ class OrderController extends GetxController {
       print(e);
       customSnakBar(mass: 'we have some error try again later..');
     }
+    update();
+  }
+
+  getAllOderHistory() async {
+    OrderHistoryListModels orderHistoryListModels = OrderHistoryListModels();
+    orderHistoryList.value = [];
+    var newList = [];
+    await firebaseFirestore
+        .collection(ordersCollection)
+        .doc(userToken)
+        .get()
+        .then(
+      (value) {
+        if (value.data() != null) {
+          orderHistoryListModels = OrderHistoryListModels.formjson(value);
+          newList = orderHistoryListModels.ordersList!;
+          for (int i = 0; i < newList.length; i++) {
+            var order = newList[i];
+
+            orderHistoryList.add(
+              OrderHistoryModels.fromjson(order),
+            );
+          }
+        } else {
+          return;
+        }
+      },
+    );
+
+    update();
   }
 
   getOrderID() {
