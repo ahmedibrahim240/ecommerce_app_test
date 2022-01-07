@@ -94,7 +94,7 @@ class _PaymentNotes extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         CustomText(
-          text: 'Notes:',
+          text: '  Notes:',
           fontSize: 18,
           color: Colors.redAccent,
           alignment: Alignment.centerLeft,

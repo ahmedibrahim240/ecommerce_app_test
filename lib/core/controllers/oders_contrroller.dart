@@ -28,6 +28,11 @@ class OrderController extends GetxController {
     newOrder = order.tojson();
     try {
       if (orderHistoryList.isEmpty) {
+        print('___________________________');
+
+        print('EMMMMPATY');
+        print('___________________________');
+
         listOforders.add(newOrder);
         orderHistoryListModels = new OrderHistoryListModels(
           ordersList: listOforders,
@@ -36,11 +41,12 @@ class OrderController extends GetxController {
               orderHistoryListModels.tojson(),
             );
       } else {
-        for (int i = 0; i > orderHistoryList.length; i++) {
-          OrderHistoryModels orderHistoryModels = orderHistoryList[i];
-          listOforders.add(orderHistoryModels);
+        for (var order in orderHistoryList) {
+          OrderHistoryModels orderHistoryModels = order;
+          listOforders.add(orderHistoryModels.tojson());
         }
         listOforders.add(newOrder);
+
         orderHistoryListModels = new OrderHistoryListModels(
           ordersList: listOforders,
         );
@@ -95,13 +101,11 @@ class OrderController extends GetxController {
               OrderHistoryModels.fromjson(order),
             );
           }
-          print(orderHistoryList.toJson());
         } else {
           return;
         }
       },
     );
-    print('____________________________');
 
     update();
   }
