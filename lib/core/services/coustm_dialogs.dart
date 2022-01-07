@@ -33,11 +33,6 @@ showSuccessDialog(OrderHistoryModels order) {
     actions: [
       TextButton(
         onPressed: () {
-          routeController.routePage(
-            type: 'offAll',
-            page: CustonNavBar(),
-            arguments: 0.obs,
-          );
           orderController.createOders(order);
         },
         child: Text(

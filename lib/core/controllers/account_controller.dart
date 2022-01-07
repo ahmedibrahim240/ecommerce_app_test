@@ -1,4 +1,5 @@
 import 'package:ecommerce_app/core/services/coustm_dialogs.dart';
+import 'package:ecommerce_app/screens/account_screen/account_widget/account_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:get/get.dart';
@@ -111,7 +112,7 @@ class AccountController extends GetxController {
   routePages(int index) {
     switch (index) {
       case 0:
-        print("Edit pro");
+        routeController.routePage(type: 'to', page: OrderHistoryPage());
         break;
       case 1:
         print("shipping");

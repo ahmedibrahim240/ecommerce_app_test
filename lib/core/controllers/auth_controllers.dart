@@ -223,6 +223,7 @@ class AuthControllers extends GetxController {
       await MySharedPreferences.saveUserID(user.uid.toString());
       userToken = await MySharedPreferences.getGetuserID();
       addressController.getAllUserAdress();
+      orderController.getAllOderHistory();
     }
   }
 

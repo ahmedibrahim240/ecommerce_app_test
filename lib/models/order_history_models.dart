@@ -4,7 +4,7 @@ class OrderHistoryModels {
   static const ORDERDATE = "orderDate";
   static const ID = "id";
 
-  List<String>? titles = [];
+  List? titles = [];
   String? address;
   String? orderDate;
   int? id;

@@ -1,12 +1,13 @@
 import 'package:ecommerce_app/core/constans/constans.dart';
 import 'package:ecommerce_app/core/cutom_widget/cutom_widget.dart';
+import 'package:ecommerce_app/core/services/coustm_dialogs.dart';
 import 'package:ecommerce_app/models/order_history_models.dart';
 import 'package:get/get.dart';
 
 class OrderController extends GetxController {
   static OrderController instance = Get.find();
   String? address, orrderDate;
-  List<String>? titles = [];
+  List titles = [];
   String ordersCollection = "users_orders";
   List listOforders = [];
   var orderHistoryList = [].obs;
@@ -21,6 +22,7 @@ class OrderController extends GetxController {
   }
 
   createOders(OrderHistoryModels order) async {
+    showLoading();
     String userId = authControllers.userModel.value.id!;
     listOforders = [];
     newOrder = order.tojson();
@@ -47,13 +49,27 @@ class OrderController extends GetxController {
             );
       }
       cartContllors.delateAllPrdect();
+      bestSellingControllers.updataProduct(inCart: false, type: "all");
+
       titles = [];
       checkoutController.addressGroupValue.value = 0;
       checkoutController.deliveryGroupValue.value = 0;
       checkoutController.deliveryDate.value = '';
+      dismissLoadingWidget();
+      routeController.routePage(
+        type: 'offAll',
+        page: CustonNavBar(),
+        arguments: 0.obs,
+      );
       customSnakBar(mass: 'Order Was Added..');
     } catch (e) {
       print(e);
+      dismissLoadingWidget();
+      routeController.routePage(
+        type: 'offAll',
+        page: CustonNavBar(),
+        arguments: 0.obs,
+      );
       customSnakBar(mass: 'we have some error try again later..');
     }
     update();
@@ -79,11 +95,13 @@ class OrderController extends GetxController {
               OrderHistoryModels.fromjson(order),
             );
           }
+          print(orderHistoryList.toJson());
         } else {
           return;
         }
       },
     );
+    print('____________________________');
 
     update();
   }
