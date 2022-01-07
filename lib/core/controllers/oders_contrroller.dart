@@ -56,6 +56,7 @@ class OrderController extends GetxController {
       }
       cartContllors.delateAllPrdect();
       bestSellingControllers.updataProduct(inCart: false, type: "all");
+      getAllOderHistory();
 
       titles = [];
       checkoutController.addressGroupValue.value = 0;
