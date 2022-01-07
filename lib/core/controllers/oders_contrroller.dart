@@ -28,11 +28,6 @@ class OrderController extends GetxController {
     newOrder = order.tojson();
     try {
       if (orderHistoryList.isEmpty) {
-        print('___________________________');
-
-        print('EMMMMPATY');
-        print('___________________________');
-
         listOforders.add(newOrder);
         orderHistoryListModels = new OrderHistoryListModels(
           ordersList: listOforders,
@@ -56,7 +51,7 @@ class OrderController extends GetxController {
       }
       cartContllors.delateAllPrdect();
       bestSellingControllers.updataProduct(inCart: false, type: "all");
-      getAllOderHistory();
+      await getAllOderHistory();
 
       titles = [];
       checkoutController.addressGroupValue.value = 0;

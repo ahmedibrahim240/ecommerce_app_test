@@ -32,8 +32,9 @@ showSuccessDialog(OrderHistoryModels order) {
     barrierDismissible: false,
     actions: [
       TextButton(
-        onPressed: () {
-          orderController.createOders(order);
+        onPressed: () async {
+          Get.back();
+          await orderController.createOders(order);
         },
         child: Text(
           'Submit',
