@@ -23,9 +23,7 @@ class AddressPage extends StatelessWidget {
             _BillingAddressText(),
             (addressController.adressList.isNotEmpty) &&
                     (addressController.adressList != [])
-                ? Expanded(
-                    child: ChooseEXAddress(),
-                  )
+                ? ChooseEXAddress()
                 : AddressForm(),
           ],
         ),

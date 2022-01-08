@@ -114,24 +114,24 @@ class AccountController extends GetxController {
       case 0:
         routeController.routePage(type: 'to', page: OrderHistoryPage());
         break;
-      case 1:
-        print("shipping");
+      // case 1:
+      //   print("shipping");
 
-        break;
-      case 2:
-        print("order");
+      //   break;
+      // case 2:
+      //   print("order");
 
-        break;
-      case 3:
-        print("Cards");
+      //   break;
+      // case 3:
+      //   print("Cards");
 
-        break;
-      case 4:
-        print("Notifcations");
+      //   break;
+      // case 4:
+      //   print("Notifcations");
 
-        break;
-      case 5:
-        break;
+      //   break;
+      // case 5:
+      //   break;
       default:
         authControllers.signOut();
     }

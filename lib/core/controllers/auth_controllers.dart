@@ -32,9 +32,25 @@ class AuthControllers extends GetxController {
 
     try {
       showLoading();
-      await auth.signInWithEmailAndPassword(
+      await auth
+          .signInWithEmailAndPassword(
         email: email!,
         password: password!,
+      )
+          .catchError(
+        (error) {
+          Get.snackbar(
+            "Sign In Failed",
+            "Try again\n$error",
+            titleText: CustomText(
+              text: "Sign In Failed",
+              color: kPrimaryColor,
+            ),
+            colorText: Colors.black,
+            snackPosition: SnackPosition.BOTTOM,
+          );
+          print(error);
+        },
       );
       dismissLoadingWidget();
     } catch (e) {

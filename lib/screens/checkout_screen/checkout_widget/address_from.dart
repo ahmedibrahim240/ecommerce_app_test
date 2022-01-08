@@ -88,7 +88,7 @@ class AddressForm extends GetWidget<AddressController> {
     );
   }
 
-  validateAddrees() {
+  validateAddrees() async {
     if (AddressForm.formKey.currentState!.validate()) {
       AddressForm.formKey.currentState!.save();
       controller.getAddressLength();
@@ -101,9 +101,8 @@ class AddressForm extends GetWidget<AddressController> {
         country: controller.country,
         id: controller.adreesLenght.value,
       );
-      controller.createNewaddress(address);
-      controller.getAllUserAdress();
-      print(controller.adressList.isNotEmpty);
+
+      await controller.createNewaddress(address);
     }
   }
 }

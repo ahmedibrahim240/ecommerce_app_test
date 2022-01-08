@@ -1,5 +1,6 @@
 import 'package:ecommerce_app/core/constans/constans.dart';
 import 'package:ecommerce_app/core/cutom_widget/custom_snakBar.dart';
+import 'package:ecommerce_app/core/services/coustm_dialogs.dart';
 import 'package:ecommerce_app/models/models.dart';
 import 'package:get/get.dart';
 
@@ -38,38 +39,50 @@ class AddressController extends GetxController {
   }
 
   createNewaddress(AddressModel address) async {
+    showLoading();
     String userId = authControllers.userModel.value.id!;
 
     listOfAddress = [];
     newAddress = address.toJson();
-    if (adressList.isEmpty) {
-      listOfAddress.add(newAddress);
-      addressListModels = new AddressListModels(
-        addresses: listOfAddress,
-      );
-      await firebaseFirestore.collection(addressCollection).doc(userId).set(
-            addressListModels.toJson(),
-          );
-    } else {
-      for (int i = 0; i < adressList.length; i++) {
-        AddressModel addressModel = adressList[i];
+    try {
+      if (adressList.isEmpty) {
+        listOfAddress.add(newAddress);
+        addressListModels = new AddressListModels(
+          addresses: listOfAddress,
+        );
+        await firebaseFirestore.collection(addressCollection).doc(userId).set(
+              addressListModels.toJson(),
+            );
+      } else {
+        for (int i = 0; i < adressList.length; i++) {
+          AddressModel addressModel = adressList[i];
 
-        listOfAddress.add(addressModel.toJson());
+          listOfAddress.add(addressModel.toJson());
+        }
+
+        listOfAddress.add(newAddress);
+        addressListModels = new AddressListModels(
+          addresses: listOfAddress,
+        );
+        await firebaseFirestore
+            .collection(addressCollection)
+            .doc(userId)
+            .update(
+              addressListModels.toJson(),
+            );
       }
+      getAllUserAdress();
+      dismissLoadingWidget();
+      addNewAddress.value = false;
+      shooseNewAddress.value = true;
+      checkoutController.addressGroupValue.value = 1;
+      checkoutController.userAddress.value = address;
+      customSnakBar(mass: 'Address Was Added..');
+    } catch (e) {
+      customErrorSnakBar(error: 'Failed please try again');
 
-      listOfAddress.add(newAddress);
-      addressListModels = new AddressListModels(
-        addresses: listOfAddress,
-      );
-      await firebaseFirestore.collection(addressCollection).doc(userId).update(
-            addressListModels.toJson(),
-          );
+      dismissLoadingWidget();
     }
-    addNewAddress.value = false;
-    shooseNewAddress.value = true;
-    checkoutController.addressGroupValue.value = 1;
-    checkoutController.userAddress.value = address;
-    customSnakBar(mass: 'Address Was Added..');
 
     update();
   }
