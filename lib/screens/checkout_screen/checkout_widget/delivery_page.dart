@@ -16,7 +16,7 @@ class DeliveryPage extends StatelessWidget {
       builder: (controller) => Column(
         children: [
           _buildRadioListTile(controller),
-          if (controller.deliveryRadioListModel.value.value == 3)
+          if ((controller.deliveryGroupValue.value == 3))
             CustomButtom(
               onPreessed: () => _showDatePicker(context, controller),
               child: CustomText(

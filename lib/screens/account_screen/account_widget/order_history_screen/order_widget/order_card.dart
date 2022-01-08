@@ -71,6 +71,7 @@ class OrderCard extends StatelessWidget {
       width: screenWidth,
       child: ListView.builder(
         itemCount: order.titles!.length,
+        scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
           String title = order.titles![index].toString();
           return CustomText(
