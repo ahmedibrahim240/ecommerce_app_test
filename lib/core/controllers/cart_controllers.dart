@@ -9,6 +9,7 @@ class CartContllors extends GetxController {
   static CartContllors instance = Get.find();
   var cartItemList = [].obs;
   var totalPrice = 0.0.obs;
+  Rx<bool> relooadPage = false.obs;
   @override
   void onReady() {
     super.onReady();
@@ -88,21 +89,21 @@ class CartContllors extends GetxController {
 
     await dbHelper.deleteProduct(product!.id);
     isInCart(id);
-    getAllProduct();
+    await getAllProduct();
     update();
   }
 
   increaseQuantity(int index) async {
     cartItemList[index].quantity++;
     await dbHelper.updateProduct(cartItemList[index]);
-    getAllProduct();
+    await getAllProduct();
     update();
   }
 
   decreaseQuantity(int index) async {
     cartItemList[index].quantity--;
     await dbHelper.updateProduct(cartItemList[index]);
-    getAllProduct();
+    await getAllProduct();
     update();
   }
 }

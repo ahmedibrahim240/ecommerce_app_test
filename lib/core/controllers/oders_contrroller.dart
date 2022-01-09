@@ -53,10 +53,7 @@ class OrderController extends GetxController {
       bestSellingControllers.updataProduct(inCart: false, type: "all");
       await getAllOderHistory();
 
-      titles = [];
-      checkoutController.addressGroupValue.value = 0;
-      checkoutController.deliveryGroupValue.value = 0;
-      checkoutController.deliveryDate.value = '';
+      updateCheckOutParameter();
       dismissLoadingWidget();
       routeController.routePage(
         type: 'offAll',
@@ -74,6 +71,14 @@ class OrderController extends GetxController {
       );
       customSnakBar(mass: 'we have some error try again later..');
     }
+    update();
+  }
+
+  updateCheckOutParameter() {
+    titles = [];
+    checkoutController.addressGroupValue.value = 0;
+    checkoutController.deliveryGroupValue.value = 0;
+    checkoutController.deliveryDate.value = '';
     update();
   }
 

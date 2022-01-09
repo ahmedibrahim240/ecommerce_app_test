@@ -16,67 +16,74 @@ class FinishScreen extends StatelessWidget {
     // ignore: non_constant_identifier_names
     final String _test_api_token =
         'rLtt6JWvbUHDDhsZnfpAhpYk4dxYDQkbcPTyGaKp2TYqQgG7FGZ5Th_WD53Oq8Ebz6A53njUoo1w3pjU1D4vs_ZMqFiz_j0urb_BH9Oq9VZoKFoJEDAbRZepGcQanImyYrry7Kt6MnMdgfG5jn4HngWoRdKduNNyP4kzcp3mRv7x00ahkm9LAK7ZRieg7k1PDAnBIOG3EyVSJ5kK4WLMvYr7sCwHbHcu4A5WwelxYK0GMJy37bNAarSJDFQsJ2ZvJjvMDmfWwDVFEVe_5tOomfVNt6bOg9mexbGjMrnHBnKnZR1vQbBtQieDlQepzTZMuQrSuKn-t5XZM7V6fCW7oP-uXGX-sMOajeX65JOf6XVpk29DP6ro8WTAflCDANC193yof8-f5_EYY-3hXhJj7RBXmizDpneEQDSaSz5sFk0sV5qPcARJ9zGG73vuGFyenjPPmtDtXtpx35A-BVcOSBYVIWe9kndG3nclfefjKEuZ3m4jL9Gg1h2JBvmXSMYiZtp9MR5I6pvbvylU_PP5xJFSjVTIz7IQSjcVGO41npnwIxRXNRxFOdIUHn0tjQ-7LwvEcTXyPsHXcMD8WtgBh-wxR8aKX7WPSsT1O8d8reb2aR7K3rkV3K82K_0OgawImEpwSvp9MNKynEAJQS6ZHe_J_l77652xwPNxMRTMASk1ZsJL';
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Payments'),
-        leading: IconButton(
-          onPressed: () {
-            checkoutController.pageIndex.value = 2;
-            Get.back();
-          },
-          icon: Icon(
-            Icons.arrow_back,
-          ),
-        ),
-      ),
-      body: Column(
-        children: [
-          _PaymentNotes(),
-          Expanded(
-            child: MyFatoorah(
-              // ignore: deprecated_member_use
-              request: MyfatoorahRequest(
-                url: _test_api_url,
-                token: _test_api_token,
-                currencyIso: Country.SaudiArabia,
-                successUrl:
-                    "https://assets.materialup.com/uploads/473ef52c-8b96-46f7-9771-cac4b112ae28/preview.png",
-                errorUrl:
-                    "https://www.digitalpaymentguru.com/wp-content/uploads/2019/08/Transaction-Failed.png",
-                invoiceAmount: cartContllors.totalPrice.value,
-                language: ApiLanguage.English,
-              ),
-              errorChild: Center(
-                child: Icon(
-                  Icons.error,
-                  color: Colors.redAccent,
-                  size: 50,
-                ),
-              ),
-              succcessChild: Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Icon(
-                      Icons.done_all,
-                      color: Colors.greenAccent,
-                      size: 50,
-                    ),
-                  ],
-                ),
-              ),
-              onResult: (PaymentResponse res) {
-                print("res.status:${res.status}");
-                if (res.status == PaymentStatus.Success) {
-                  showSuccessDialog(Get.arguments);
-                } else {
-                  showFailedDialog();
-                }
-              },
+    return WillPopScope(
+      onWillPop: () async {
+        showFailedDialog();
+
+        return false;
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text('Payments'),
+          leading: IconButton(
+            onPressed: () {
+              checkoutController.pageIndex.value = 2;
+              Get.back();
+            },
+            icon: Icon(
+              Icons.arrow_back,
             ),
           ),
-        ],
+        ),
+        body: Column(
+          children: [
+            _PaymentNotes(),
+            Expanded(
+              child: MyFatoorah(
+                // ignore: deprecated_member_use
+                request: MyfatoorahRequest(
+                  url: _test_api_url,
+                  token: _test_api_token,
+                  currencyIso: Country.SaudiArabia,
+                  successUrl:
+                      "https://assets.materialup.com/uploads/473ef52c-8b96-46f7-9771-cac4b112ae28/preview.png",
+                  errorUrl:
+                      "https://www.digitalpaymentguru.com/wp-content/uploads/2019/08/Transaction-Failed.png",
+                  invoiceAmount: cartContllors.totalPrice.value,
+                  language: ApiLanguage.English,
+                ),
+                errorChild: Center(
+                  child: Icon(
+                    Icons.error,
+                    color: Colors.redAccent,
+                    size: 50,
+                  ),
+                ),
+                succcessChild: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.done_all,
+                        color: Colors.greenAccent,
+                        size: 50,
+                      ),
+                    ],
+                  ),
+                ),
+                onResult: (PaymentResponse res) {
+                  print("res.status:${res.status}");
+                  if (res.status == PaymentStatus.Success) {
+                    showSuccessDialog(Get.arguments);
+                  } else {
+                    showFailedDialog();
+                  }
+                },
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

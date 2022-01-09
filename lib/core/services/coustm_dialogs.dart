@@ -26,9 +26,14 @@ showSuccessDialog(OrderHistoryModels order) {
     title: 'Success Payment',
     titleStyle: TextStyle(
       color: kPrimaryColor,
-      fontSize: 14,
+      fontSize: 12,
     ),
-    content: CustomText(text: 'Complet Pyament'),
+    content: CustomText(
+      text: 'Complet Pyament...',
+      alignment: Alignment.center,
+      textAlign: TextAlign.center,
+      fontSize: 10,
+    ),
     barrierDismissible: false,
     actions: [
       TextButton(
@@ -52,17 +57,23 @@ showFailedDialog() {
     title: "Failed Payment",
     titleStyle: TextStyle(
       color: kPrimaryColor,
-      fontSize: 14,
+      fontSize: 12,
     ),
-    content: Text('Try again later..'),
+    content: CustomText(
+      text: 'Try again later..',
+      alignment: Alignment.center,
+      textAlign: TextAlign.center,
+      fontSize: 10,
+    ),
     barrierDismissible: false,
     actions: [
       TextButton(
         onPressed: () {
+          orderController.updateCheckOutParameter();
           routeController.routePage(
             type: 'offAll',
             page: CustonNavBar(),
-            arguments: 2.obs,
+            arguments: 1.obs,
           );
         },
         child: Text(

@@ -75,11 +75,18 @@ class CartItemCard extends GetWidget<AccountController> {
                   add: () {
                     cartContllors.increaseQuantity(index);
                   },
-                  minimize: () {
+                  minimize: () async {
                     if (cartContllors.cartItemList[index].quantity == 1) {
-                      cartContllors.delateProduct(product.productId!);
-                      bestSellingControllers.updataProduct(
-                          id: product.productId!, inCart: false, type: 'id');
+                      cartContllors.relooadPage.value = true;
+                      await cartContllors.delateProduct(
+                        cartContllors.cartItemList[index].productId!,
+                      );
+                      await bestSellingControllers.updataProduct(
+                        id: product.productId!,
+                        inCart: false,
+                        type: 'id',
+                      );
+                      cartContllors.relooadPage.value = false;
                     } else {
                       cartContllors.decreaseQuantity(index);
                     }

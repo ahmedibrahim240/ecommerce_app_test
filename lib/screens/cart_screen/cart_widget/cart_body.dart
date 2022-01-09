@@ -45,19 +45,22 @@ class _BuildCartItemList extends StatelessWidget {
         if (cartContllors.cartItemList.isEmpty) {
           return _EmptyCart();
         } else {
-          return ListView.separated(
-            shrinkWrap: true,
-            itemCount: cartContllors.cartItemList.length,
-            padding: EdgeInsets.fromLTRB(
-                defaultSize, defaultSize * 2, defaultSize, 0),
-            itemBuilder: (context, index) {
-              CartProductMoldes product = cartContllors.cartItemList[index];
+          return (cartContllors.relooadPage.value)
+              ? Container()
+              : ListView.separated(
+                  shrinkWrap: true,
+                  itemCount: cartContllors.cartItemList.length,
+                  padding: EdgeInsets.fromLTRB(
+                      defaultSize, defaultSize * 2, defaultSize, 0),
+                  itemBuilder: (context, index) {
+                    CartProductMoldes product =
+                        cartContllors.cartItemList[index];
 
-              return CartItemCard(product: product, index: index);
-            },
-            separatorBuilder: (BuildContext context, int index) =>
-                SizedBox(height: defaultSize),
-          );
+                    return CartItemCard(product: product, index: index);
+                  },
+                  separatorBuilder: (BuildContext context, int index) =>
+                      SizedBox(height: defaultSize),
+                );
         }
       },
     );
