@@ -39,51 +39,15 @@ class BestSellingControllers extends GetxController {
           }
         }
         product.inCart = inCart;
-        // _collectionReference.doc(product.id).update(
-        //       product.toJson(),
-        //     );
 
         break;
       case 'all':
         for (int i = 0; i < productModels.length; i++) {
           productModels[i].inCart = inCart;
-          // _collectionReference.doc(productModels[i].id).update(
-          //       productModels[i].toJson(),
-          //     );
         }
 
         break;
     }
-
-    // if (isAll!) {
-    //   for (int i = 0; i < productModels.length; i++) {
-    //     productModels[i].inCart = inCart;
-    //     _collectionReference.doc(productModels[i].id).update(
-    //           productModels[i].toJson(),
-    //         );
-    //   }
-    //   return;
-    // }
-    // if (id != null) {
-    //   late ProductModels product;
-    //   for (int i = 0; i < productModels.length; i++) {
-    //     if (productModels[i].id == id) {
-    //       product = productModels[i];
-    //     }
-    //   }
-    //   product.inCart = inCart;
-    //   _collectionReference.doc(product.id).update(
-    //         product.toJson(),
-    //       );
-    //   return;
-    // }
-    // if (index != null) {
-    //   productModels[index].inCart = inCart;
-    //   _collectionReference.doc(productModels[index].id).update(
-    //         productModels[index].toJson(),
-    //       );
-    //   return;
-    // }
 
     update();
   }
