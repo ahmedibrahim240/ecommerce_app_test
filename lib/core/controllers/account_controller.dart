@@ -15,6 +15,7 @@ class AccountController extends GetxController {
   var themeMode = ThemeMode.system.obs;
   final picker = ImagePicker();
   var imageFile;
+
   Rx<bool> darkMode = false.obs;
   Rx<bool> isSystemMode = false.obs;
   void onReady() async {
@@ -114,26 +115,35 @@ class AccountController extends GetxController {
       case 0:
         routeController.routePage(type: 'to', page: OrderHistoryPage());
         break;
-      // case 1:
-      //   print("shipping");
+      case 1:
+        onChangedDarKMode(!darkMode.value);
 
-      //   break;
-      // case 2:
-      //   print("order");
+        break;
+      case 2:
+        onChangedSystemMode(!isSystemMode.value);
 
-      //   break;
-      // case 3:
-      //   print("Cards");
-
-      //   break;
-      // case 4:
-      //   print("Notifcations");
-
-      //   break;
-      // case 5:
-      //   break;
-      default:
+        break;
+      case 3:
         authControllers.signOut();
+
+        break;
     }
+  }
+
+  onChangedDarKMode(value) async {
+    darkMode.value = value;
+    if (isSystemMode.value) {
+      isSystemMode.value = false;
+      await MySharedPreferences.saveisSystemMode(value);
+    }
+
+    switchDartMode();
+    await MySharedPreferences.saveisDartMode(value);
+  }
+
+  onChangedSystemMode(value) async {
+    isSystemMode.value = value;
+    getThemeMode();
+    await MySharedPreferences.saveisSystemMode(value);
   }
 }

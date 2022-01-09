@@ -64,26 +64,13 @@ class AccountItemCard extends GetWidget {
               Switch(
                 value: accountController.darkMode.value,
                 activeColor: kPrimaryColor,
-                onChanged: (value) async {
-                  controller.darkMode.value = value;
-                  if (controller.isSystemMode.value) {
-                    controller.isSystemMode.value = false;
-                    await MySharedPreferences.saveisSystemMode(value);
-                  }
-
-                  controller.switchDartMode();
-                  await MySharedPreferences.saveisDartMode(value);
-                },
+                onChanged: (value) => controller.onChangedDarKMode(value),
               ),
             if (index == accountList.length - 2)
               Switch(
                 value: accountController.isSystemMode.value,
                 activeColor: kPrimaryColor,
-                onChanged: (value) async {
-                  controller.isSystemMode.value = value;
-                  controller.getThemeMode();
-                  await MySharedPreferences.saveisSystemMode(value);
-                },
+                onChanged: (value) => controller.onChangedSystemMode(value),
               ),
             if ((index != accountList.length - 1) &&
                 (index != accountList.length - 2) &&
