@@ -11,12 +11,16 @@ class BestSellingControllers extends GetxController {
   getBestProduct() async {
     productModels.value = [];
     await _collectionReference.get().then(
-      (value) {
+      (value) async {
         for (int i = 0; i < value.docs.length; i++) {
+          ProductModels product = ProductModels.fromJson(
+            value.docs[i].data(),
+          );
+          product.inCart = await cartContllors.isINCartInitial(
+            product.id,
+          );
           productModels.add(
-            ProductModels.fromJson(
-              value.docs[i].data(),
-            ),
+            product,
           );
         }
       },
@@ -35,17 +39,17 @@ class BestSellingControllers extends GetxController {
           }
         }
         product.inCart = inCart;
-        _collectionReference.doc(product.id).update(
-              product.toJson(),
-            );
+        // _collectionReference.doc(product.id).update(
+        //       product.toJson(),
+        //     );
 
         break;
       case 'all':
         for (int i = 0; i < productModels.length; i++) {
           productModels[i].inCart = inCart;
-          _collectionReference.doc(productModels[i].id).update(
-                productModels[i].toJson(),
-              );
+          // _collectionReference.doc(productModels[i].id).update(
+          //       productModels[i].toJson(),
+          //     );
         }
 
         break;

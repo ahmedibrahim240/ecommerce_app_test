@@ -63,6 +63,11 @@ class CartContllors extends GetxController {
     await dbHelper.deleteAllProduct();
   }
 
+  Future<bool> isINCartInitial(String? id) async {
+    CartProductMoldes? product = await dbHelper.getProductById(id!);
+    return (product == null) ? false : true;
+  }
+
   isInCart(String id) async {
     CartProductMoldes? product = await dbHelper.getProductById(id);
     if (product == null) {
