@@ -5,7 +5,7 @@ import 'package:ecommerce_app/models/models.dart';
 import 'package:ecommerce_app/screens/screens.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_login_facebook/flutter_login_facebook.dart';
+// import 'package:flutter_login_facebook/flutter_login_facebook.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
@@ -153,47 +153,47 @@ class AuthControllers extends GetxController {
 
   //! end goole sign in nethods
   //? facebook sign in methods
-  void faceBookSignInMethod() async {
-    splachController.isStart.value = false;
+  // void faceBookSignInMethod() async {
+  //   splachController.isStart.value = false;
 
-    FacebookLoginResult faceBookUser =
-        await facebookLogin.logIn(permissions: [FacebookPermission.email]);
-    final accessToken = faceBookUser.accessToken!.token;
-    showLoading();
-    switch (faceBookUser.status) {
-      case FacebookLoginStatus.success:
-        //ToDo: save user login with FackBooke in firebase user data
+  //   FacebookLoginResult faceBookUser =
+  //       await facebookLogin.logIn(permissions: [FacebookPermission.email]);
+  //   final accessToken = faceBookUser.accessToken!.token;
+  //   showLoading();
+  //   switch (faceBookUser.status) {
+  //     case FacebookLoginStatus.success:
+  //       //ToDo: save user login with FackBooke in firebase user data
 
-        final faceCredential = FacebookAuthProvider.credential(accessToken);
-        // ignore: unused_local_variable
-        final UserCredential? _userCredential =
-            await auth.signInWithCredential(faceCredential).then(
-          (value) async {
-            return await _addUserToFirestore(value.user!);
-          },
-        );
+  //       final faceCredential = FacebookAuthProvider.credential(accessToken);
+  //       // ignore: unused_local_variable
+  //       final UserCredential? _userCredential =
+  //           await auth.signInWithCredential(faceCredential).then(
+  //         (value) async {
+  //           return await _addUserToFirestore(value.user!);
+  //         },
+  //       );
 
-        //ToDo: End save
-        break;
-      case FacebookLoginStatus.cancel:
-        dismissLoadingWidget();
-        Get.snackbar(
-          "Sign Up Failed",
-          "Try again",
-          titleText: CustomText(
-            text: "Sign Up Failed",
-            color: kPrimaryColor,
-          ),
-          colorText: Colors.black,
-          snackPosition: SnackPosition.BOTTOM,
-        );
-        break;
+  //       //ToDo: End save
+  //       break;
+  //     case FacebookLoginStatus.cancel:
+  //       dismissLoadingWidget();
+  //       Get.snackbar(
+  //         "Sign Up Failed",
+  //         "Try again",
+  //         titleText: CustomText(
+  //           text: "Sign Up Failed",
+  //           color: kPrimaryColor,
+  //         ),
+  //         colorText: Colors.black,
+  //         snackPosition: SnackPosition.BOTTOM,
+  //       );
+  //       break;
 
-      default:
-    }
+  //     default:
+  //   }
 
-    print("faceBookUser:$faceBookUser");
-  }
+  //   print("faceBookUser:$faceBookUser");
+  // }
 
   void signOut() async {
     name = null;

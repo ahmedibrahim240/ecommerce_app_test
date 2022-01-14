@@ -58,7 +58,7 @@
 	</array>
 	<!-- End of the Google Sign-in Section -->
 
-	<key>CFBundleURLTypes</key>
+	<!-- <key>CFBundleURLTypes</key>
 	<array>
 	<dict>
 	<key>CFBundleURLSchemes</key>
@@ -72,6 +72,6 @@
 	<key>FacebookClientToken</key>
 	<string>CLIENT-TOKEN</string>
 	<key>FacebookDisplayName</key>
-	<string>ecommerce</string>
+	<string>ecommerce</string> -->
 </dict>
 </plist>
