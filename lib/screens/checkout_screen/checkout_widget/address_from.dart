@@ -93,7 +93,7 @@ class AddressForm extends GetWidget<AddressController> {
       AddressForm.formKey.currentState!.save();
       controller.getAddressLength();
 
-      AddressModel address = new AddressModel(
+      Addressmodels address = new Addressmodels(
         street1: controller.street1,
         street2: controller.street2,
         city: controller.city,

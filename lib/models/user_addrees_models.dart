@@ -1,4 +1,4 @@
-class AddressModel {
+class Addressmodels {
   static const STREET1 = "street1";
   static const STREET2 = "street2";
   static const CITY = "city";
@@ -13,7 +13,7 @@ class AddressModel {
   String? country;
   int? id;
 
-  AddressModel({
+  Addressmodels({
     this.street1,
     this.street2,
     this.city,
@@ -22,7 +22,7 @@ class AddressModel {
     this.id,
   });
 
-  AddressModel.fromJson(snapshot) {
+  Addressmodels.fromJson(snapshot) {
     street2 = snapshot[STREET2];
     city = snapshot[CITY];
     street1 = snapshot[STREET1];
@@ -42,11 +42,11 @@ class AddressModel {
   }
 }
 
-class AddressListModels {
+class AddressListmodels {
   static const ADDRESSES = "addresses";
   List? addresses;
-  AddressListModels({this.addresses});
-  AddressListModels.fromJson(data) {
+  AddressListmodels({this.addresses});
+  AddressListmodels.fromJson(data) {
     addresses = data[ADDRESSES];
   }
   toJson() {

@@ -1,7 +1,8 @@
 import 'package:ecommerce_app/core/constans/constans.dart';
-import 'package:ecommerce_app/core/controllers/cart_controllers.dart';
+
 import 'package:ecommerce_app/core/cutom_widget/custom_text.dart';
 import 'package:ecommerce_app/models/models.dart';
+
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -16,19 +17,15 @@ class CartBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<CartContllors>(
-      builder: (controller) {
-        return SafeArea(
-          child: Column(
-            children: [
-              Expanded(
-                child: _BuildCartItemList(),
-              ),
-              CheckoutCard(),
-            ],
+    return SafeArea(
+      child: Column(
+        children: [
+          Expanded(
+            child: _BuildCartItemList(),
           ),
-        );
-      },
+          CheckoutCard(),
+        ],
+      ),
     );
   }
 }
@@ -45,22 +42,32 @@ class _BuildCartItemList extends StatelessWidget {
         if (cartContllors.cartItemList.isEmpty) {
           return _EmptyCart();
         } else {
-          return (cartContllors.relooadPage.value)
-              ? Container()
-              : ListView.separated(
-                  shrinkWrap: true,
-                  itemCount: cartContllors.cartItemList.length,
-                  padding: EdgeInsets.fromLTRB(
-                      defaultSize, defaultSize * 2, defaultSize, 0),
-                  itemBuilder: (context, index) {
-                    CartProductMoldes product =
-                        cartContllors.cartItemList[index];
+          return
+              // Column(
+              //   children: authControllers.usermodels.value.cart
+              //       .map<Widget>(
+              //         (product) => Padding(
+              //           padding: EdgeInsets.all(defaultSize),
+              //           child: CartItemCard(product: product),
+              //         ),
+              //       )
+              //       .toList(),
+              // );
 
-                    return CartItemCard(product: product, index: index);
-                  },
-                  separatorBuilder: (BuildContext context, int index) =>
-                      SizedBox(height: defaultSize),
-                );
+              ListView.separated(
+            shrinkWrap: true,
+            itemCount: cartContllors.cartItemList.length,
+            padding: EdgeInsets.fromLTRB(
+                defaultSize, defaultSize * 2, defaultSize, 0),
+            itemBuilder: (context, index) {
+              CartItemmodels product =
+                  authControllers.usermodels.value.cart[index];
+
+              return CartItemCard(product: product, index: index);
+            },
+            separatorBuilder: (BuildContext context, int index) =>
+                SizedBox(height: defaultSize),
+          );
         }
       },
     );

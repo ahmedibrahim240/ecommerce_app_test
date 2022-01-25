@@ -11,7 +11,7 @@ class SummerPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Obx(() {
-      AddressModel address = checkoutController.userAddress.value;
+      Addressmodels address = checkoutController.userAddress.value;
       return Column(
         children: [
           _productsReview(),
@@ -54,7 +54,7 @@ class SummerPage extends StatelessWidget {
     );
   }
 
-  ListTile _userAddrees(AddressModel address) {
+  ListTile _userAddrees(Addressmodels address) {
     String userAddress =
         '${address.country}-${address.state}-${address.city}-${address.street1}-${address.street2}';
     return ListTile(
@@ -130,11 +130,11 @@ class _BuildSummerItemList extends StatelessWidget {
       return ListView.separated(
         shrinkWrap: true,
         scrollDirection: Axis.horizontal,
-        itemCount: cartContllors.cartItemList.length,
+        itemCount: authControllers.usermodels.value.cart.length,
         padding:
             EdgeInsets.fromLTRB(defaultSize, defaultSize * 2, defaultSize, 0),
         itemBuilder: (context, index) {
-          CartProductMoldes product = cartContllors.cartItemList[index];
+          CartItemmodels product = authControllers.usermodels.value.cart[index];
           return _ProductCard(
             index: index,
             product: product,
@@ -154,7 +154,7 @@ class _ProductCard extends GetWidget<AccountController> {
     required this.index,
   }) : super(key: key);
 
-  final CartProductMoldes product;
+  final CartItemmodels product;
   final int index;
 
   @override

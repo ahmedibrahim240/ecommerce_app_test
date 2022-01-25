@@ -11,7 +11,7 @@ class PriceCard extends GetWidget<AccountController> {
     required this.product,
   }) : super(key: key);
 
-  final ProductModels product;
+  final Productmodels product;
 
   @override
   Widget build(BuildContext context) {

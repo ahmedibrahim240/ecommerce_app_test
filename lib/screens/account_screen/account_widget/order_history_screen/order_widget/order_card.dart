@@ -4,7 +4,7 @@ import 'package:ecommerce_app/models/order_history_models.dart';
 import 'package:flutter/material.dart';
 
 class OrderCard extends StatelessWidget {
-  final OrderHistoryModels order;
+  final OrderHistorymodels order;
   const OrderCard({Key? key, required this.order}) : super(key: key);
 
   @override

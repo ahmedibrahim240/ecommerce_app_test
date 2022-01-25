@@ -1,7 +1,8 @@
 import 'package:ecommerce_app/core/constans/constans.dart';
 import 'package:ecommerce_app/core/controllers/checkout_controller.dart';
 import 'package:ecommerce_app/core/cutom_widget/cutom_widget.dart';
-import 'package:ecommerce_app/models/delivery_model.dart';
+import 'package:ecommerce_app/models/models.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
@@ -11,7 +12,7 @@ class DeliveryPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // late DeliveryModel model;
+    // late Deliverymodels models;
     return GetBuilder<CheckoutController>(
       builder: (controller) => Column(
         children: [
@@ -36,31 +37,31 @@ class DeliveryPage extends StatelessWidget {
       itemCount: deliveryRidoList.length,
       shrinkWrap: true,
       itemBuilder: (context, index) {
-        controller.deliveryRadioListModel.value = deliveryRidoList[index];
+        controller.deliveryRadioListmodels.value = deliveryRidoList[index];
 
         return Theme(
           data: ThemeData(
             unselectedWidgetColor: Colors.grey.shade400,
           ),
           child: RadioListTile(
-            value: controller.deliveryRadioListModel.value.value!,
+            value: controller.deliveryRadioListmodels.value.value!,
             groupValue: controller.deliveryGroupValue.value,
             isThreeLine: true,
             controlAffinity: ListTileControlAffinity.trailing,
             activeColor: kPrimaryColor,
             dense: false,
             title: CustomText(
-              text: controller.deliveryRadioListModel.value.title!,
+              text: controller.deliveryRadioListmodels.value.title!,
               fontSize: 16,
               fontWeight: FontWeight.bold,
             ),
             subtitle: CustomText(
-              text: controller.deliveryRadioListModel.value.subTitle!,
+              text: controller.deliveryRadioListmodels.value.subTitle!,
               maxLines: 3,
               fontSize: 12,
             ),
             onChanged: (int? value) {
-              controller.deliveryRadioListModel.value =
+              controller.deliveryRadioListmodels.value =
                   deliveryRidoList[value! - 1];
               controller.updataDelGroupVale(value);
               if (value == 1) {

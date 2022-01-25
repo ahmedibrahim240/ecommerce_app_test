@@ -13,16 +13,16 @@ void main() async {
   await initialization.then((value) {
     Get.put(AuthControllers());
     Get.put(RouteController());
+    Get.put(BestSellingControllers());
     Get.put(NavBarController());
     Get.put(CategoriesControllers());
     Get.put(RefreshContrllors());
-    Get.put(BestSellingControllers());
-    Get.put(CartContllors());
     Get.put(AccountController());
     Get.put(CheckoutController());
     Get.put(AddressController());
     Get.put(SplachController());
     Get.put(OrderController());
+    Get.put(CartContllors());
   });
   var initialData = await ConnectivityService().getIntState();
 

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'product_widget/product_widget.dart';
 
 class ProductScreen extends StatelessWidget {
-  final ProductModels product;
+  final Productmodels product;
 
   const ProductScreen({
     Key? key,

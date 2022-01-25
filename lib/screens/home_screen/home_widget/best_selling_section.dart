@@ -13,7 +13,7 @@ class BestSellingSections extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(
       () {
-        return bestSellingControllers.productModels.isEmpty
+        return bestSellingControllers.productmodels.isEmpty
             ? Container()
             : Column(
                 children: [
@@ -42,10 +42,10 @@ class BestSellingSections extends StatelessWidget {
                     child: ListView.separated(
                       scrollDirection: Axis.horizontal,
                       shrinkWrap: true,
-                      itemCount: bestSellingControllers.productModels.length,
+                      itemCount: bestSellingControllers.productmodels.length,
                       itemBuilder: (_, index) {
                         return BuildBestSellingItem(
-                          product: bestSellingControllers.productModels[index],
+                          product: bestSellingControllers.productmodels[index],
                         );
                       },
                       separatorBuilder: (BuildContext context, int index) =>

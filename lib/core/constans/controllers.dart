@@ -1,5 +1,5 @@
 import 'package:ecommerce_app/core/controllers/controllers.dart';
-import 'package:ecommerce_app/core/services/dp_helpper.dart';
+import 'package:logger/logger.dart';
 
 AuthControllers authControllers = AuthControllers.instance;
 CategoriesControllers categoriesControllers = CategoriesControllers.instance;
@@ -13,4 +13,6 @@ CheckoutController checkoutController = CheckoutController.instance;
 AddressController addressController = AddressController.instance;
 SplachController splachController = SplachController.instance;
 OrderController orderController = OrderController.instance;
-var dbHelper = DbHelper();
+Logger logger = Logger();
+
+// var dbHelper = DbHelper();

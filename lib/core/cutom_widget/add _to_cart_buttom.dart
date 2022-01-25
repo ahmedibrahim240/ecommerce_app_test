@@ -11,7 +11,7 @@ class AddtoCartButtom extends StatelessWidget {
     Key? key,
     required this.product,
   }) : super(key: key);
-  final ProductModels product;
+  final Productmodels product;
 
   @override
   Widget build(BuildContext context) {
@@ -30,20 +30,15 @@ class AddtoCartButtom extends StatelessWidget {
         ),
         onPreessed: () {
           if (product.inCart!) {
-            cartContllors.delateProduct(product.id!);
-            bestSellingControllers.updataProduct(
-              inCart: false,
-              type: 'id',
-              id: product.id,
-            );
+            cartContllors.delateProduct(id: product.id);
           } else {
             cartContllors.addProduct(
-              CartProductMoldes(
-                tilte: product.title,
+              CartItemmodels(
                 image: product.image,
-                price: product.price,
                 productId: product.id,
                 quantity: 1,
+                price: product.price,
+                tilte: product.title,
               ),
             );
             bestSellingControllers.updataProduct(

@@ -18,7 +18,8 @@ class CheckoutCard extends StatelessWidget {
         child: Column(
           children: [
             _ChackOutRow(),
-            if (cartContllors.cartItemList.isNotEmpty) _RemoveAllButtom(),
+            if (authControllers.usermodels.value.cart.isNotEmpty)
+              _RemoveAllButtom(),
           ],
         ),
       ),
@@ -89,7 +90,7 @@ class _ChackOutRow extends StatelessWidget {
             ),
             Expanded(
               child: CustomButtom(
-                bgColor: cartContllors.cartItemList.isEmpty
+                bgColor: authControllers.usermodels.value.cart.isEmpty
                     ? Colors.redAccent
                     : kPrimaryColor,
                 margin: EdgeInsets.symmetric(
@@ -97,7 +98,7 @@ class _ChackOutRow extends StatelessWidget {
                   horizontal: defaultSize,
                 ),
                 child: CustomText(
-                  text: cartContllors.cartItemList.isEmpty
+                  text: authControllers.usermodels.value.cart.isEmpty
                       ? 'Shopping Now'
                       : "CHECKOUT",
                   color: Colors.white,

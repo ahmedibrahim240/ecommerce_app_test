@@ -1,25 +1,155 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ecommerce_app/core/constans/constans.dart';
 import 'package:ecommerce_app/core/cutom_widget/cutom_widget.dart';
-import 'package:ecommerce_app/models/cart_product_models.dart';
+import 'package:ecommerce_app/models/models.dart';
+
 import 'package:ecommerce_app/screens/screens.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class CartContllors extends GetxController {
   var inCart = false.obs;
   static CartContllors instance = Get.find();
   var cartItemList = [].obs;
+  var cartItemmodelsList = [].obs;
+
   var totalPrice = 0.0.obs;
+
+  String cartCollection = "users_cart";
+
   Rx<bool> relooadPage = false.obs;
   @override
   void onReady() {
     super.onReady();
-    getAllProduct();
+
+    ever(authControllers.usermodels, getCartItemListDate);
   }
 
-  addProduct(CartProductMoldes cartProductMoldes) async {
-    await dbHelper.insertProduct(cartProductMoldes);
-    isInCart(cartProductMoldes.productId!);
-    getAllProduct();
+  getCartItemListDate(Usermodels user) {
+    cartItemList.value = user.cart;
+
+    getTotalPrice(user);
+    update();
+  }
+
+  addProduct(CartItemmodels product) async {
+    try {
+      await authControllers.updateUserData(
+        {
+          'cart': FieldValue.arrayUnion(
+            [
+              product.toJson(),
+            ],
+          ),
+        },
+      );
+    } catch (e) {
+      customErrorSnakBar(error: "Cannot add this item , try again later");
+      debugPrint(e.toString());
+    }
+
+    update();
+  }
+
+  delateProduct({String? id, CartItemmodels? item}) async {
+    CartItemmodels? product = (id != null) ? getCartItemById(id) : item;
+    try {
+      authControllers.updateUserData(
+        {
+          DBCARTNAME: FieldValue.arrayRemove(
+            [
+              product!.toJson(),
+            ],
+          ),
+        },
+      );
+      bestSellingControllers.updataProduct(
+        inCart: false,
+        type: 'id',
+        id: id ?? product.productId,
+      );
+    } catch (e) {
+      customErrorSnakBar(error: "Cannot remove this item , try again later");
+      debugPrint(e.toString());
+    }
+    update();
+  }
+
+  delateAllPrdect() async {
+    try {
+      authControllers.updateUserData(
+        {
+          DBCARTNAME: [],
+        },
+      );
+      bestSellingControllers.updataProduct(
+        inCart: false,
+        type: 'all',
+        // id: product.id,
+      );
+    } catch (e) {
+      customErrorSnakBar(error: "Cannot remve cart item , try again later");
+      debugPrint(e.toString());
+    }
+    update();
+  }
+
+  getTotalPrice(Usermodels user) {
+    if (user.cart.isEmpty) {
+      totalPrice.value = 0.0;
+    } else {
+      totalPrice.value = 0.0;
+
+      user.cart.forEach(
+        (element) {
+          totalPrice.value += (element.price * element.quantity);
+        },
+      );
+    }
+  }
+
+  CartItemmodels getCartItemById(String id) {
+    return authControllers.usermodels.value.cart!
+        .where((item) => (item.productId == id))
+        .last;
+  }
+
+  bool isINCartInitial(Productmodels product) =>
+      authControllers.usermodels.value.cart
+          .where(
+            (item) => item.productId == product.id,
+          )
+          .isNotEmpty;
+
+  increaseQuantity(int index) {
+    cartItemList[index].quantity++;
+
+    Usermodels user = authControllers.usermodels.value;
+    user.cart = cartItemList;
+
+    authControllers.updateUserData(
+      {
+        DBCARTNAME: user.cartItemsToJson(),
+      },
+    );
+    update();
+  }
+
+  decreaseQuantity({required CartItemmodels item, required int index}) async {
+    if (item.quantity == 1) {
+      delateProduct(item: item);
+    } else {
+      cartItemList[index].quantity--;
+      Usermodels user = authControllers.usermodels.value;
+      user.cart = cartItemList;
+
+      authControllers.updateUserData(
+        {
+          DBCARTNAME: user.cartItemsToJson(),
+        },
+      );
+    }
+    update();
   }
 
   cartRoutePage() async {
@@ -35,75 +165,5 @@ class CartContllors extends GetxController {
         page: CheckOutScreen(),
       );
     }
-  }
-
-  getAllProduct() async {
-    List<Map> map = await dbHelper.allProduct();
-    cartItemList.value = map
-        .map(
-          (e) => CartProductMoldes.formMap(e),
-        )
-        .toList();
-
-    if (cartItemList.isNotEmpty) {
-      totalPrice.value = 0.0;
-      for (int i = 0; i < cartItemList.length; i++) {
-        totalPrice.value +=
-            (cartItemList[i].price! * cartItemList[i].quantity!);
-      }
-    } else {
-      totalPrice.value = 0.0;
-      bestSellingControllers.updataProduct(inCart: false, type: "all");
-    }
-    update();
-  }
-
-  delateAllPrdect() async {
-    cartItemList.value = [];
-    totalPrice.value = 0.0;
-    await dbHelper.deleteAllProduct();
-  }
-
-  Future<bool> isINCartInitial(String? id) async {
-    CartProductMoldes? product = await dbHelper.getProductById(id!);
-    return (product == null) ? false : true;
-  }
-
-  isInCart(String id) async {
-    CartProductMoldes? product = await dbHelper.getProductById(id);
-    if (product == null) {
-      inCart.value = true;
-      update();
-
-      return true;
-    } else {
-      inCart.value = false;
-      update();
-
-      return false;
-    }
-  }
-
-  delateProduct(String id) async {
-    CartProductMoldes? product = await dbHelper.getProductById(id);
-
-    await dbHelper.deleteProduct(product!.id);
-    isInCart(id);
-    await getAllProduct();
-    update();
-  }
-
-  increaseQuantity(int index) async {
-    cartItemList[index].quantity++;
-    await dbHelper.updateProduct(cartItemList[index]);
-    await getAllProduct();
-    update();
-  }
-
-  decreaseQuantity(int index) async {
-    cartItemList[index].quantity--;
-    await dbHelper.updateProduct(cartItemList[index]);
-    await getAllProduct();
-    update();
   }
 }

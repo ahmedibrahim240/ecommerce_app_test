@@ -5,21 +5,21 @@ import 'package:get/get.dart';
 
 class BestSellingControllers extends GetxController {
   static BestSellingControllers instance = Get.find();
-  var productModels = [].obs;
+  var productmodels = [].obs;
   final CollectionReference _collectionReference =
       firebaseFirestore.collection("BestSellingProdect");
   getBestProduct() async {
-    productModels.value = [];
+    productmodels.value = [];
     await _collectionReference.get().then(
       (value) async {
         for (int i = 0; i < value.docs.length; i++) {
-          ProductModels product = ProductModels.fromJson(
+          Productmodels product = Productmodels.fromJson(
             value.docs[i].data(),
           );
-          product.inCart = await cartContllors.isINCartInitial(
-            product.id,
+          product.inCart = cartContllors.isINCartInitial(
+            product,
           );
-          productModels.add(
+          productmodels.add(
             product,
           );
         }
@@ -31,19 +31,19 @@ class BestSellingControllers extends GetxController {
   updataProduct({required var inCart, String? id, required String type}) {
     switch (type) {
       case 'id':
-        late ProductModels product;
+        // late Productmodels product;
 
-        for (int i = 0; i < productModels.length; i++) {
-          if (productModels[i].id == id) {
-            product = productModels[i];
+        for (int i = 0; i < productmodels.length; i++) {
+          if (productmodels[i].id == id) {
+            productmodels[i].inCart = inCart;
           }
         }
-        product.inCart = inCart;
+        // product.inCart = inCart;
 
         break;
       case 'all':
-        for (int i = 0; i < productModels.length; i++) {
-          productModels[i].inCart = inCart;
+        for (int i = 0; i < productmodels.length; i++) {
+          productmodels[i].inCart = inCart;
         }
 
         break;
@@ -52,11 +52,15 @@ class BestSellingControllers extends GetxController {
     update();
   }
 
-  @override
-  void onReady() async {
-    super.onReady();
-    if (cartContllors.cartItemList.isEmpty)
-      await updataProduct(inCart: false, type: 'all');
-    getBestProduct();
+  Productmodels getBestProductById(String id) {
+    return productmodels.where((product) => (product.id == id)).last;
   }
+
+  // @override
+  // void onReady() async {
+  //   super.onReady();
+  //   // if (cartContllors.cartItemList.isEmpty)
+  //   //   await updataProduct(inCart: false, type: 'all');
+  //   getBestProduct();
+  // }
 }

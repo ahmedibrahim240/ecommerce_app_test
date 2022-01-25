@@ -126,7 +126,7 @@ class AddressListView extends StatelessWidget {
           itemCount: addressController.adressList.length,
           itemBuilder: (context, index) {
             int revIndex = addressController.adressList.length - 1 - index;
-            AddressModel address = addressController.adressList[revIndex];
+            Addressmodels address = addressController.adressList[revIndex];
             return Obx(
               () => Theme(
                 data: ThemeData(
@@ -152,7 +152,7 @@ class AddressListView extends StatelessWidget {
                     fontSize: 12,
                   ),
                   onChanged: (value) {
-                    AddressModel newAddress =
+                    Addressmodels newAddress =
                         addressController.adressList[revIndex];
                     checkoutController.updataAddressVale(value);
                     checkoutController.userAddress.value = newAddress;

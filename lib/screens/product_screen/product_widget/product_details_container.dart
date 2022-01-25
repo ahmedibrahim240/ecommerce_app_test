@@ -11,7 +11,7 @@ class ProductDetailsContainer extends StatelessWidget {
     required this.product,
   }) : super(key: key);
 
-  final ProductModels product;
+  final Productmodels product;
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +52,7 @@ class ProductStylesCart extends StatelessWidget {
     required this.product,
   }) : super(key: key);
 
-  final ProductModels product;
+  final Productmodels product;
 
   @override
   Widget build(BuildContext context) {
@@ -96,7 +96,7 @@ class _BuildProductStyels extends GetWidget<AccountController> {
     required this.lable,
   }) : super(key: key);
 
-  final ProductModels product;
+  final Productmodels product;
 
   @override
   Widget build(BuildContext context) {

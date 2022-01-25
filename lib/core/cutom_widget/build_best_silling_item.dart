@@ -5,7 +5,7 @@ import 'package:ecommerce_app/screens/product_screen/product_screen.dart';
 import 'package:flutter/material.dart';
 
 class BuildBestSellingItem extends StatelessWidget {
-  final ProductModels product;
+  final Productmodels product;
   final bool isAll;
 
   const BuildBestSellingItem({
@@ -71,7 +71,7 @@ class _BuildDettails extends StatelessWidget {
   }) : super(key: key);
 
   final bool isAll;
-  final ProductModels product;
+  final Productmodels product;
 
   @override
   Widget build(BuildContext context) {

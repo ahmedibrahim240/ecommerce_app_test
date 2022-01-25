@@ -14,7 +14,7 @@ class AddressController extends GetxController {
   String addressCollection = "users_address";
   List listOfAddress = [];
   var adreesLenght = 0.obs;
-  AddressListModels addressListModels = AddressListModels();
+  AddressListmodels addressListmodels = AddressListmodels();
   @override
   void onReady() {
     super.onReady();
@@ -38,37 +38,37 @@ class AddressController extends GetxController {
     update();
   }
 
-  createNewaddress(AddressModel address) async {
+  createNewaddress(Addressmodels address) async {
     showLoading();
-    String userId = authControllers.userModel.value.id!;
+    String userId = authControllers.usermodels.value.id!;
 
     listOfAddress = [];
     newAddress = address.toJson();
     try {
       if (adressList.isEmpty) {
         listOfAddress.add(newAddress);
-        addressListModels = new AddressListModels(
+        addressListmodels = new AddressListmodels(
           addresses: listOfAddress,
         );
         await firebaseFirestore.collection(addressCollection).doc(userId).set(
-              addressListModels.toJson(),
+              addressListmodels.toJson(),
             );
       } else {
         for (int i = 0; i < adressList.length; i++) {
-          AddressModel addressModel = adressList[i];
+          Addressmodels addressmodels = adressList[i];
 
-          listOfAddress.add(addressModel.toJson());
+          listOfAddress.add(addressmodels.toJson());
         }
 
         listOfAddress.add(newAddress);
-        addressListModels = new AddressListModels(
+        addressListmodels = new AddressListmodels(
           addresses: listOfAddress,
         );
         await firebaseFirestore
             .collection(addressCollection)
             .doc(userId)
             .update(
-              addressListModels.toJson(),
+              addressListmodels.toJson(),
             );
       }
       getAllUserAdress();
@@ -88,7 +88,7 @@ class AddressController extends GetxController {
   }
 
   getAllUserAdress() async {
-    AddressListModels addressListModels = AddressListModels();
+    AddressListmodels addressListmodels = AddressListmodels();
     adressList.value = [];
     var newList = [];
 
@@ -99,13 +99,13 @@ class AddressController extends GetxController {
         .then(
       (value) {
         if (value.data() != null) {
-          addressListModels = AddressListModels.fromJson(value);
-          newList = addressListModels.addresses!;
+          addressListmodels = AddressListmodels.fromJson(value);
+          newList = addressListmodels.addresses!;
           for (int i = 0; i < newList.length; i++) {
             var address = newList[i];
 
             adressList.add(
-              AddressModel.fromJson(address),
+              Addressmodels.fromJson(address),
             );
           }
         } else {

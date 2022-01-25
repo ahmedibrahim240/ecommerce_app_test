@@ -1,13 +1,13 @@
 import 'package:ecommerce_app/core/constans/constans.dart';
 
-class CategoriesModels {
+class Categoriesmodels {
   String? name, icon;
 
-  CategoriesModels({
+  Categoriesmodels({
     this.name,
     this.icon,
   });
-  CategoriesModels.fromJson(map) {
+  Categoriesmodels.fromJson(map) {
     name = map['name'];
     icon = map['image'];
   }
@@ -19,24 +19,24 @@ class CategoriesModels {
   }
 }
 
-List<CategoriesModels> categorsList = [
-  CategoriesModels(
+List<Categoriesmodels> categorsList = [
+  Categoriesmodels(
     name: 'Men',
     icon: menIcon,
   ),
-  CategoriesModels(
+  Categoriesmodels(
     name: 'Women',
     icon: womenIcon,
   ),
-  CategoriesModels(
+  Categoriesmodels(
     name: 'Devices',
     icon: devicesIcon,
   ),
-  CategoriesModels(
+  Categoriesmodels(
     name: 'Gadgets',
     icon: gadgetsIcon,
   ),
-  CategoriesModels(
+  Categoriesmodels(
     name: 'Gaming',
     icon: gameIcon,
   ),

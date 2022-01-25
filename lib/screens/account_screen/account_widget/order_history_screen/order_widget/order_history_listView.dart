@@ -22,7 +22,7 @@ class OrderHistoryListView extends StatelessWidget {
           itemBuilder: (context, index) {
             int revIndex = orderController.orderHistoryList.length - 1 - index;
 
-            OrderHistoryModels order =
+            OrderHistorymodels order =
                 orderController.orderHistoryList[revIndex];
             return OrderCard(
               order: order,

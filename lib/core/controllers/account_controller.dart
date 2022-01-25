@@ -102,9 +102,9 @@ class AccountController extends GetxController {
     UploadTask uploadTask = storageReference.putFile(imageFile);
     TaskSnapshot taskSnapshot = await uploadTask;
     taskSnapshot.ref.getDownloadURL().then((val) async {
-      var user = authControllers.userModel;
-      user.value.image = val;
-      authControllers.updateUserData(user);
+      // var user = authControllers.usermodels;
+      // user.value.image = val;
+      authControllers.updateUserData({'image': val});
       dismissLoadingWidget();
     });
     update();

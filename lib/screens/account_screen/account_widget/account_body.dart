@@ -40,7 +40,7 @@ class _BuildAccountItems extends StatelessWidget {
       padding: EdgeInsets.fromLTRB(
           defaultSize * 2, defaultSize * 6, defaultSize * 2, 0),
       itemBuilder: (context, index) {
-        AccountModels data = accountList[index];
+        Accountmodels data = accountList[index];
         return GestureDetector(
           onTap: () => accountController.routePages(index),
           child: AccountItemCard(

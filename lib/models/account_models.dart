@@ -1,43 +1,43 @@
 import 'package:ecommerce_app/core/constans/asset_paths.dart';
 
-class AccountModels {
+class Accountmodels {
   late String? icon;
   late String title;
 
-  AccountModels({
+  Accountmodels({
     this.icon,
     required this.title,
   });
 }
 
-List<AccountModels> accountList = [
-  // AccountModels(
+List<Accountmodels> accountList = [
+  // Accountmodels(
   //   icon: editIcon,
   //   title: 'Edit Profile',
   // ),
-  // AccountModels(
+  // Accountmodels(
   //   icon: addressIcon,
   //   title: 'Shipping Address',
   // ),
-  AccountModels(
+  Accountmodels(
     icon: historyIcon,
     title: 'Order History',
   ),
-  // AccountModels(
+  // Accountmodels(
   //   icon: cardsIcon,
   //   title: 'Cards',
   // ),
-  // AccountModels(
+  // Accountmodels(
   //   icon: notificationIcon,
   //   title: 'Notifications',
   // ),
-  AccountModels(
+  Accountmodels(
     title: 'Dark',
   ),
-  AccountModels(
+  Accountmodels(
     title: 'Using device theme mode',
   ),
-  AccountModels(
+  Accountmodels(
     icon: logOutIcon,
     title: 'Log Out',
   ),

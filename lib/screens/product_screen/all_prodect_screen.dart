@@ -26,11 +26,11 @@ class AllProductBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.separated(
       shrinkWrap: true,
-      itemCount: bestSellingControllers.productModels.length,
+      itemCount: bestSellingControllers.productmodels.length,
       padding: EdgeInsets.only(top: defaultSize, bottom: defaultSize),
       itemBuilder: (_, index) {
         return BuildBestSellingItem(
-          product: bestSellingControllers.productModels[index],
+          product: bestSellingControllers.productmodels[index],
           isAll: true,
         );
       },

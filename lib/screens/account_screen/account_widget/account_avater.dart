@@ -23,14 +23,14 @@ class AccountAvater extends StatelessWidget {
               children: [
                 _buildImage(
                   context: context,
-                  image: authControllers.userModel.value.image!,
+                  image: authControllers.usermodels.value.image!,
                 ),
-                if (authControllers.userModel.value.image != "") _editImage(),
+                if (authControllers.usermodels.value.image != "") _editImage(),
               ],
             ),
             _accountData(
-              name: authControllers.userModel.value.name ?? '',
-              email: authControllers.userModel.value.email ?? '',
+              name: authControllers.usermodels.value.name ?? '',
+              email: authControllers.usermodels.value.email ?? '',
             ),
           ],
         ),

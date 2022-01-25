@@ -26,11 +26,11 @@ class CategoriesSection extends StatelessWidget {
               child: ListView.separated(
                 scrollDirection: Axis.horizontal,
                 shrinkWrap: true,
-                itemCount: categoriesControllers.categoriesModels.length,
+                itemCount: categoriesControllers.categoriesmodels.length,
                 itemBuilder: (_, index) {
                   return _BuildCategorsItem(
-                    categoriesModels:
-                        categoriesControllers.categoriesModels[index],
+                    categoriesmodels:
+                        categoriesControllers.categoriesmodels[index],
                   );
                 },
                 separatorBuilder: (BuildContext context, int index) =>
@@ -45,45 +45,45 @@ class CategoriesSection extends StatelessWidget {
 }
 
 class _BuildCategorsItem extends StatelessWidget {
-  final CategoriesModels categoriesModels;
+  final Categoriesmodels categoriesmodels;
   const _BuildCategorsItem({
     Key? key,
-    required this.categoriesModels,
+    required this.categoriesmodels,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        print(categoriesModels.name);
+        print(categoriesmodels.name);
       },
       child: GestureDetector(
         onTap: () => routeController.routePage(
           type: 'to',
           page: CategoriesPageItem(
-            title: categoriesModels.name!,
-            icon: categoriesModels.icon!,
+            title: categoriesmodels.name!,
+            icon: categoriesmodels.icon!,
           ),
         ),
         child: Column(
           children: [
             Hero(
-              tag: 'icon${categoriesModels.icon}',
+              tag: 'icon${categoriesmodels.icon}',
               child: CircleAvatar(
                 radius: defaultSize * 4,
                 backgroundColor: Colors.white,
                 child: CustomCachedNetworkImage(
                   context: context,
-                  url: categoriesModels.icon!,
+                  url: categoriesmodels.icon!,
                   boxFit: BoxFit.fitWidth,
                 ),
               ),
             ),
             SizedBox(height: defaultSize),
             Hero(
-              tag: 'title${categoriesModels.name}',
+              tag: 'title${categoriesmodels.name}',
               child: CustomText(
-                text: categoriesModels.name!,
+                text: categoriesmodels.name!,
                 fontSize: 14,
               ),
             ),

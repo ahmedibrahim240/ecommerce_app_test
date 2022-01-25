@@ -21,7 +21,7 @@ dismissLoadingWidget() {
   Get.back();
 }
 
-showSuccessDialog(OrderHistoryModels order) {
+showSuccessDialog(OrderHistorymodels order) {
   Get.defaultDialog(
     title: 'Success Payment',
     titleStyle: TextStyle(

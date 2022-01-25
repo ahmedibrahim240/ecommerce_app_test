@@ -2,13 +2,13 @@ import 'package:ecommerce_app/core/constans/constans.dart';
 import 'package:ecommerce_app/core/services/extension_Hexcolor.dart';
 import 'package:flutter/cupertino.dart';
 
-class ProductModels {
+class Productmodels {
   String? title, descraptions, image, size, id;
   Color? color;
   double? price;
   bool? inCart;
 
-  ProductModels({
+  Productmodels({
     this.size,
     this.color,
     this.title,
@@ -18,7 +18,7 @@ class ProductModels {
     this.inCart,
     this.id,
   });
-  ProductModels.fromJson(map) {
+  Productmodels.fromJson(map) {
     title = map['name'];
     image = map['image'];
     id = map['id'];
@@ -43,39 +43,39 @@ class ProductModels {
   }
 }
 
-List<ProductModels> bestSellingItemList = [
-  ProductModels(
+List<Productmodels> bestSellingItemList = [
+  Productmodels(
     image: image1,
     title: 'BeoPlay Speaker',
     descraptions: 'Bang and Olufsen',
     price: 755.0,
   ),
-  ProductModels(
+  Productmodels(
     image: image2,
     title: 'Leather Wristwatch',
     descraptions: 'Tag Heuer',
     price: 755.0,
   ),
-  ProductModels(
+  Productmodels(
     image: image1,
     title: 'BeoPlay Speaker',
     descraptions:
         'Bang and Olufsen Bang and Olufsen Bang and Olufsen Bang and Olufsen Bang and Olufsen Bang and Olufsen',
     price: 755.0,
   ),
-  ProductModels(
+  Productmodels(
     image: image2,
     title: 'Leather Wristwatch',
     descraptions: 'Tag Heuer',
     price: 755.0,
   ),
-  ProductModels(
+  Productmodels(
     image: image1,
     title: 'BeoPlay Speaker',
     descraptions: 'Bang and Olufsen',
     price: 755.0,
   ),
-  ProductModels(
+  Productmodels(
     image: image2,
     title: 'Leather Wristwatch',
     descraptions: 'Tag Heuer',

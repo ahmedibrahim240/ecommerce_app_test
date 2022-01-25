@@ -14,7 +14,7 @@ class AccountItemCard extends GetWidget {
     required this.index,
   }) : super(key: key);
 
-  final AccountModels data;
+  final Accountmodels data;
   final int index;
 
   @override

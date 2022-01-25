@@ -13,7 +13,7 @@ class AuthControllers extends GetxController {
   static AuthControllers instance = Get.find();
   Rx<User?>? firebaseUser;
   String usersCollection = "users";
-  Rx<UserModel> userModel = UserModel().obs;
+  Rx<Usermodels> usermodels = Usermodels().obs;
   String? email, password, name;
 
   @override
@@ -100,26 +100,27 @@ class AuthControllers extends GetxController {
   }
 
   _addUserToFirestore(User user) async {
-    UserModel userModel = UserModel(
+    Usermodels usermodels = Usermodels(
       id: user.uid,
       name: user.displayName ?? name,
       email: user.email,
       image: user.photoURL ?? "",
+      cart: [],
     );
     return await firebaseFirestore
         .collection(usersCollection)
-        .doc(userModel.id)
+        .doc(usermodels.id)
         .set(
-          userModel.toJson(),
+          usermodels.toJson(),
         );
   }
 
-  updateUserData(var user) async {
+  updateUserData(Map<String, dynamic> data) async {
     return await firebaseFirestore
         .collection(usersCollection)
-        .doc(user.value.id)
+        .doc(usermodels.value.id)
         .update(
-          user.toJson(),
+          data,
         );
   }
   //* end Sign Up whih email add passrod
@@ -229,7 +230,7 @@ class AuthControllers extends GetxController {
       await MySharedPreferences.saveUserID('null');
       userToken = await MySharedPreferences.getGetuserID();
     } else {
-      userModel.bindStream(listenToUser());
+      usermodels.bindStream(listenToUser());
       dismissLoadingWidget();
       routeController.routePage(
         type: 'offAll',
@@ -238,18 +239,19 @@ class AuthControllers extends GetxController {
       );
       await MySharedPreferences.saveUserID(user.uid.toString());
       userToken = await MySharedPreferences.getGetuserID();
-      addressController.getAllUserAdress();
-      orderController.getAllOderHistory();
+      await addressController.getAllUserAdress();
+      await orderController.getAllOderHistory();
+      await bestSellingControllers.getBestProduct();
     }
   }
 
-  Stream<UserModel> listenToUser() {
+  Stream<Usermodels> listenToUser() {
     return firebaseFirestore
         .collection(usersCollection)
         .doc(firebaseUser!.value!.uid)
         .snapshots()
         .map(
-          (snapshot) => UserModel.fromJson(
+          (snapshot) => Usermodels.fromJson(
             snapshot.data(),
           ),
         );

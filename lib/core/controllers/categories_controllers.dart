@@ -5,16 +5,16 @@ import 'package:get/get.dart';
 
 class CategoriesControllers extends GetxController {
   static CategoriesControllers instance = Get.find();
-  var categoriesModels = [].obs;
+  var categoriesmodels = [].obs;
   final CollectionReference _collectionReference =
       firebaseFirestore.collection("Categories");
   getCategory() async {
-    categoriesModels.value = [];
+    categoriesmodels.value = [];
     await _collectionReference.get().then(
       (value) {
         for (int i = 0; i < value.docs.length; i++) {
-          categoriesModels.add(
-            CategoriesModels.fromJson(
+          categoriesmodels.add(
+            Categoriesmodels.fromJson(
               value.docs[i].data(),
             ),
           );

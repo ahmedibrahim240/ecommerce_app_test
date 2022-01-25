@@ -84,7 +84,7 @@ class NextPageContainer extends StatelessWidget {
   // validateAddrees(AddressController controller) {
   //   if (AddressForm.formKey.currentState!.validate()) {
   //     AddressForm.formKey.currentState!.save();
-  //     AddressModel address = new AddressModel(
+  //     Addressmodels address = new Addressmodels(
   //       street1: addressController.street1,
   //       street2: addressController.street2,
   //       city: addressController.city,

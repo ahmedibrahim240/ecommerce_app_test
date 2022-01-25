@@ -1,4 +1,4 @@
-class OrderHistoryModels {
+class OrderHistorymodels {
   static const TITLES = "titles";
   static const ADDRESS = "address";
   static const ORDERDATE = "orderDate";
@@ -8,13 +8,13 @@ class OrderHistoryModels {
   String? address;
   String? orderDate;
   int? id;
-  OrderHistoryModels({
+  OrderHistorymodels({
     this.address,
     this.orderDate,
     this.titles,
     this.id,
   });
-  OrderHistoryModels.fromjson(data) {
+  OrderHistorymodels.fromjson(data) {
     titles = data[TITLES];
     address = data[ADDRESS];
     orderDate = data[ORDERDATE];
@@ -30,11 +30,11 @@ class OrderHistoryModels {
   }
 }
 
-class OrderHistoryListModels {
+class OrderHistoryListmodels {
   static const ORDERS = 'orders';
   List? ordersList;
-  OrderHistoryListModels({this.ordersList});
-  OrderHistoryListModels.formjson(data) {
+  OrderHistoryListmodels({this.ordersList});
+  OrderHistoryListmodels.formjson(data) {
     ordersList = data[ORDERS];
   }
   tojson() {
