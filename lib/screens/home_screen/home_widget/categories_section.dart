@@ -61,8 +61,9 @@ class _BuildCategorsItem extends StatelessWidget {
         onTap: () => routeController.routePage(
           type: 'to',
           page: CategoriesPageItem(
-            title: categoriesmodels.name!,
-            icon: categoriesmodels.icon!,
+            categoriesmodels: categoriesmodels,
+            // title: categoriesmodels.name!,
+            // icon: categoriesmodels.icon!,
           ),
         ),
         child: Column(

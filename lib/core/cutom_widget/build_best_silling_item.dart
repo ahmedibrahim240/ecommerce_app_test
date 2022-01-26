@@ -4,11 +4,11 @@ import 'package:ecommerce_app/models/product_models.dart';
 import 'package:ecommerce_app/screens/product_screen/product_screen.dart';
 import 'package:flutter/material.dart';
 
-class BuildBestSellingItem extends StatelessWidget {
+class BuildProdectItem extends StatelessWidget {
   final Productmodels product;
   final bool isAll;
 
-  const BuildBestSellingItem({
+  const BuildProdectItem({
     Key? key,
     required this.product,
     this.isAll = false,

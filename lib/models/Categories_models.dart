@@ -1,43 +1,32 @@
-import 'package:ecommerce_app/core/constans/constans.dart';
+import 'package:ecommerce_app/models/product_models.dart';
 
 class Categoriesmodels {
   String? name, icon;
+  List<Productmodels>? productList;
 
   Categoriesmodels({
     this.name,
     this.icon,
+    this.productList,
   });
   Categoriesmodels.fromJson(map) {
     name = map['name'];
     icon = map['image'];
+    productList = _convertProductItems(map['product'] ?? []);
   }
-  toJson() {
-    return {
-      'name': name,
-      'image': icon,
-    };
+  List<Productmodels> _convertProductItems(List productFomDb) {
+    List<Productmodels> _result = [];
+    if (productFomDb.length > 0) {
+      productFomDb.forEach((element) {
+        _result.add(Productmodels.fromJson(element));
+      });
+    }
+    return _result;
   }
+  // toJson() {
+  //   return {
+  //     'name': name,
+  //     'image': icon,
+  //   };
+  // }
 }
-
-List<Categoriesmodels> categorsList = [
-  Categoriesmodels(
-    name: 'Men',
-    icon: menIcon,
-  ),
-  Categoriesmodels(
-    name: 'Women',
-    icon: womenIcon,
-  ),
-  Categoriesmodels(
-    name: 'Devices',
-    icon: devicesIcon,
-  ),
-  Categoriesmodels(
-    name: 'Gadgets',
-    icon: gadgetsIcon,
-  ),
-  Categoriesmodels(
-    name: 'Gaming',
-    icon: gameIcon,
-  ),
-];
