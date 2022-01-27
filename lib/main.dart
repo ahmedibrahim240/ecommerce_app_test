@@ -23,6 +23,7 @@ void main() async {
     Get.put(SplachController());
     Get.put(OrderController());
     Get.put(CartContllors());
+    Get.put(ProductControllers());
   });
   var initialData = await ConnectivityService().getIntState();
 

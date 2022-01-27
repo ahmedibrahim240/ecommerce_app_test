@@ -46,6 +46,7 @@ class CategoriesSection extends StatelessWidget {
 
 class _BuildCategorsItem extends StatelessWidget {
   final Categoriesmodels categoriesmodels;
+
   const _BuildCategorsItem({
     Key? key,
     required this.categoriesmodels,
@@ -54,42 +55,35 @@ class _BuildCategorsItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        print(categoriesmodels.name);
-      },
-      child: GestureDetector(
-        onTap: () => routeController.routePage(
-          type: 'to',
-          page: CategoriesPageItem(
-            categoriesmodels: categoriesmodels,
-            // title: categoriesmodels.name!,
-            // icon: categoriesmodels.icon!,
+      onTap: () => routeController.routePage(
+        type: 'to',
+        page: CategoriesPageItem(
+          categoriesmodels: categoriesmodels,
+        ),
+      ),
+      child: Column(
+        children: [
+          Hero(
+            tag: 'icon${categoriesmodels.icon}',
+            child: CircleAvatar(
+              radius: defaultSize * 4,
+              backgroundColor: Colors.white,
+              child: CustomCachedNetworkImage(
+                context: context,
+                url: categoriesmodels.icon!,
+                boxFit: BoxFit.fitWidth,
+              ),
+            ),
           ),
-        ),
-        child: Column(
-          children: [
-            Hero(
-              tag: 'icon${categoriesmodels.icon}',
-              child: CircleAvatar(
-                radius: defaultSize * 4,
-                backgroundColor: Colors.white,
-                child: CustomCachedNetworkImage(
-                  context: context,
-                  url: categoriesmodels.icon!,
-                  boxFit: BoxFit.fitWidth,
-                ),
-              ),
+          SizedBox(height: defaultSize),
+          Hero(
+            tag: 'title${categoriesmodels.name}',
+            child: CustomText(
+              text: categoriesmodels.name!,
+              fontSize: 14,
             ),
-            SizedBox(height: defaultSize),
-            Hero(
-              tag: 'title${categoriesmodels.name}',
-              child: CustomText(
-                text: categoriesmodels.name!,
-                fontSize: 14,
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

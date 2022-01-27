@@ -50,7 +50,7 @@ class OrderController extends GetxController {
             );
       }
       cartContllors.delateAllPrdect();
-      bestSellingControllers.updataProduct(inCart: false, type: "all");
+      productControllers.updataInCartProduct(inCart: false, type: "all");
       await getAllOderHistory();
 
       updateCheckOutParameter();

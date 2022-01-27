@@ -15,8 +15,15 @@ double screenHeight = SizeConfig.screenHeight!;
 
 //!Cart const Names
 const String DBCARTNAME = 'cart';
-const String CARTPRODUCTTITLE = 'tilte';
+const String CARTPRODUCTTITLE = 'title';
 const String CARTPRODUCTIMAGE = 'image';
 const String CARTPRODUCTID = 'productId';
 const String CARTPRODUCTPRICE = 'price';
 const String CARTPRODUCTQUANTITIY = 'quantity';
+//!Categoies const Namas
+const String MEN = 'Man';
+const String WOMEN = 'Women';
+const String GADGETS = 'Gadgets';
+const String GAMING = 'Gaming';
+const String DEVICES = 'Devices';
+const String EESTSELLIGN = 'BestSelling';

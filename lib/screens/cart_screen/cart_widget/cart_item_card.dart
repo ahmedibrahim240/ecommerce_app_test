@@ -34,8 +34,8 @@ class CartItemCard extends GetWidget<AccountController> {
       child: Row(
         children: [
           Container(
-            height: defaultSize * 13.5,
-            width: defaultSize * 13.5,
+            height: defaultSize * 14.5,
+            width: defaultSize * 14.5,
             child: ClipRRect(
               borderRadius: controller.darkMode.value
                   ? const BorderRadius.only(
@@ -57,7 +57,7 @@ class CartItemCard extends GetWidget<AccountController> {
             children: [
               SizedBox(height: defaultSize),
               CustomText(
-                text: product.tilte ?? '',
+                text: product.title ?? '',
                 fontSize: 16,
                 maxLines: 1,
               ),

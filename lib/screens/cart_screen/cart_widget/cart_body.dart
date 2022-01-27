@@ -4,6 +4,7 @@ import 'package:ecommerce_app/core/cutom_widget/custom_text.dart';
 import 'package:ecommerce_app/models/models.dart';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
@@ -42,32 +43,41 @@ class _BuildCartItemList extends StatelessWidget {
         if (cartContllors.cartItemList.isEmpty) {
           return _EmptyCart();
         } else {
-          return
-              // Column(
-              //   children: authControllers.usermodels.value.cart
-              //       .map<Widget>(
-              //         (product) => Padding(
-              //           padding: EdgeInsets.all(defaultSize),
-              //           child: CartItemCard(product: product),
-              //         ),
-              //       )
-              //       .toList(),
-              // );
+          return (cartContllors.reloadPage.value)
+              ? Container(
+                  child: Center(
+                    child: SpinKitFadingGrid(
+                      color: kPrimaryColor.withOpacity(0.7),
+                      size: 70,
+                    ),
+                  ),
+                )
+              : ListView.separated(
+                  shrinkWrap: true,
+                  itemCount: cartContllors.cartItemList.length,
+                  padding: EdgeInsets.fromLTRB(
+                    defaultSize,
+                    defaultSize * 2,
+                    defaultSize,
+                    0,
+                  ),
+                  itemBuilder: (context, index) {
+                    CartItemmodels product =
+                        authControllers.usermodels.value.cart[index];
 
-              ListView.separated(
-            shrinkWrap: true,
-            itemCount: cartContllors.cartItemList.length,
-            padding: EdgeInsets.fromLTRB(
-                defaultSize, defaultSize * 2, defaultSize, 0),
-            itemBuilder: (context, index) {
-              CartItemmodels product =
-                  authControllers.usermodels.value.cart[index];
-
-              return CartItemCard(product: product, index: index);
-            },
-            separatorBuilder: (BuildContext context, int index) =>
-                SizedBox(height: defaultSize),
-          );
+                    return CartItemCard(
+                      product: product,
+                      index: index,
+                    );
+                  },
+                  separatorBuilder: (
+                    BuildContext context,
+                    int index,
+                  ) =>
+                      SizedBox(
+                    height: defaultSize,
+                  ),
+                );
         }
       },
     );

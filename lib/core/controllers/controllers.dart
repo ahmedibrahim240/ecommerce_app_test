@@ -10,3 +10,4 @@ export 'checkout_controller.dart';
 export 'address_controller.dart';
 export 'splach_controller.dart';
 export 'oders_contrroller.dart';
+export 'product_controller.dart';

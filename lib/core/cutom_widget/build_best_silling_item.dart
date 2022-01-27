@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 class BuildProdectItem extends StatelessWidget {
   final Productmodels product;
   final bool isAll;
-
   const BuildProdectItem({
     Key? key,
     required this.product,

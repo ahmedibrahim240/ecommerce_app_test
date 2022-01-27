@@ -1,5 +1,5 @@
 import 'package:ecommerce_app/core/constans/constans.dart';
-import 'package:ecommerce_app/core/controllers/best_selling_controllers%20.dart';
+import 'package:ecommerce_app/core/controllers/controllers.dart';
 import 'package:ecommerce_app/models/models.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -15,7 +15,7 @@ class AddtoCartButtom extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<BestSellingControllers>(
+    return GetBuilder<ProductControllers>(
       builder: (controller) => CustomButtom(
         bgColor: (!product.inCart!) ? kPrimaryColor : Colors.redAccent,
         margin: EdgeInsets.symmetric(
@@ -30,21 +30,25 @@ class AddtoCartButtom extends StatelessWidget {
         ),
         onPreessed: () {
           if (product.inCart!) {
-            cartContllors.delateProduct(id: product.id);
+            cartContllors.delateProduct(
+              product: product,
+              // categoryIndx: categoryIndex,
+            );
           } else {
             cartContllors.addProduct(
               CartItemmodels(
                 image: product.image,
-                productId: product.id,
+                productId: product.productId,
                 quantity: 1,
                 price: product.price,
-                tilte: product.title,
+                title: product.title,
               ),
             );
-            bestSellingControllers.updataProduct(
+
+            controller.updataInCartProduct(
               inCart: true,
               type: 'id',
-              id: product.id,
+              id: product.productId!,
             );
           }
         },

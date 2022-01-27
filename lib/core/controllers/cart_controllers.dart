@@ -17,7 +17,7 @@ class CartContllors extends GetxController {
 
   String cartCollection = "users_cart";
 
-  Rx<bool> relooadPage = false.obs;
+  Rx<bool> reloadPage = false.obs;
   @override
   void onReady() {
     super.onReady();
@@ -51,22 +51,27 @@ class CartContllors extends GetxController {
     update();
   }
 
-  delateProduct({String? id, CartItemmodels? item}) async {
-    CartItemmodels? product = (id != null) ? getCartItemById(id) : item;
+  delateProduct({required var product}) async {
     try {
-      authControllers.updateUserData(
+      CartItemmodels item = getCartItemById(product.productId);
+      reloadPage.value = true;
+
+      await authControllers.updateUserData(
         {
           DBCARTNAME: FieldValue.arrayRemove(
             [
-              product!.toJson(),
+              item.toJson(),
             ],
           ),
         },
       );
-      bestSellingControllers.updataProduct(
+
+      reloadPage.value = false;
+
+      productControllers.updataInCartProduct(
         inCart: false,
         type: 'id',
-        id: id ?? product.productId,
+        id: product.productId,
       );
     } catch (e) {
       customErrorSnakBar(error: "Cannot remove this item , try again later");
@@ -75,14 +80,14 @@ class CartContllors extends GetxController {
     update();
   }
 
-  delateAllPrdect() async {
+  delateAllPrdect() {
     try {
       authControllers.updateUserData(
         {
           DBCARTNAME: [],
         },
       );
-      bestSellingControllers.updataProduct(
+      productControllers.updataInCartProduct(
         inCart: false,
         type: 'all',
         // id: product.id,
@@ -117,7 +122,7 @@ class CartContllors extends GetxController {
   bool isINCartInitial(Productmodels product) =>
       authControllers.usermodels.value.cart
           .where(
-            (item) => item.productId == product.id,
+            (item) => item.productId == product.productId,
           )
           .isNotEmpty;
 
@@ -135,9 +140,16 @@ class CartContllors extends GetxController {
     update();
   }
 
-  decreaseQuantity({required CartItemmodels item, required int index}) async {
+  decreaseQuantity({
+    required CartItemmodels item,
+    required int index,
+  }) async {
+    print("________________________");
+    print(index);
+    print(item.title);
+    print("________________________");
     if (item.quantity == 1) {
-      delateProduct(item: item);
+      delateProduct(product: item);
     } else {
       cartItemList[index].quantity--;
       Usermodels user = authControllers.usermodels.value;

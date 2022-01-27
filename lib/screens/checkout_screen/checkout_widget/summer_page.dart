@@ -166,7 +166,7 @@ class _ProductCard extends GetWidget<AccountController> {
         productImage(context),
         SizedBox(height: defaultSize),
         CustomText(
-          text: product.tilte ?? '',
+          text: product.title ?? '',
           fontSize: 12,
           maxLines: 1,
         ),

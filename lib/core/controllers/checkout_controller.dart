@@ -49,7 +49,7 @@ class CheckoutController extends GetxController {
     orderController.orrderDate = checkoutController.deliveryDate.value;
     orderController.getOrderID();
     for (var item in cartContllors.cartItemList) {
-      orderController.titles.add(item.tilte);
+      orderController.titles.add(item.title);
     }
 
     OrderHistorymodels order = OrderHistorymodels(

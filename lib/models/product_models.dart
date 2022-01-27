@@ -1,9 +1,8 @@
-import 'package:ecommerce_app/core/constans/constans.dart';
 import 'package:ecommerce_app/core/services/extension_Hexcolor.dart';
 import 'package:flutter/cupertino.dart';
 
 class Productmodels {
-  String? title, descraptions, image, size, id;
+  String? title, descraptions, image, size, productId;
   Color? color;
   double? price;
   bool? inCart;
@@ -16,12 +15,12 @@ class Productmodels {
     this.price,
     this.image,
     this.inCart,
-    this.id,
+    this.productId,
   });
   Productmodels.fromJson(map) {
     title = map['name'];
     image = map['image'];
-    id = map['id'];
+    productId = map['id'];
     descraptions = map['descraptions'];
     size = map['size'];
     inCart = map['inCart'];
@@ -33,7 +32,7 @@ class Productmodels {
     return {
       'name': title,
       'image': image,
-      'id': id,
+      'id': productId,
       'descraptions': descraptions,
       'size': size,
       'inCart': inCart,
@@ -42,43 +41,3 @@ class Productmodels {
     };
   }
 }
-
-List<Productmodels> bestSellingItemList = [
-  Productmodels(
-    image: image1,
-    title: 'BeoPlay Speaker',
-    descraptions: 'Bang and Olufsen',
-    price: 755.0,
-  ),
-  Productmodels(
-    image: image2,
-    title: 'Leather Wristwatch',
-    descraptions: 'Tag Heuer',
-    price: 755.0,
-  ),
-  Productmodels(
-    image: image1,
-    title: 'BeoPlay Speaker',
-    descraptions:
-        'Bang and Olufsen Bang and Olufsen Bang and Olufsen Bang and Olufsen Bang and Olufsen Bang and Olufsen',
-    price: 755.0,
-  ),
-  Productmodels(
-    image: image2,
-    title: 'Leather Wristwatch',
-    descraptions: 'Tag Heuer',
-    price: 755.0,
-  ),
-  Productmodels(
-    image: image1,
-    title: 'BeoPlay Speaker',
-    descraptions: 'Bang and Olufsen',
-    price: 755.0,
-  ),
-  Productmodels(
-    image: image2,
-    title: 'Leather Wristwatch',
-    descraptions: 'Tag Heuer',
-    price: 755.0,
-  ),
-];

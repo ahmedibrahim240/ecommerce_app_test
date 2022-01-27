@@ -1,18 +1,19 @@
 import 'package:ecommerce_app/core/constans/constans.dart';
 import 'package:ecommerce_app/core/cutom_widget/cutom_widget.dart';
+import 'package:ecommerce_app/core/services/network_services/network_sensitive.dart';
 import 'package:ecommerce_app/models/Categories_models.dart';
 import 'package:ecommerce_app/screens/screens.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 
-class CategoriesPageItem extends StatelessWidget {
+class CategoriesPageItem extends GetWidget {
   final Categoriesmodels categoriesmodels;
 
   const CategoriesPageItem({
     Key? key,
     required this.categoriesmodels,
   }) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,11 +22,13 @@ class CategoriesPageItem extends StatelessWidget {
         title: _appBarTitle(context),
         toolbarHeight: 70,
       ),
-      body: (categoriesmodels.productList!.isEmpty)
-          ? NODataYet()
-          : AllProductBody(
-              productlist: categoriesmodels.productList!,
-            ),
+      body: NetworkSensitive(
+        child: (categoriesmodels.productList!.isEmpty)
+            ? NODataYet()
+            : AllProductBody(
+                productlist: categoriesmodels.productList!,
+              ),
+      ),
     );
   }
 

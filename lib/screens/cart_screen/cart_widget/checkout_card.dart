@@ -46,7 +46,7 @@ class _RemoveAllButtom extends StatelessWidget {
         ),
         onPreessed: () {
           cartContllors.delateAllPrdect();
-          bestSellingControllers.updataProduct(inCart: false, type: "all");
+          productControllers.updataInCartProduct(inCart: false, type: "all");
         },
       ),
     );

@@ -1,6 +1,6 @@
 import 'package:ecommerce_app/core/constans/constans.dart';
 import 'package:ecommerce_app/core/cutom_widget/cutom_widget.dart';
-import 'package:ecommerce_app/models/models.dart';
+
 import 'package:ecommerce_app/screens/screens.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -28,10 +28,7 @@ class BestSellingSections extends StatelessWidget {
                       TextButton(
                         onPressed: () => routeController.routePage(
                           type: 'to',
-                          page: AllProcutScreen(
-                            productlist: bestSellingControllers.productmodels
-                                as List<Productmodels>,
-                          ),
+                          page: AllProcutScreen(),
                         ),
                         child: CustomText(
                           text: 'Seee all',
@@ -52,8 +49,13 @@ class BestSellingSections extends StatelessWidget {
                           product: bestSellingControllers.productmodels[index],
                         );
                       },
-                      separatorBuilder: (BuildContext context, int index) =>
-                          SizedBox(width: defaultSize * 2),
+                      separatorBuilder: (
+                        BuildContext context,
+                        int index,
+                      ) =>
+                          SizedBox(
+                        width: defaultSize * 2,
+                      ),
                     ),
                   ),
                 ],

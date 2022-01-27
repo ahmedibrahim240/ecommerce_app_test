@@ -25,7 +25,6 @@ class CustomRefreshWidget extends StatelessWidget {
                     child: SpinKitFadingGrid(
                       color: kPrimaryColor.withOpacity(0.7),
                       size: 70,
-                      // duration: Duration(milliseconds: 3500),
                     ),
                   ),
                 )

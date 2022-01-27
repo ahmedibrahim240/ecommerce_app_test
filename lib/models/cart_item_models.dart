@@ -1,7 +1,7 @@
 import 'package:ecommerce_app/core/constans/constans.dart';
 
 class CartItemmodels {
-  String? tilte;
+  String? title;
   String? image;
   double? price;
   String? productId;
@@ -9,13 +9,13 @@ class CartItemmodels {
 
   CartItemmodels({
     this.image,
-    this.tilte,
+    this.title,
     this.price,
     this.quantity = 0,
     this.productId,
   });
   CartItemmodels.fromjson(data) {
-    tilte = data[CARTPRODUCTTITLE];
+    title = data[CARTPRODUCTTITLE];
     image = data[CARTPRODUCTIMAGE];
     price = double.parse(data[CARTPRODUCTPRICE].toString());
     quantity = data[CARTPRODUCTQUANTITIY];
@@ -23,7 +23,7 @@ class CartItemmodels {
   }
   toJson() {
     return {
-      CARTPRODUCTTITLE: tilte,
+      CARTPRODUCTTITLE: title,
       CARTPRODUCTIMAGE: image,
       CARTPRODUCTQUANTITIY: quantity,
       CARTPRODUCTPRICE: price,
@@ -31,18 +31,3 @@ class CartItemmodels {
     };
   }
 }
-
-// class CartItemmodelsList {
-//   static const PRODUCT = "prodect";
-//   List? cartFirebelist;
-
-//   CartItemmodelsList({this.cartFirebelist});
-//   CartItemmodelsList.fromjson(data) {
-//     cartFirebelist = data[PRODUCT];
-//   }
-//   toJson() {
-//     return {
-//       PRODUCT: cartFirebelist,
-//     };
-//   }
-// }

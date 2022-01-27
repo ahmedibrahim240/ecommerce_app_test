@@ -28,39 +28,13 @@ class BestSellingControllers extends GetxController {
     update();
   }
 
-  updataProduct({required var inCart, String? id, required String type}) {
-    switch (type) {
-      case 'id':
-        // late Productmodels product;
-
-        for (int i = 0; i < productmodels.length; i++) {
-          if (productmodels[i].id == id) {
-            productmodels[i].inCart = inCart;
-          }
-        }
-        // product.inCart = inCart;
-
-        break;
-      case 'all':
-        for (int i = 0; i < productmodels.length; i++) {
-          productmodels[i].inCart = inCart;
-        }
-
-        break;
-    }
-
-    update();
-  }
-
   Productmodels getBestProductById(String id) {
-    return productmodels.where((product) => (product.id == id)).last;
+    return productmodels.where((product) => (product.productId == id)).last;
   }
 
-  // @override
-  // void onReady() async {
-  //   super.onReady();
-  //   // if (cartContllors.cartItemList.isEmpty)
-  //   //   await updataProduct(inCart: false, type: 'all');
-  //   getBestProduct();
-  // }
+  bool chcekIsBestProduct(String id) {
+    return productmodels
+        .where((product) => (product.productId == id))
+        .isNotEmpty;
+  }
 }

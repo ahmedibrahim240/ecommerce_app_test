@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 // import 'package:flutter_login_facebook/flutter_login_facebook.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:uuid/uuid.dart';
+// import 'package:uuid/uuid.dart';
 
 class AuthControllers extends GetxController {
   static AuthControllers instance = Get.find();
@@ -219,18 +219,18 @@ class AuthControllers extends GetxController {
     } else {
       _checkUser(user);
     }
-    var uuid = Uuid();
-    print("_______________________________________________________________");
-    for (int i = 0; i < 20; i++) {
-      String id = uuid.v5(
-        Uuid.NAMESPACE_NIL,
-        'www.example$i.com',
-        // options: {'id': i},
-      );
-      print(id);
-    }
+    // var uuid = Uuid();
+    // print("_______________________________________________________________");
+    // for (int i = 0; i < 20; i++) {
+    //   String id = uuid.v5(
+    //     Uuid.NAMESPACE_NIL,
+    //     'www.example$i.com',
+    //     // options: {'id': i},
+    //   );
+    //   print(id);
+    // }
 
-    print("_______________________________________________________________");
+    // print("_______________________________________________________________");
   }
 
   void _checkUser(User? user) async {
@@ -255,6 +255,7 @@ class AuthControllers extends GetxController {
       await addressController.getAllUserAdress();
       await orderController.getAllOderHistory();
       await bestSellingControllers.getBestProduct();
+      await categoriesControllers.getCategory();
     }
   }
 
