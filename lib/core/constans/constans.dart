@@ -27,3 +27,5 @@ const String GADGETS = 'Gadgets';
 const String GAMING = 'Gaming';
 const String DEVICES = 'Devices';
 const String EESTSELLIGN = 'BestSelling';
+
+const String ALLPRODUCTCOlLECTION = 'all_product';

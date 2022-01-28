@@ -1,6 +1,8 @@
 import 'package:ecommerce_app/core/constans/constans.dart';
-import 'package:ecommerce_app/core/cutom_widget/custom_text.dart';
+import 'package:ecommerce_app/core/cutom_widget/cutom_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import '../../screens.dart';
 import 'home_widget.dart';
 
 class HomeScreenBody extends StatelessWidget {
@@ -19,16 +21,28 @@ class HomeScreenBody extends StatelessWidget {
           0.0,
         ),
         child: SingleChildScrollView(
-          child: Column(
-            children: [
-              _noteTest(),
-              SizedBox(height: defaultSize * 1.5),
-              CustomSearchTextForm(),
-              SizedBox(height: defaultSize * 3),
-              CategoriesSection(),
-              SizedBox(height: defaultSize * 3),
-              BestSellingSections(),
-            ],
+          child: Obx(
+            () => (searchController.isSearch.value)
+                ? Column(
+                    children: [
+                      _noteTest(),
+                      SizedBox(height: defaultSize * 1.5),
+                      CustomSearchTextForm(),
+                      SizedBox(height: defaultSize * 3),
+                      SearchBody(),
+                    ],
+                  )
+                : Column(
+                    children: [
+                      _noteTest(),
+                      SizedBox(height: defaultSize * 1.5),
+                      CustomSearchTextForm(),
+                      SizedBox(height: defaultSize * 3),
+                      CategoriesSection(),
+                      SizedBox(height: defaultSize * 3),
+                      BestSellingSections(),
+                    ],
+                  ),
           ),
         ),
       ),
@@ -40,6 +54,43 @@ class HomeScreenBody extends StatelessWidget {
       text: 'Note => This app for test and learn GETX.....',
       fontSize: 10,
       color: Colors.grey.shade500,
+    );
+  }
+}
+
+class SearchBody extends StatefulWidget {
+  const SearchBody({Key? key}) : super(key: key);
+
+  @override
+  _SearchBodyState createState() => _SearchBodyState();
+}
+
+class _SearchBodyState extends State<SearchBody> {
+  @override
+  Widget build(BuildContext context) {
+    return WillPopScope(
+      onWillPop: () async {
+        searchController.isSearch.value = false;
+        return false;
+      },
+      child: Obx(
+        () {
+          if ((searchController.isSearch.value) &&
+              searchController.searchList.isEmpty) {
+            return Center(
+              child: (searchController.reSearch.value)
+                  ? CircularProgressIndicator()
+                  : NODataYet(),
+            );
+          } else {
+            return (searchController.reSearch.value)
+                ? CircularProgressIndicator()
+                : AllProductBody(
+                    productlist: searchController.searchList,
+                  );
+          }
+        },
+      ),
     );
   }
 }

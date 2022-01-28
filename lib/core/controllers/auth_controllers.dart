@@ -219,18 +219,6 @@ class AuthControllers extends GetxController {
     } else {
       _checkUser(user);
     }
-    // var uuid = Uuid();
-    // print("_______________________________________________________________");
-    // for (int i = 0; i < 20; i++) {
-    //   String id = uuid.v5(
-    //     Uuid.NAMESPACE_NIL,
-    //     'www.example$i.com',
-    //     // options: {'id': i},
-    //   );
-    //   print(id);
-    // }
-
-    // print("_______________________________________________________________");
   }
 
   void _checkUser(User? user) async {
@@ -256,6 +244,7 @@ class AuthControllers extends GetxController {
       await orderController.getAllOderHistory();
       await bestSellingControllers.getBestProduct();
       await categoriesControllers.getCategory();
+      allProductController.getAllPrductList();
     }
   }
 

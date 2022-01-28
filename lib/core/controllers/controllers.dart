@@ -11,3 +11,5 @@ export 'address_controller.dart';
 export 'splach_controller.dart';
 export 'oders_contrroller.dart';
 export 'product_controller.dart';
+export 'all_product_controller.dart';
+export 'search_controller.dart';

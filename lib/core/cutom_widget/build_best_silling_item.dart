@@ -1,8 +1,11 @@
 import 'package:ecommerce_app/core/constans/constans.dart';
+import 'package:ecommerce_app/core/controllers/controllers.dart';
 import 'package:ecommerce_app/core/cutom_widget/cutom_widget.dart';
 import 'package:ecommerce_app/models/product_models.dart';
 import 'package:ecommerce_app/screens/product_screen/product_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_state_manager/src/simple/get_state.dart';
 
 class BuildProdectItem extends StatelessWidget {
   final Productmodels product;
@@ -24,23 +27,62 @@ class BuildProdectItem extends StatelessWidget {
           ),
         );
       },
-      child: Container(
-        width: (isAll) ? screenWidth : defaultSize * 20,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            _buildImage(context),
-            _BuildDettails(
-              isAll: isAll,
-              product: product,
-            )
-          ],
+      child: Obx(
+        () => Container(
+          width: (isAll) ? screenWidth : defaultSize * 20,
+          child: searchController.isSearch.value
+              ? ListTile(
+                  leading: _buildImage(
+                    context,
+                    searchController.isSearch.value,
+                  ),
+                  title: CustomText(
+                    text: product.title ?? '',
+                    maxLines: 1,
+                    fontSize: 14,
+                    alignment: Alignment.centerLeft,
+                  ),
+                )
+              : Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    _buildImage(
+                      context,
+                      searchController.isSearch.value,
+                    ),
+                    _BuildDettails(
+                      isAll: isAll,
+                      product: product,
+                    )
+                  ],
+                ),
         ),
       ),
     );
   }
 
-  _buildImage(BuildContext context) {
+  _buildImage(BuildContext context, bool isSearh) {
+    return (isSearh) ? _iamgeAvatar(context) : _iamgeContainer(context);
+  }
+
+  _iamgeAvatar(BuildContext context) {
+    return CircleAvatar(
+      radius: 30,
+      child: SizedBox(
+        height: defaultSize * 13,
+        width: defaultSize * 13,
+        child: ClipOval(
+          child: CustomCachedNetworkImage(
+            context: context,
+            url: product.image,
+            boxFit: BoxFit.cover,
+          ),
+        ),
+      ),
+    );
+  }
+
+  _iamgeContainer(BuildContext context) {
     return Container(
       height: (isAll) ? defaultSize * 15 : defaultSize * 24,
       width: (isAll) ? screenWidth : null,

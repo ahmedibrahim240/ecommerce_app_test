@@ -1,4 +1,6 @@
+import 'package:ecommerce_app/core/constans/constans.dart';
 import 'package:ecommerce_app/core/controllers/account_controller.dart';
+import 'package:ecommerce_app/core/controllers/controllers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -9,18 +11,43 @@ class CustomSearchTextForm extends GetWidget<AccountController> {
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      decoration: InputDecoration(
-        fillColor: Colors.grey.shade400,
-        filled: true,
-        border: InputBorder.none,
-        prefixIcon: Icon(
-          Icons.search,
-          color: controller.darkMode.value ? Colors.white : Colors.black,
-        ),
-        focusedBorder: _customOutlineInputBorder(),
-        enabledBorder: _customOutlineInputBorder(),
-      ),
+    return Obx(
+      () {
+        return Row(
+          children: [
+            IconButton(
+              onPressed: () => searchController.searchState(),
+              icon: Icon(
+                (!searchController.isSearch.value)
+                    ? Icons.search
+                    : Icons.cancel,
+              ),
+            ),
+            if (searchController.isSearch.value)
+              Expanded(
+                child: TextFormField(
+                  onChanged: (text) {
+                    searchController.reSearch.value = true;
+                    searchController.searchByName(text);
+                  },
+                  decoration: InputDecoration(
+                    fillColor: Colors.grey.shade400,
+                    filled: true,
+                    border: InputBorder.none,
+                    prefixIcon: Icon(
+                      Icons.search,
+                      color: controller.darkMode.value
+                          ? Colors.white
+                          : Colors.black,
+                    ),
+                    focusedBorder: _customOutlineInputBorder(),
+                    enabledBorder: _customOutlineInputBorder(),
+                  ),
+                ),
+              ),
+          ],
+        );
+      },
     );
   }
 

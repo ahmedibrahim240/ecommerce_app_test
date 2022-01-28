@@ -13,3 +13,5 @@ AddressController addressController = AddressController.instance;
 SplachController splachController = SplachController.instance;
 OrderController orderController = OrderController.instance;
 ProductControllers productControllers = ProductControllers.instance;
+AllProductController allProductController = AllProductController.instance;
+SearchController searchController = SearchController.instance;
