@@ -30,17 +30,38 @@ class BuildProdectItem extends StatelessWidget {
           width: (isAll) ? screenWidth : defaultSize * 20,
           child: (searchController.isSearch.value) &&
                   (searchController.searchList.isNotEmpty)
-              ? ListTile(
-                  leading: _buildImage(
-                    context,
-                    searchController.isSearch.value,
-                  ),
-                  title: CustomText(
-                    text: product.title ?? '',
-                    maxLines: 1,
-                    fontSize: 14,
-                    alignment: Alignment.centerLeft,
-                  ),
+              ? Column(
+                  children: [
+                    ListTile(
+                      leading: _buildImage(
+                        context,
+                        searchController.isSearch.value,
+                      ),
+                      title: CustomText(
+                        text: product.title ?? '',
+                        maxLines: 1,
+                        fontSize: 14,
+                        alignment: Alignment.centerLeft,
+                      ),
+                      subtitle: CustomText(
+                        text: product.descraptions ?? '',
+                        maxLines: 3,
+                        color: kGrayColor,
+                        fontSize: 10,
+                        alignment: Alignment.centerLeft,
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: defaultSize * 8,
+                        vertical: defaultSize * 2,
+                      ),
+                      child: Divider(
+                        color: kGrayColor,
+                        thickness: 1,
+                      ),
+                    ),
+                  ],
                 )
               : Column(
                   crossAxisAlignment: CrossAxisAlignment.start,

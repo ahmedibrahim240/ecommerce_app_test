@@ -42,6 +42,7 @@ class AllProductBody extends StatelessWidget {
       shrinkWrap: true,
       itemCount: productlist.length,
       padding: EdgeInsets.only(top: defaultSize, bottom: defaultSize),
+      keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
       itemBuilder: (_, index) {
         return BuildProdectItem(
           product: productlist[index],

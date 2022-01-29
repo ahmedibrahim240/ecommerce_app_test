@@ -54,7 +54,7 @@ class CartContllors extends GetxController {
   delateProduct({required var product}) async {
     try {
       CartItemmodels item = getCartItemById(product.productId);
-      reloadPage.value = true;
+      // reloadPage.value = true;
 
       await authControllers.updateUserData(
         {
@@ -66,7 +66,7 @@ class CartContllors extends GetxController {
         },
       );
 
-      reloadPage.value = false;
+      // reloadPage.value = false;
 
       productControllers.updataInCartProduct(
         inCart: false,

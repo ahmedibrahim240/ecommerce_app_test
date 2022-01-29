@@ -88,7 +88,7 @@ class SummerPage extends StatelessWidget {
     );
   }
 
-  Padding newDivider() {
+  newDivider() {
     return Padding(
       padding:
           EdgeInsets.symmetric(horizontal: defaultSize, vertical: defaultSize),

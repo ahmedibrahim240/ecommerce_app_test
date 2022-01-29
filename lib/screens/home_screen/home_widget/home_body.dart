@@ -13,6 +13,7 @@ class HomeScreenBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Container(
+        height: double.infinity,
         padding: EdgeInsets.fromLTRB(
           defaultSize * 2,
           defaultSize * 2,

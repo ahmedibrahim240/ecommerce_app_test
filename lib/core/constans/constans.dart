@@ -6,6 +6,9 @@ export 'sharedPreferences.dart';
 export 'app_theme.dart';
 
 import 'package:ecommerce_app/core/services/size_config.dart';
+import 'package:flutter/material.dart';
+
+import 'custom_colors.dart';
 
 String? userToken;
 
@@ -29,3 +32,14 @@ const String DEVICES = 'Devices';
 const String EESTSELLIGN = 'BestSelling';
 
 const String ALLPRODUCTCOlLECTION = 'all_product';
+
+customDivider() {
+  return Padding(
+    padding:
+        EdgeInsets.symmetric(horizontal: defaultSize, vertical: defaultSize),
+    child: Divider(
+      color: kGrayColor,
+      thickness: 1,
+    ),
+  );
+}
