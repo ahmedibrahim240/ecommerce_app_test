@@ -28,7 +28,8 @@ class BuildProdectItem extends StatelessWidget {
       child: Obx(
         () => Container(
           width: (isAll) ? screenWidth : defaultSize * 20,
-          child: searchController.isSearch.value
+          child: (searchController.isSearch.value) &&
+                  (searchController.searchList.isNotEmpty)
               ? ListTile(
                   leading: _buildImage(
                     context,
@@ -46,7 +47,7 @@ class BuildProdectItem extends StatelessWidget {
                   children: [
                     _buildImage(
                       context,
-                      searchController.isSearch.value,
+                      false,
                     ),
                     _BuildDettails(
                       isAll: isAll,

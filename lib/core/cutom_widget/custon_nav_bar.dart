@@ -11,9 +11,32 @@ class CustonNavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<Widget> _body = [
-      NetworkSensitive(child: CustomRefreshWidget(child: HomeScreen())),
-      NetworkSensitive(child: CustomRefreshWidget(child: CartScreen())),
-      NetworkSensitive(child: CustomRefreshWidget(child: AccountScreen())),
+      NetworkSensitive(
+        child: CustomRefreshWidget(
+          child: WillPopScope(
+            onWillPop: () async {
+              if (searchController.isSearch.value) {
+                searchController.searchState();
+
+                return false;
+              } else {
+                return true;
+              }
+            },
+            child: HomeScreen(),
+          ),
+        ),
+      ),
+      NetworkSensitive(
+        child: CustomRefreshWidget(
+          child: CartScreen(),
+        ),
+      ),
+      NetworkSensitive(
+        child: CustomRefreshWidget(
+          child: AccountScreen(),
+        ),
+      ),
     ];
     if (Get.arguments != null) {
       navBarController.setCurretIndex(Get.arguments);

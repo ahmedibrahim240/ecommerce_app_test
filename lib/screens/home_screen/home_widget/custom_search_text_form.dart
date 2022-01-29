@@ -13,50 +13,79 @@ class CustomSearchTextForm extends GetWidget<AccountController> {
   Widget build(BuildContext context) {
     return Obx(
       () {
-        return Row(
-          children: [
-            IconButton(
-              onPressed: () => searchController.searchState(),
-              icon: Icon(
-                (!searchController.isSearch.value)
-                    ? Icons.search
-                    : Icons.cancel,
-              ),
-            ),
-            if (searchController.isSearch.value)
+        return AnimatedContainer(
+          duration: Duration(milliseconds: 400),
+          width: !searchController.isSearch.value ? 56 : screenWidth,
+          height: 56,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(32),
+            color: Colors.white,
+            boxShadow: kElevationToShadow[6],
+          ),
+          child: Row(
+            children: [
               Expanded(
-                child: TextFormField(
-                  onChanged: (text) {
-                    searchController.reSearch.value = true;
-                    searchController.searchByName(text);
-                  },
-                  decoration: InputDecoration(
-                    fillColor: Colors.grey.shade400,
-                    filled: true,
-                    border: InputBorder.none,
-                    prefixIcon: Icon(
-                      Icons.search,
-                      color: controller.darkMode.value
-                          ? Colors.white
-                          : Colors.black,
+                child: Container(
+                  padding: const EdgeInsets.only(left: 16),
+                  child: searchController.isSearch.value
+                      ? TextFormField(
+                          // controller: searchController.searshText,
+                          onChanged: (text) =>
+                              searchController.searchByName(text),
+                          onEditingComplete: () {
+                            if (searchController.isNoData.value) {
+                              searchController.searchState();
+                              return;
+                            } else if (searchController.searchList.isEmpty) {
+                              searchController.searchState();
+                              return;
+                            } else {
+                              FocusScope.of(context).unfocus();
+
+                              return;
+                            }
+                          },
+                          decoration: InputDecoration(
+                            hintText: 'Search..',
+                            hintStyle: TextStyle(
+                              color: Colors.greenAccent.shade400,
+                            ),
+                            border: InputBorder.none,
+                          ),
+                        )
+                      : null,
+                ),
+              ),
+              AnimatedContainer(
+                duration: Duration(milliseconds: 400),
+                child: Material(
+                  type: MaterialType.transparency,
+                  child: InkWell(
+                    onTap: () => searchController.searchState(),
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(
+                          !searchController.isSearch.value ? 32 : 0),
+                      topRight: Radius.circular(32),
+                      bottomRight: Radius.circular(32),
+                      bottomLeft: Radius.circular(
+                          !searchController.isSearch.value ? 32 : 0),
                     ),
-                    focusedBorder: _customOutlineInputBorder(),
-                    enabledBorder: _customOutlineInputBorder(),
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Icon(
+                        (!searchController.isSearch.value)
+                            ? Icons.search
+                            : Icons.close,
+                        color: kPrimaryColor,
+                      ),
+                    ),
                   ),
                 ),
               ),
-          ],
+            ],
+          ),
         );
       },
-    );
-  }
-
-  OutlineInputBorder _customOutlineInputBorder() {
-    return OutlineInputBorder(
-      borderSide: BorderSide.none,
-      borderRadius: const BorderRadius.all(
-        Radius.circular(30),
-      ),
     );
   }
 }
