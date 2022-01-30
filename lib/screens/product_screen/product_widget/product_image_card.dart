@@ -2,7 +2,6 @@ import 'package:ecommerce_app/core/constans/constans.dart';
 import 'package:ecommerce_app/core/cutom_widget/cutom_widget.dart';
 import 'package:ecommerce_app/models/models.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
 class ProductImageCard extends StatelessWidget {
@@ -49,12 +48,8 @@ class ProductImageCard extends StatelessWidget {
                             icon: Icon(Icons.arrow_back_ios),
                             color: Colors.black,
                           ),
-                          CircleButton(
-                            onPressed: () {},
-                            icon: FontAwesomeIcons.star,
-                            iconSize: 22,
-                            iconColor: Colors.yellow.shade900,
-                            bgColor: Colors.white,
+                          FavoraiteButtom(
+                            product: product,
                           ),
                         ],
                       ),

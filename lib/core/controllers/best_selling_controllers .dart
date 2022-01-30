@@ -19,6 +19,9 @@ class BestSellingControllers extends GetxController {
           product.inCart = cartContllors.isINCartInitial(
             product,
           );
+          product.isFavorite = productControllers.isFavoriteProduct(
+            product,
+          );
           productmodels.add(
             product,
           );

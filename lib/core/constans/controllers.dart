@@ -15,3 +15,4 @@ OrderController orderController = OrderController.instance;
 ProductControllers productControllers = ProductControllers.instance;
 AllProductController allProductController = AllProductController.instance;
 SearchController searchController = SearchController.instance;
+FavoritesConttroller favoritesConttroller = FavoritesConttroller.instance;

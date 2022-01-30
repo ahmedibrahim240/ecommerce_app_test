@@ -38,19 +38,21 @@ class AllProductBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.separated(
-      shrinkWrap: true,
-      itemCount: productlist.length,
-      padding: EdgeInsets.only(top: defaultSize, bottom: defaultSize),
-      keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-      itemBuilder: (_, index) {
-        return BuildProdectItem(
-          product: productlist[index],
-          isAll: true,
-        );
-      },
-      separatorBuilder: (BuildContext context, int index) =>
-          SizedBox(height: defaultSize * 2),
+    return CustomRefreshWidget(
+      child: ListView.separated(
+        shrinkWrap: true,
+        itemCount: productlist.length,
+        padding: EdgeInsets.only(top: defaultSize, bottom: defaultSize),
+        keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+        itemBuilder: (_, index) {
+          return BuildProdectItem(
+            product: productlist[index],
+            isAll: true,
+          );
+        },
+        separatorBuilder: (BuildContext context, int index) =>
+            SizedBox(height: defaultSize * 2),
+      ),
     );
   }
 }

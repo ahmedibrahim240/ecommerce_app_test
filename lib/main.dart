@@ -26,6 +26,7 @@ void main() async {
     Get.put(ProductControllers());
     Get.put(AllProductController());
     Get.put(SearchController());
+    Get.put(FavoritesConttroller());
   });
   var initialData = await ConnectivityService().getIntState();
 

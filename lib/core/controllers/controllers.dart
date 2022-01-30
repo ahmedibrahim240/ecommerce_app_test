@@ -13,3 +13,4 @@ export 'oders_contrroller.dart';
 export 'product_controller.dart';
 export 'all_product_controller.dart';
 export 'search_controller.dart';
+export 'favorites_controller.dart';

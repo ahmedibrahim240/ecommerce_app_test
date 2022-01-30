@@ -27,6 +27,9 @@ class Categoriesmodels {
         product.inCart = cartContllors.isINCartInitial(
           product,
         );
+        product.isFavorite = productControllers.isFavoriteProduct(
+          product,
+        );
         _result.add(product);
       });
     }

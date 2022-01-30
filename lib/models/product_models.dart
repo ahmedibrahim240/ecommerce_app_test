@@ -5,7 +5,7 @@ class Productmodels {
   String? title, descraptions, image, size, productId;
   Color? color;
   double? price;
-  bool? inCart;
+  bool? inCart, isFavorite;
 
   Productmodels({
     this.size,
@@ -16,6 +16,7 @@ class Productmodels {
     this.image,
     this.inCart,
     this.productId,
+    this.isFavorite,
   });
   Productmodels.fromJson(map) {
     title = map['name'];
@@ -24,7 +25,7 @@ class Productmodels {
     descraptions = map['descraptions'];
     size = map['size'];
     inCart = map['inCart'];
-
+    isFavorite = false;
     color = HexColor.fromHex(map['color']);
     price = double.parse(map['price'].toString());
   }

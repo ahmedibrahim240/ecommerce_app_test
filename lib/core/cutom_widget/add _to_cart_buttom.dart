@@ -17,17 +17,23 @@ class AddtoCartButtom extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<ProductControllers>(
       builder: (controller) => CustomButtom(
-        bgColor: (!product.inCart!) ? kPrimaryColor : Colors.redAccent,
         margin: EdgeInsets.symmetric(
           vertical: defaultSize * 1.2,
           horizontal: defaultSize * 1.2,
         ),
-        child: CustomText(
-          text: (!product.inCart!) ? "Add to Cart" : "Remove from Cart",
-          color: Colors.white,
-          fontSize: 12,
-          alignment: Alignment.center,
+        child: Icon(
+          (!product.inCart!)
+              ? Icons.add_shopping_cart
+              : Icons.remove_shopping_cart,
+          color: (!product.inCart!) ? kPrimaryColor : Colors.redAccent,
         ),
+
+        // CustomText(
+        //   text: (!product.inCart!) ? "Add to Cart" : "Remove from Cart",
+        //   color: Colors.white,
+        //   fontSize: 12,
+        //   alignment: Alignment.center,
+        // ),
         onPreessed: () {
           if (product.inCart!) {
             cartContllors.delateProduct(

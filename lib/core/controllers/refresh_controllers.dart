@@ -6,16 +6,19 @@ class RefreshContrllors extends GetxController {
   var loading = false.obs;
   void onRefresh() async {
     loading.value = !loading.value;
-
-    await Future.delayed(
-      Duration(seconds: 2),
-      () {
-        categoriesControllers.getCategory();
-        bestSellingControllers.getBestProduct();
-        allProductController.getAllPrductList();
-        loading.value = !loading.value;
-      },
-    );
+    await categoriesControllers.getCategory();
+    await bestSellingControllers.getBestProduct();
+    await allProductController.getAllPrductList();
+    loading.value = !loading.value;
+    // await Future.delayed(
+    //   Duration(seconds: 2),
+    //   () async {
+    //     await categoriesControllers.getCategory();
+    //     await bestSellingControllers.getBestProduct();
+    //     await allProductController.getAllPrductList();
+    //     loading.value = !loading.value;
+    //   },
+    // );
   }
 
   @override
