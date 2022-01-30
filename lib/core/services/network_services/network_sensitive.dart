@@ -1,7 +1,6 @@
 import 'package:ecommerce_app/core/cutom_widget/custom_text.dart';
 import 'package:ecommerce_app/core/services/enums/connectivity_status.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
 
