@@ -61,9 +61,18 @@ class AppTheme {
     ),
   );
   static final DatePickerTheme datePickerTheme = DatePickerTheme(
-    cancelStyle: const TextStyle(color: Colors.white, fontSize: 16),
-    doneStyle: const TextStyle(color: Colors.blueAccent, fontSize: 16),
-    itemStyle: const TextStyle(color: Colors.white, fontSize: 18),
+    cancelStyle: const TextStyle(
+      color: Colors.white,
+      fontSize: 16,
+    ),
+    doneStyle: const TextStyle(
+      color: Colors.blueAccent,
+      fontSize: 16,
+    ),
+    itemStyle: const TextStyle(
+      color: Colors.white,
+      fontSize: 18,
+    ),
     backgroundColor: Colors.black54,
     headerColor: kPrimaryColor,
     containerHeight: 210.0,

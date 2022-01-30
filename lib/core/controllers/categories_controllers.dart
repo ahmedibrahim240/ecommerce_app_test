@@ -27,10 +27,4 @@ class CategoriesControllers extends GetxController {
   Categoriesmodels getCategoryById(String id) {
     return categoriesmodels.where((item) => item.id == id).last;
   }
-
-  // @override
-  // void onReady() {
-  //   super.onReady();
-  //   getCategory();
-  // }
 }

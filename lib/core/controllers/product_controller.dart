@@ -4,11 +4,7 @@ import 'package:ecommerce_app/core/constans/constans.dart';
 class ProductControllers extends GetxController {
   static ProductControllers instance = Get.find();
 
-  updataInCartProduct({
-    required var inCart,
-    String? id,
-    required String type,
-  }) {
+  updataInCartProduct({required var inCart, String? id, required String type}) {
     switch (type) {
       case 'id':
         if (!bestSellingControllers.chcekIsBestProduct(id!)) {

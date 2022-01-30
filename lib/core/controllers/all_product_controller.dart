@@ -7,12 +7,7 @@ import 'package:get/get.dart';
 class AllProductController extends GetxController {
   static AllProductController instance = Get.find();
   var allProductList = [];
-  // @override
-  // void onReady() {
-  //   super.onReady();
-  //   if ((bestSellingControllers.productmodels.isNotEmpty) &&
-  //       (categoriesControllers.categoriesmodels.isNotEmpty)) getAllPrductList();
-  // }
+ 
 
   getAllPrductList() {
     allProductList.clear();
@@ -33,15 +28,7 @@ class AllProductController extends GetxController {
       },
     );
 
-    // if (allProductList.isEmpty) {
-    //   return;
-    // } else {
-    //   allProductList.forEach(
-    //     (product) async {
-    //       await addAllPRoductToFireBase(product);
-    //     },
-    //   );
-    // }
+   
   }
 
   addAllPRoductToFireBase(Productmodels product) async {

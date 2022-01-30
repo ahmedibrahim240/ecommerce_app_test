@@ -80,33 +80,3 @@ class NetworkSensitive extends StatelessWidget {
           );
   }
 }
-
-class NoInetNet extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Ecommerce App',
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Center(
-              child: Icon(
-                FontAwesomeIcons.wifi,
-                size: 50,
-                color: Colors.green,
-              ),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Text(
-              "Not Inter net ",
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}

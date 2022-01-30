@@ -32,7 +32,6 @@ class AddtoCartButtom extends StatelessWidget {
           if (product.inCart!) {
             cartContllors.delateProduct(
               product: product,
-              // categoryIndx: categoryIndex,
             );
           } else {
             cartContllors.addProduct(

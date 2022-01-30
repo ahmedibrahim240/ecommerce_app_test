@@ -12,10 +12,10 @@ class RefreshContrllors extends GetxController {
       () {
         categoriesControllers.getCategory();
         bestSellingControllers.getBestProduct();
+        allProductController.getAllPrductList();
         loading.value = !loading.value;
       },
     );
-    // update();
   }
 
   @override

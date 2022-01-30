@@ -69,9 +69,11 @@ class SearchController extends GetxController {
             )) {
           if (category.productList != []) {
             searchList.clear();
-            category.productList.forEach((product) {
-              searchList.add(product);
-            });
+            category.productList.forEach(
+              (product) {
+                searchList.add(product);
+              },
+            );
           }
         }
       },

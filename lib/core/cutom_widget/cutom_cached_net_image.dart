@@ -35,11 +35,6 @@ class CustomCachedNetworkImage extends StatelessWidget {
                   color: kPrimaryColor,
                   size: defaultSize * 2,
                 ),
-
-                //  CircularProgressIndicator(
-                // backgroundColor: kPrimaryColor,
-                // valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
-                // ),
               ),
               errorWidget: (context, url, error) => Icon(Icons.error),
             )

@@ -131,7 +131,6 @@ class AuthControllers extends GetxController {
     splachController.isStart.value = false;
 
     final GoogleSignInAccount? googleUser = await googleSignIn.signIn();
-    print("googleUser:$googleUser");
 
     //ToDo: save user login with google in firebase user data
     GoogleSignInAuthentication googleSignInAuthentication =
@@ -154,6 +153,7 @@ class AuthControllers extends GetxController {
   }
 
   //! end goole sign in nethods
+
   //? facebook sign in methods
   // void faceBookSignInMethod() async {
   //   splachController.isStart.value = false;

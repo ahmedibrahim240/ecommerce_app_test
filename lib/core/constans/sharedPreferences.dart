@@ -40,5 +40,5 @@ class MySharedPreferences {
 
     return preferences.getBool(systemMode) ?? false;
   }
-  //todo ndget data
+  //todo ned get data
 }

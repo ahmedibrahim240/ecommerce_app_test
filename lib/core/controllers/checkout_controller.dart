@@ -45,7 +45,8 @@ class CheckoutController extends GetxController {
   getOderDEtails() {
     Addressmodels address = checkoutController.userAddress.value;
     orderController.address =
-        '${address.country}-${address.state}-${address.city}-${address.street1}-${address.street2}';
+        '${address.country}-${address.state}-${address.city}-' +
+            '${address.street1}-${address.street2}';
     orderController.orrderDate = checkoutController.deliveryDate.value;
     orderController.getOrderID();
     for (var item in cartContllors.cartItemList) {

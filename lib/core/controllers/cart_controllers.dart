@@ -4,7 +4,6 @@ import 'package:ecommerce_app/core/cutom_widget/cutom_widget.dart';
 import 'package:ecommerce_app/models/models.dart';
 
 import 'package:ecommerce_app/screens/screens.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class CartContllors extends GetxController {
@@ -44,8 +43,9 @@ class CartContllors extends GetxController {
         },
       );
     } catch (e) {
-      customErrorSnakBar(error: "Cannot add this item , try again later");
-      debugPrint(e.toString());
+      customErrorSnakBar(
+        error: "Cannot add this item , try again later\n$e",
+      );
     }
 
     update();
@@ -54,7 +54,7 @@ class CartContllors extends GetxController {
   delateProduct({required var product}) async {
     try {
       CartItemmodels item = getCartItemById(product.productId);
-      // reloadPage.value = true;
+      reloadPage.value = true;
 
       await authControllers.updateUserData(
         {
@@ -66,7 +66,7 @@ class CartContllors extends GetxController {
         },
       );
 
-      // reloadPage.value = false;
+      reloadPage.value = false;
 
       productControllers.updataInCartProduct(
         inCart: false,
@@ -74,8 +74,9 @@ class CartContllors extends GetxController {
         id: product.productId,
       );
     } catch (e) {
-      customErrorSnakBar(error: "Cannot remove this item , try again later");
-      debugPrint(e.toString());
+      customErrorSnakBar(
+        error: "Cannot remove this item , try again later\n$e",
+      );
     }
     update();
   }
@@ -93,8 +94,9 @@ class CartContllors extends GetxController {
         // id: product.id,
       );
     } catch (e) {
-      customErrorSnakBar(error: "Cannot remve cart item , try again later");
-      debugPrint(e.toString());
+      customErrorSnakBar(
+        error: "Cannot remve cart item , try again later\n$e",
+      );
     }
     update();
   }
@@ -119,12 +121,13 @@ class CartContllors extends GetxController {
         .last;
   }
 
-  bool isINCartInitial(Productmodels product) =>
-      authControllers.usermodels.value.cart
-          .where(
-            (item) => item.productId == product.productId,
-          )
-          .isNotEmpty;
+  bool isINCartInitial(Productmodels product) {
+    return authControllers.usermodels.value.cart
+        .where(
+          (item) => item.productId == product.productId,
+        )
+        .isNotEmpty;
+  }
 
   increaseQuantity(int index) {
     cartItemList[index].quantity++;
@@ -144,10 +147,6 @@ class CartContllors extends GetxController {
     required CartItemmodels item,
     required int index,
   }) async {
-    print("________________________");
-    print(index);
-    print(item.title);
-    print("________________________");
     if (item.quantity == 1) {
       delateProduct(product: item);
     } else {
