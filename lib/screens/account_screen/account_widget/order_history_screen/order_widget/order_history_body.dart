@@ -1,4 +1,5 @@
 import 'package:ecommerce_app/core/constans/constans.dart';
+import 'package:ecommerce_app/core/cutom_widget/cutom_widget.dart';
 
 import 'package:ecommerce_app/screens/account_screen/account_widget/account_widget.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +16,10 @@ class OrderHistoryBody extends StatelessWidget {
         return (orderController.orderHistoryList.isNotEmpty) &&
                 (orderController.orderHistoryList != [])
             ? OrderHistoryListView()
-            : EmptyOrder();
+            : EmptyData(
+                icon: emptyorder,
+                text: 'Not have order yet..',
+              );
       },
     );
   }

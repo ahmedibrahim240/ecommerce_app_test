@@ -27,6 +27,7 @@ final String soppingAppSvg = _getSvgPath("soppingApp.svg");
 
 //!ImagesJsonPaTh
 final String deliveryIcon2 = _getJsonIconPath("delivery2.json");
+final String emptyFavourite = _getJsonIconPath("empty_favourite.json");
 final String emptyCartJson = _getJsonIconPath("emptycart.json");
 final String emptyitemdata = _getJsonIconPath("noitem.json");
 final String emptyorder = _getJsonIconPath("emptyorder.json");

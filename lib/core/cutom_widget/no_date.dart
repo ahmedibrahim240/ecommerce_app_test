@@ -4,10 +4,14 @@ import 'package:lottie/lottie.dart';
 
 import 'custom_text.dart';
 
-class NODataYet extends StatelessWidget {
-  const NODataYet({
+class EmptyData extends StatelessWidget {
+  const EmptyData({
     Key? key,
+    required this.icon,
+    this.text = 'Not have data...',
   }) : super(key: key);
+  final String icon;
+  final String text;
 
   @override
   Widget build(BuildContext context) {
@@ -16,13 +20,14 @@ class NODataYet extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         LottieBuilder.asset(
-          emptyitemdata,
+          icon,
           height: defaultSize * 23.2,
           width: defaultSize * 23.2,
         ),
+        SizedBox(height: defaultSize),
         Center(
           child: CustomText(
-            text: 'Not have data...',
+            text: text,
             alignment: Alignment.center,
             fontSize: 14,
             fontWeight: FontWeight.bold,

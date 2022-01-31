@@ -53,7 +53,9 @@ class HomeScreenBody extends StatelessWidget {
 
                         FocusScope.of(context).unfocus();
                       },
-                      child: NODataYet(),
+                      child: EmptyData(
+                        icon: emptyitemdata,
+                      ),
                     ),
                 ],
               ),

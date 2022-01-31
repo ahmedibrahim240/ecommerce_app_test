@@ -23,7 +23,9 @@ class CategoriesPageItem extends GetWidget {
       ),
       body: NetworkSensitive(
         child: (categoriesmodels.productList!.isEmpty)
-            ? NODataYet()
+            ? EmptyData(
+                icon: emptyitemdata,
+              )
             : AllProductBody(
                 productlist: categoriesmodels.productList!,
               ),
