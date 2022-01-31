@@ -41,46 +41,45 @@ class CustonNavBar extends StatelessWidget {
     if (Get.arguments != null) {
       navBarController.setCurretIndex(Get.arguments);
     }
-    return Obx(
-      () {
-        return Scaffold(
-          body: _body[navBarController.currentIndex.value],
-          bottomNavigationBar: NetworkSensitive(
-            isNavBar: true,
-            child: BottomNavigationBar(
-              elevation: 0.0,
-              currentIndex: navBarController.currentIndex.value,
-              backgroundColor: accountController.darkMode.value
-                  ? Colors.black
-                  : Colors.grey.shade50,
-              onTap: (index) {
-                navBarController.currentIndex.value = index;
-                navBarController.activeIndex.value = index;
-              },
-              items: navBarItemList
-                  .map(
-                    (item) => BottomNavigationBarItem(
-                      activeIcon: _activeIcon(
-                        item,
-                        navBarController.currentIndex.value,
-                        navBarController.activeIndex.value,
-                      ),
-                      icon: Image.asset(
-                        item.icon,
-                        fit: BoxFit.contain,
-                        width: defaultSize * 2.5,
-                        color: (accountController.darkMode.value)
-                            ? kPrimaryColor
-                            : null,
-                      ),
-                      label: '',
+
+    return Scaffold(
+      body: Obx(() => _body[navBarController.currentIndex.value]),
+      bottomNavigationBar: NetworkSensitive(
+        isNavBar: true,
+        child: Obx(
+          () => BottomNavigationBar(
+            elevation: 0.0,
+            currentIndex: navBarController.currentIndex.value,
+            backgroundColor: accountController.darkMode.value
+                ? Colors.black
+                : Colors.grey.shade50,
+            onTap: (index) {
+              navBarController.currentIndex.value = index;
+              navBarController.activeIndex.value = index;
+            },
+            items: navBarItemList
+                .map(
+                  (item) => BottomNavigationBarItem(
+                    activeIcon: _activeIcon(
+                      item,
+                      navBarController.currentIndex.value,
+                      navBarController.activeIndex.value,
                     ),
-                  )
-                  .toList(),
-            ),
+                    icon: Image.asset(
+                      item.icon,
+                      fit: BoxFit.contain,
+                      width: defaultSize * 2.5,
+                      color: (accountController.darkMode.value)
+                          ? kPrimaryColor
+                          : null,
+                    ),
+                    label: '',
+                  ),
+                )
+                .toList(),
           ),
-        );
-      },
+        ),
+      ),
     );
   }
 
