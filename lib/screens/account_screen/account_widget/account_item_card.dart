@@ -98,6 +98,13 @@ class AccountItemCard extends GetWidget {
 
   buidIcons({String? icon, required int index}) {
     if (icon == null) {
+      if ((index == accountList.length - 4)) {
+        return Icon(
+          Icons.favorite,
+          color: Colors.red,
+          size: defaultSize * 4,
+        );
+      }
       if ((index == accountList.length - 3)) {
         return Icon(
           (accountController.darkMode.value)

@@ -165,10 +165,8 @@ class _BuildDettails extends StatelessWidget {
                 color: kPrimaryColor,
                 alignment: Alignment.centerLeft,
               ),
-              if (isAll) ...[
-                FavoraiteButtom(product: product),
-                AddtoCartButtom(product: product),
-              ],
+              FavoraiteButtom(product: product),
+              AddtoCartButtom(product: product),
             ],
           ),
         ],

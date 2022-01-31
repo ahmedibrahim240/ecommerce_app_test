@@ -23,6 +23,9 @@ List<Accountmodels> accountList = [
     icon: historyIcon,
     title: 'Order History',
   ),
+  Accountmodels(
+    title: 'Favourites',
+  ),
   // Accountmodels(
   //   icon: cardsIcon,
   //   title: 'Cards',

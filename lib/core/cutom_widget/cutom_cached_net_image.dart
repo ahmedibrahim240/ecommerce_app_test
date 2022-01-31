@@ -10,6 +10,11 @@ class CustomCachedNetworkImage extends StatelessWidget {
   final double? width;
   final double? height;
   final double? borderRadius;
+  final double borderTopLeftRadius;
+  final double borderTopRightRadius;
+  final double borderBottomLeftRadius;
+  final double borderBottomRightRadius;
+  final bool isOnlyRadius;
   const CustomCachedNetworkImage({
     Key? key,
     this.url,
@@ -17,13 +22,25 @@ class CustomCachedNetworkImage extends StatelessWidget {
     this.boxFit,
     this.width,
     this.height,
+    this.isOnlyRadius = false,
     this.borderRadius,
+    this.borderBottomLeftRadius = 0,
+    this.borderBottomRightRadius = 0,
+    this.borderTopLeftRadius = 0,
+    this.borderTopRightRadius = 0,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-      borderRadius: BorderRadius.circular(borderRadius ?? 0.0),
+      borderRadius: (isOnlyRadius)
+          ? BorderRadius.only(
+              topLeft: Radius.circular(borderTopLeftRadius),
+              topRight: Radius.circular(borderTopRightRadius),
+              bottomLeft: Radius.circular(borderBottomLeftRadius),
+              bottomRight: Radius.circular(borderBottomRightRadius),
+            )
+          : BorderRadius.circular(borderRadius ?? 0.0),
       child: (Uri.parse(url!).isAbsolute)
           ? CachedNetworkImage(
               imageUrl: url!,

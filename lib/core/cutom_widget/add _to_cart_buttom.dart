@@ -10,17 +10,22 @@ class AddtoCartButtom extends StatelessWidget {
   const AddtoCartButtom({
     Key? key,
     required this.product,
+    this.isFavourite = false,
   }) : super(key: key);
   final Productmodels product;
+  final bool isFavourite;
 
   @override
   Widget build(BuildContext context) {
     return GetBuilder<ProductControllers>(
       builder: (controller) => CustomButtom(
-        margin: EdgeInsets.symmetric(
-          vertical: defaultSize * 1.2,
-          horizontal: defaultSize * 1.2,
-        ),
+        bgColor: Colors.transparent,
+        margin: (isFavourite)
+            ? null
+            : EdgeInsets.symmetric(
+                vertical: defaultSize * 1.2,
+                horizontal: defaultSize * 1.2,
+              ),
         child: Icon(
           (!product.inCart!)
               ? Icons.add_shopping_cart

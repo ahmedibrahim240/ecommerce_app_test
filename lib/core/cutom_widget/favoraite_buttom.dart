@@ -6,7 +6,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'cutom_widget.dart';
 
-class FavoraiteButtom extends StatelessWidget {
+class FavoraiteButtom extends GetWidget<AccountController> {
   const FavoraiteButtom({
     Key? key,
     required this.product,
@@ -16,7 +16,7 @@ class FavoraiteButtom extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<ProductControllers>(
-      builder: (controller) => CircleButton(
+      builder: (procontroller) => CircleButton(
         onPressed: () {
           if (!product.isFavorite!) {
             favoritesConttroller.addFavoriteProdcut(
@@ -37,8 +37,12 @@ class FavoraiteButtom extends StatelessWidget {
             ? FontAwesomeIcons.solidHeart
             : FontAwesomeIcons.heart,
         iconSize: defaultSize * 3.5,
-        iconColor: (product.isFavorite!) ? Colors.red : Colors.black,
-        bgColor: Colors.white,
+        iconColor: (product.isFavorite!)
+            ? Colors.red
+            : (controller.darkMode.value)
+                ? Colors.white
+                : Colors.black,
+        bgColor: Colors.transparent,
       ),
     );
   }

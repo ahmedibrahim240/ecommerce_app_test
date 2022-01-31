@@ -10,15 +10,31 @@ class FavoritesConttroller extends GetxController {
   var favorieitemsList = [].obs;
   void onReady() {
     super.onReady();
-    if (allProductController.allProductList.isNotEmpty)
-      ever(authControllers.usermodels, getAllFavorieitems);
+    // if (allProductController.allProductList.isNotEmpty)
+    ever(authControllers.usermodels, getAllFavorieitems);
     // ignore: invalid_use_of_protected_member
   }
 
-  getAllFavorieitems(Usermodels user) {
+  getAllFavorieitems(Usermodels user) async {
+    if (allProductController.allProductList.isEmpty) {
+      await allProductController.getAllPrductList();
+      await Future.delayed(
+        Duration(seconds: 2),
+        () async {
+          getFavoriteDate(user);
+        },
+      );
+    } else {
+      getFavoriteDate(user);
+    }
+  }
+
+  getFavoriteDate(Usermodels user) {
     if (user.favoriteList!.isEmpty) {
       favorieitemsList.clear();
     } else {
+      favorieitemsList.clear();
+
       user.favoriteList!.forEach(
         (id) {
           if (allProductController.chechIsProductIsExisting(id)) {
@@ -32,8 +48,6 @@ class FavoritesConttroller extends GetxController {
   }
 
   addItemTolist(String id) {
-    favorieitemsList.clear();
-
     allProductController.allProductList.forEach(
       (product) {
         if (product.productId == id) {

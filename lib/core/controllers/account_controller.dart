@@ -117,14 +117,20 @@ class AccountController extends GetxController {
         );
         break;
       case 1:
+        routeController.routePage(
+          type: 'to',
+          page: FavouriteScreen(),
+        );
+        break;
+      case 2:
         onChangedDarKMode(!darkMode.value);
 
         break;
-      case 2:
+      case 3:
         onChangedSystemMode(!isSystemMode.value);
 
         break;
-      case 3:
+      default:
         authControllers.signOut();
 
         break;
