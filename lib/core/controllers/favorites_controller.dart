@@ -10,9 +10,7 @@ class FavoritesConttroller extends GetxController {
   var favorieitemsList = [].obs;
   void onReady() {
     super.onReady();
-    // if (allProductController.allProductList.isNotEmpty)
     ever(authControllers.usermodels, getAllFavorieitems);
-    // ignore: invalid_use_of_protected_member
   }
 
   getAllFavorieitems(Usermodels user) async {
