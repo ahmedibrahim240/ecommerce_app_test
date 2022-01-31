@@ -21,15 +21,15 @@ class FavoritesConttroller extends GetxController {
       await Future.delayed(
         Duration(seconds: 2),
         () async {
-          getFavoriteDate(user);
+          _getFavoriteDate(user);
         },
       );
     } else {
-      getFavoriteDate(user);
+      _getFavoriteDate(user);
     }
   }
 
-  getFavoriteDate(Usermodels user) {
+  _getFavoriteDate(Usermodels user) {
     if (user.favoriteList!.isEmpty) {
       favorieitemsList.clear();
     } else {
@@ -38,16 +38,20 @@ class FavoritesConttroller extends GetxController {
       user.favoriteList!.forEach(
         (id) {
           if (allProductController.chechIsProductIsExisting(id)) {
-            addItemTolist(id.toString());
+            _addItemTolist(id.toString());
           } else {
             removeFavoriteProdcut(id.toString());
+            productControllers.updateIsForiteProduct(
+              isFavorite: false,
+              type: 'id',
+            );
           }
         },
       );
     }
   }
 
-  addItemTolist(String id) {
+  _addItemTolist(String id) {
     allProductController.allProductList.forEach(
       (product) {
         if (product.productId == id) {
@@ -86,6 +90,27 @@ class FavoritesConttroller extends GetxController {
             ],
           ),
         },
+      );
+    } catch (e) {
+      customErrorSnakBar(
+        error: "Cannot remove this item , try again later\n$e",
+      );
+    }
+    update();
+  }
+
+  clearFavoriteProdcut() async {
+    try {
+      await authControllers.updateUserData(
+        {
+          Usermodels.FAVORITElIST: [],
+        },
+      );
+      favorieitemsList.clear();
+
+      productControllers.updateIsForiteProduct(
+        isFavorite: false,
+        type: 'all',
       );
     } catch (e) {
       customErrorSnakBar(
