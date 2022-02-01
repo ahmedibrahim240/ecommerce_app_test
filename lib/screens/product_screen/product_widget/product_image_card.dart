@@ -41,12 +41,23 @@ class ProductImageCard extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          IconButton(
-                            onPressed: () {
-                              Get.back();
-                            },
-                            icon: Icon(Icons.arrow_back_ios),
-                            color: Colors.black,
+                          InkWell(
+                            onTap: () => Get.back(),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Colors.transparent,
+                                border: Border.all(
+                                  color: kPrimaryColor,
+                                  width: 2,
+                                ),
+                              ),
+                              child: Icon(
+                                Icons.arrow_back_ios,
+                                color: kPrimaryColor,
+                                size: 20,
+                              ).paddingOnly(left: 5).marginAll(2),
+                            ),
                           ),
                           FavoraiteButtom(
                             product: product,

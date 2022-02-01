@@ -9,4 +9,11 @@ class NavBarController extends GetxController {
     activeIndex = index;
     update();
   }
+
+  // @override
+  // void onReady() {
+  //   super.onReady();
+  //   currentIndex.value = 0;
+  //   activeIndex.value = 0;
+  // }
 }
