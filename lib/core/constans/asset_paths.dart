@@ -31,6 +31,7 @@ final String emptyFavourite = _getJsonIconPath("empty_favourite.json");
 final String emptyCartJson = _getJsonIconPath("emptycart.json");
 final String emptyitemdata = _getJsonIconPath("noitem.json");
 final String emptyorder = _getJsonIconPath("emptyorder.json");
+final String emptyAddress = _getJsonIconPath("empty_address.json");
 
 //todo Get paths
 String _getImagePath(String fileName) {

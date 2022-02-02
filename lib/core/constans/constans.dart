@@ -6,9 +6,11 @@ export 'sharedPreferences.dart';
 export 'app_theme.dart';
 
 import 'package:ecommerce_app/core/services/size_config.dart';
+import 'package:ecommerce_app/models/models.dart';
 import 'package:flutter/material.dart';
 
 import 'custom_colors.dart';
+import 'package:translator/translator.dart';
 
 String? userToken;
 
@@ -42,4 +44,22 @@ customDivider() {
       thickness: 1,
     ),
   );
+}
+
+String getCompleteAddress(Addressmodels address) {
+  return "${address.country}-${address.state}" +
+      "-${address.city}" +
+      "-${address.street2}";
+}
+
+isARText(String text) async {
+  final translator = GoogleTranslator();
+  bool isAR = false;
+
+  Translation translation = await translator.translate(text);
+  String lanCode = translation.sourceLanguage.code;
+  // print("Language Code: $lanCode");
+  isAR = lanCode == 'ar';
+  print(isAR);
+  return isAR;
 }

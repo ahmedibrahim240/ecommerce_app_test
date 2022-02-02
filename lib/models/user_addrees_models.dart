@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class Addressmodels {
   static const STREET1 = "street1";
   static const STREET2 = "street2";
@@ -5,13 +7,17 @@ class Addressmodels {
   static const STATE = "state";
   static const COUNTRY = "country";
   static const ID = "id";
+  static const ISARLANG = "isARLang";
+  static const DATECREATED = "dateCreated";
 
   String? street1;
   String? street2;
   String? city;
   String? state;
   String? country;
-  int? id;
+  String? id;
+  Timestamp? dateCreated;
+  bool? isARLang;
 
   Addressmodels({
     this.street1,
@@ -20,15 +26,19 @@ class Addressmodels {
     this.state,
     this.country,
     this.id,
+    this.dateCreated,
+    this.isARLang,
   });
 
-  Addressmodels.fromJson(snapshot) {
+  Addressmodels.fromJson(DocumentSnapshot snapshot) {
     street2 = snapshot[STREET2];
     city = snapshot[CITY];
     street1 = snapshot[STREET1];
     state = snapshot[STATE];
     country = snapshot[COUNTRY];
-    id = snapshot[ID];
+    id = snapshot.id;
+    dateCreated = snapshot[DATECREATED];
+    isARLang = snapshot[ISARLANG];
   }
   toJson() {
     return {
@@ -37,21 +47,8 @@ class Addressmodels {
       CITY: city,
       STATE: state,
       COUNTRY: country,
-      ID: id,
-    };
-  }
-}
-
-class AddressListmodels {
-  static const ADDRESSES = "addresses";
-  List? addresses;
-  AddressListmodels({this.addresses});
-  AddressListmodels.fromJson(data) {
-    addresses = data[ADDRESSES];
-  }
-  toJson() {
-    return {
-      ADDRESSES: addresses,
+      DATECREATED: dateCreated,
+      ISARLANG: isARLang,
     };
   }
 }

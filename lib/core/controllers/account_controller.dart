@@ -1,5 +1,6 @@
 import 'package:ecommerce_app/core/services/coustm_dialogs.dart';
 import 'package:ecommerce_app/screens/account_screen/account_widget/account_widget.dart';
+import 'package:ecommerce_app/screens/account_screen/account_widget/address_screen/address_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:get/get.dart';
@@ -123,10 +124,17 @@ class AccountController extends GetxController {
         );
         break;
       case 2:
+        routeController.routePage(
+          type: 'to',
+          page: AddressScreen(),
+        );
+        break;
+
+      case 3:
         onChangedDarKMode(!darkMode.value);
 
         break;
-      case 3:
+      case 4:
         onChangedSystemMode(!isSystemMode.value);
 
         break;

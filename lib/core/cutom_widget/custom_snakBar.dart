@@ -6,7 +6,7 @@ customErrorSnakBar({required String error}) {
   Get.snackbar(
     'Error',
     error,
-    snackPosition: SnackPosition.BOTTOM,
+    snackPosition: SnackPosition.TOP,
     colorText: Colors.redAccent.shade700,
   );
 }
@@ -15,7 +15,7 @@ customSnakBar({required String mass}) {
   Get.snackbar(
     'Done',
     mass,
-    snackPosition: SnackPosition.BOTTOM,
+    snackPosition: SnackPosition.TOP,
     colorText: kPrimaryColor,
   );
 }

@@ -14,7 +14,7 @@ class CustomTextFormField extends GetWidget<AccountController> {
   final Function(String)? onChanged;
   final TextInputType? textInputType;
   final String? Function(String?)? validator;
-
+  final String? initialValue;
   const CustomTextFormField({
     Key? key,
     required this.lable,
@@ -25,6 +25,7 @@ class CustomTextFormField extends GetWidget<AccountController> {
     this.validator,
     this.onChanged,
     this.filled = true,
+    this.initialValue = '',
   }) : super(key: key);
 
   @override
@@ -43,6 +44,7 @@ class CustomTextFormField extends GetWidget<AccountController> {
           validator: validator,
           keyboardType: textInputType,
           obscureText: obscureText!,
+          initialValue: initialValue,
           decoration: InputDecoration(
             focusedBorder: UnderlineInputBorder(
               borderSide: BorderSide(color: kPrimaryColor, width: 2),

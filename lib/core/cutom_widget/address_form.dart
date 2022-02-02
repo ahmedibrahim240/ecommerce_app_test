@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ecommerce_app/core/constans/constans.dart';
 import 'package:ecommerce_app/core/controllers/controllers.dart';
 import 'package:ecommerce_app/core/cutom_widget/cutom_widget.dart';
@@ -7,7 +8,9 @@ import 'package:get/get.dart';
 
 class AddressForm extends GetWidget<AddressController> {
   static GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  final Addressmodels? address;
 
+  AddressForm({this.address});
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -17,12 +20,15 @@ class AddressForm extends GetWidget<AddressController> {
         // ignore: invalid_use_of_protected_member
         primary: false,
         padding: EdgeInsets.symmetric(
-            horizontal: defaultSize, vertical: defaultSize),
+          horizontal: defaultSize,
+          vertical: defaultSize,
+        ),
         children: [
           CustomTextFormField(
             lable: 'Street 1',
             hintText: "21, Alex Davidson Avenue",
             filled: false,
+            initialValue: (address == null) ? '' : address?.street1,
             onSaved: (value) => controller.street1 = value,
             validator: (value) => value!.isEmpty ? "Street 1 Required" : null,
           ),
@@ -33,6 +39,7 @@ class AddressForm extends GetWidget<AddressController> {
             filled: false,
             onSaved: (value) => controller.street2 = value,
             validator: (value) => value!.isEmpty ? "Street 2 Required" : null,
+            initialValue: (address == null) ? '' : address?.street2,
           ),
           SizedBox(height: defaultSize * 2.2),
           CustomTextFormField(
@@ -41,6 +48,7 @@ class AddressForm extends GetWidget<AddressController> {
             filled: false,
             onSaved: (value) => controller.city = value,
             validator: (value) => value!.isEmpty ? "City Required" : null,
+            initialValue: (address == null) ? '' : address?.city,
           ),
           SizedBox(height: defaultSize * 2.2),
           Row(
@@ -49,6 +57,7 @@ class AddressForm extends GetWidget<AddressController> {
                 child: CustomTextFormField(
                   lable: 'State',
                   hintText: "Lagos State",
+                  initialValue: (address == null) ? '' : address?.state,
                   filled: false,
                   onSaved: (value) => controller.state = value,
                   validator: (value) =>
@@ -60,6 +69,7 @@ class AddressForm extends GetWidget<AddressController> {
                 child: CustomTextFormField(
                   lable: 'Country',
                   hintText: "Nigeria",
+                  initialValue: (address == null) ? '' : address?.country,
                   filled: false,
                   onSaved: (value) => controller.country = value,
                   validator: (value) =>
@@ -69,18 +79,20 @@ class AddressForm extends GetWidget<AddressController> {
             ],
           ),
           SizedBox(height: defaultSize * 2.2),
-          CustomButtom(
-            child: CustomText(
-              color: Colors.white,
-              text: 'Add',
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-              alignment: Alignment.center,
+          Obx(
+            () => CustomButtom(
+              child: CustomText(
+                color: Colors.white,
+                text: addressController.editAddress.value ? 'Edit' : 'Add',
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                alignment: Alignment.center,
+              ),
+              bgColor: kPrimaryColor,
+              onPreessed: () {
+                validateAddrees();
+              },
             ),
-            bgColor: kPrimaryColor,
-            onPreessed: () {
-              validateAddrees();
-            },
           ),
           SizedBox(height: defaultSize * 2.2),
         ],
@@ -91,7 +103,7 @@ class AddressForm extends GetWidget<AddressController> {
   validateAddrees() async {
     if (AddressForm.formKey.currentState!.validate()) {
       AddressForm.formKey.currentState!.save();
-      controller.getAddressLength();
+      // controller.getAddressLength();
 
       Addressmodels address = new Addressmodels(
         street1: controller.street1,
@@ -99,10 +111,15 @@ class AddressForm extends GetWidget<AddressController> {
         city: controller.city,
         state: controller.state,
         country: controller.country,
-        id: controller.adreesLenght.value,
+        dateCreated: controller.addressEditing.value.dateCreated,
+        isARLang: false,
+        // id: controller.adreesLenght.value,
       );
-
-      await controller.createNewaddress(address);
+      if (controller.editAddress.value) {
+        await controller.updateAddress(address);
+      } else {
+        await controller.createNewaddress(address);
+      }
     }
   }
 }

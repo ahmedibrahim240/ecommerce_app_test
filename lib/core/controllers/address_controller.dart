@@ -1,29 +1,58 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ecommerce_app/core/constans/constans.dart';
 import 'package:ecommerce_app/core/cutom_widget/custom_snakBar.dart';
 import 'package:ecommerce_app/core/services/coustm_dialogs.dart';
 import 'package:ecommerce_app/models/models.dart';
+import 'package:ecommerce_app/models/user_addrees_models.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 class AddressController extends GetxController {
   static AddressController instance = Get.find();
+  Rx<List<Addressmodels>> addressList = Rx<List<Addressmodels>>([]);
   String? street1, street2, city, state, country;
-  var adressList = [].obs;
-  var newAddress;
+  List<Addressmodels> get listOfAdress => addressList.value;
   RxBool addNewAddress = false.obs;
+  RxBool editAddress = false.obs;
   RxBool shooseNewAddress = false.obs;
-  String addressCollection = "users_address";
-  List listOfAddress = [];
-  var adreesLenght = 0.obs;
-  AddressListmodels addressListmodels = AddressListmodels();
+  String addressCollection = "address";
+  Rx<Addressmodels> addressEditing = Addressmodels().obs;
+  // var adreesLenght = 0.obs;
+
   @override
+  void onInit() {
+    super.onInit();
+
+    setInitControllerData();
+
+    ever(authControllers.firebaseUser!, _setInitialStremData);
+  }
+
   void onReady() {
     super.onReady();
-    if ((userToken != null) && (userToken != 'null')) getAllUserAdress();
-    // ignore: invalid_use_of_protected_member
-    if ((adressList.isNotEmpty) && (adressList.value != [])) {
-      shooseNewAddress.value = true;
-      addNewAddress.value = false;
+    setInitControllerData();
+  }
+
+  _setInitialStremData(User? user) {
+    if (user == null) {
+      debugPrint('wating user login in ');
+    } else {
+      addressList.bindStream(addressStreem(user.uid));
+      if ((listOfAdress.isNotEmpty) && (listOfAdress != [])) {
+        shooseNewAddress.value = true;
+        addNewAddress.value = false;
+      }
     }
+  }
+
+  setInitControllerData() {
+    if ((listOfAdress.isNotEmpty) && (listOfAdress != [])) {
+      shooseNewAddress.value = true;
+    }
+    addNewAddress.value = false;
+    editAddress.value = false;
+    update();
   }
 
   void funAddNewAddress() {
@@ -42,43 +71,23 @@ class AddressController extends GetxController {
     showLoading();
     String userId = authControllers.usermodels.value.id!;
 
-    listOfAddress = [];
-    newAddress = address.toJson();
     try {
-      if (adressList.isEmpty) {
-        listOfAddress.add(newAddress);
-        addressListmodels = new AddressListmodels(
-          addresses: listOfAddress,
-        );
-        await firebaseFirestore.collection(addressCollection).doc(userId).set(
-              addressListmodels.toJson(),
-            );
-      } else {
-        for (int i = 0; i < adressList.length; i++) {
-          Addressmodels addressmodels = adressList[i];
+      address.isARLang = await isARText(getCompleteAddress(address)) as bool;
+      await firebaseFirestore
+          .collection("users")
+          .doc(userId)
+          .collection(addressCollection)
+          .add(
+            address.toJson(),
+          );
 
-          listOfAddress.add(addressmodels.toJson());
-        }
-
-        listOfAddress.add(newAddress);
-        addressListmodels = new AddressListmodels(
-          addresses: listOfAddress,
-        );
-        await firebaseFirestore
-            .collection(addressCollection)
-            .doc(userId)
-            .update(
-              addressListmodels.toJson(),
-            );
-      }
-      getAllUserAdress();
-      dismissLoadingWidget();
       addNewAddress.value = false;
-      shooseNewAddress.value = true;
-      checkoutController.addressGroupValue.value = 1;
-      checkoutController.userAddress.value = address;
+      dismissLoadingWidget();
+
       customSnakBar(mass: 'Address Was Added..');
     } catch (e) {
+      addNewAddress.value = false;
+
       customErrorSnakBar(error: 'Failed please try again');
 
       dismissLoadingWidget();
@@ -87,37 +96,75 @@ class AddressController extends GetxController {
     update();
   }
 
-  getAllUserAdress() async {
-    AddressListmodels addressListmodels = AddressListmodels();
-    adressList.value = [];
-    var newList = [];
-
-    await firebaseFirestore
-        .collection(addressCollection)
-        .doc(userToken)
-        .get()
-        .then(
-      (value) {
-        if (value.data() != null) {
-          addressListmodels = AddressListmodels.fromJson(value);
-          newList = addressListmodels.addresses!;
-          for (int i = 0; i < newList.length; i++) {
-            var address = newList[i];
-
-            adressList.add(
-              Addressmodels.fromJson(address),
-            );
-          }
-        } else {
-          return;
-        }
-      },
-    );
+  delateAddress(Addressmodels address) async {
+    String userId = authControllers.usermodels.value.id!;
+    try {
+      print(address.toJson());
+      await firebaseFirestore
+          .collection("users")
+          .doc(userId)
+          .collection(addressCollection)
+          .doc(address.id)
+          .delete();
+    } catch (e) {
+      customErrorSnakBar(error: 'Failed please try again');
+    }
 
     update();
   }
 
-  getAddressLength() {
-    adreesLenght.value = adressList.length;
+  updateAddress(Addressmodels address) async {
+    String userId = authControllers.usermodels.value.id!;
+    print('Userid:$userId\naddressid:${addressEditing.value.id}');
+    print(address.toJson());
+    try {
+      address.isARLang = await isARText(getCompleteAddress(address)) as bool;
+      showLoading();
+
+      await firebaseFirestore
+          .collection("users")
+          .doc(userId)
+          .collection(addressCollection)
+          .doc(addressEditing.value.id)
+          .update(
+            address.toJson(),
+          );
+      editAddress.value = false;
+      dismissLoadingWidget();
+
+      customSnakBar(mass: 'Success Editing..');
+    } on FirebaseException catch (e) {
+      dismissLoadingWidget();
+      print('____________________');
+      print(e.message);
+      print('____________________');
+      customErrorSnakBar(error: 'Failed please try again');
+    }
+
+    update();
   }
+
+  Stream<List<Addressmodels>> addressStreem(String uid) {
+    return firebaseFirestore
+        .collection("users")
+        .doc(uid)
+        .collection(addressCollection)
+        .orderBy(Addressmodels.DATECREATED, descending: true)
+        .snapshots()
+        .map(
+      (QuerySnapshot query) {
+        List<Addressmodels> retVal = [];
+        query.docs.forEach(
+          (address) {
+            retVal.add(Addressmodels.fromJson(address));
+          },
+        );
+        return retVal;
+      },
+    );
+  }
+
+  // getAddressLength() {
+  //   adreesLenght.value = listOfAdress.length;
+  // }
 }

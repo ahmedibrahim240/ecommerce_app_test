@@ -15,16 +15,17 @@ List<Accountmodels> accountList = [
   //   icon: editIcon,
   //   title: 'Edit Profile',
   // ),
-  // Accountmodels(
-  //   icon: addressIcon,
-  //   title: 'Shipping Address',
-  // ),
+
   Accountmodels(
     icon: historyIcon,
     title: 'Order History',
   ),
   Accountmodels(
     title: 'Favourites',
+  ),
+  Accountmodels(
+    icon: addressIcon,
+    title: 'Shipping Address',
   ),
   // Accountmodels(
   //   icon: cardsIcon,

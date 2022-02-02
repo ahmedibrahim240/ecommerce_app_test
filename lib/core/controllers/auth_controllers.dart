@@ -12,7 +12,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthControllers extends GetxController {
   static AuthControllers instance = Get.find();
-  Rx<User?>? firebaseUser;
+  Rx<User?>? firebaseUser = Rx<User?>(auth.currentUser);
   String usersCollection = "users";
   Rx<Usermodels> usermodels = Usermodels().obs;
   String? email, password, name;
@@ -20,7 +20,6 @@ class AuthControllers extends GetxController {
   @override
   void onReady() {
     super.onReady();
-    firebaseUser = Rx<User?>(auth.currentUser);
 
     firebaseUser!.bindStream(auth.userChanges());
 
@@ -33,40 +32,26 @@ class AuthControllers extends GetxController {
 
     try {
       showLoading();
-      await auth
-          .signInWithEmailAndPassword(
+      await auth.signInWithEmailAndPassword(
         email: email!,
         password: password!,
-      )
-          .catchError(
-        (error) {
-          Get.snackbar(
-            "Sign In Failed",
-            "Try again\n$error",
-            titleText: CustomText(
-              text: "Sign In Failed",
-              color: kPrimaryColor,
-            ),
-            colorText: Colors.black,
-            snackPosition: SnackPosition.BOTTOM,
-          );
-          print(error);
-        },
       );
+
       dismissLoadingWidget();
-    } catch (e) {
+    } on FirebaseAuthException catch (error) {
+      debugPrint('Sign In error:${error.message}');
+
       dismissLoadingWidget();
       Get.snackbar(
         "Sign In Failed",
-        "Try again\n$e",
+        "Try again\n${error.message}",
         titleText: CustomText(
           text: "Sign In Failed",
           color: kPrimaryColor,
         ),
         colorText: Colors.black,
-        snackPosition: SnackPosition.BOTTOM,
+        snackPosition: SnackPosition.TOP,
       );
-      print(e);
     }
   }
 
@@ -85,18 +70,19 @@ class AuthControllers extends GetxController {
           await _addUserToFirestore(user.user!);
         },
       );
-    } catch (e) {
+    } on FirebaseAuthException catch (e) {
       dismissLoadingWidget();
       Get.snackbar(
         "Sign Up Failed",
-        "Try again\n$e",
+        "Try again\n${e.message}",
         titleText: CustomText(
           text: "Sign Up Failed",
           color: kPrimaryColor,
         ),
         colorText: Colors.black,
-        snackPosition: SnackPosition.BOTTOM,
+        snackPosition: SnackPosition.TOP,
       );
+      debugPrint('Sign up error:${e.message}');
     }
   }
 
@@ -241,7 +227,7 @@ class AuthControllers extends GetxController {
       );
       await MySharedPreferences.saveUserID(user.uid.toString());
       userToken = await MySharedPreferences.getGetuserID();
-      await addressController.getAllUserAdress();
+      // await addressController.getAllUserAdress();
       await orderController.getAllOderHistory();
       await bestSellingControllers.getBestProduct();
       await categoriesControllers.getCategory();

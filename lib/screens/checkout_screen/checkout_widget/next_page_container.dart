@@ -45,7 +45,7 @@ class NextPageContainer extends StatelessWidget {
                       error: 'Choose Delivery Date first',
                     );
                   } else if (checkoutController.pageIndex.value == 1) {
-                    if (addressController.adressList.isEmpty) {
+                    if (addressController.listOfAdress.isEmpty) {
                       customErrorSnakBar(
                         error: 'Create Address first',
                       );

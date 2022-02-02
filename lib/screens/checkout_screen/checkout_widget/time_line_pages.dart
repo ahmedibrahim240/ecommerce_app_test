@@ -15,7 +15,8 @@ class TimeLinePages extends StatelessWidget {
     return Obx(() {
       switch (checkoutController.pageIndex.value) {
         case 1:
-          return AddressPage();
+          // return AddressPage();
+          return Container();
         case 2:
           return SummerPage();
         default:
