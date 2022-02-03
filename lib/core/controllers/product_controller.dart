@@ -4,7 +4,7 @@ import 'package:ecommerce_app/core/constans/constans.dart';
 
 class ProductControllers extends GetxController {
   static ProductControllers instance = Get.find();
-  bool isFavoriteProduct(Productmodels product) {
+  isFavoriteProduct(Productmodels product) {
     return authControllers.usermodels.value.favoriteList
         .where(
           (id) => id.toString() == product.productId,

@@ -135,9 +135,7 @@ class AddressController extends GetxController {
       customSnakBar(mass: 'Success Editing..');
     } on FirebaseException catch (e) {
       dismissLoadingWidget();
-      print('____________________');
-      print(e.message);
-      print('____________________');
+      debugPrint(e.message);
       customErrorSnakBar(error: 'Failed please try again');
     }
 

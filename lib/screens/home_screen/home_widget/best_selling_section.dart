@@ -1,4 +1,5 @@
 import 'package:ecommerce_app/core/constans/constans.dart';
+import 'package:ecommerce_app/core/controllers/best_selling_controllers%20.dart';
 import 'package:ecommerce_app/core/cutom_widget/cutom_widget.dart';
 
 import 'package:ecommerce_app/screens/screens.dart';
@@ -12,9 +13,10 @@ class BestSellingSections extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(
-      () {
-        return bestSellingControllers.productmodels.isEmpty
+    return GetX(
+      init: Get.put<BestSellingControllers>(BestSellingControllers()),
+      builder: (BestSellingControllers bestControllers) {
+        return bestControllers.productmodels.isEmpty
             ? Container()
             : Column(
                 children: [
@@ -43,10 +45,10 @@ class BestSellingSections extends StatelessWidget {
                     child: ListView.separated(
                       scrollDirection: Axis.horizontal,
                       shrinkWrap: true,
-                      itemCount: bestSellingControllers.productmodels.length,
+                      itemCount: bestControllers.productmodels.length,
                       itemBuilder: (_, index) {
                         return BuildProdectItem(
-                          product: bestSellingControllers.productmodels[index],
+                          product: bestControllers.productmodels[index],
                         );
                       },
                       separatorBuilder: (

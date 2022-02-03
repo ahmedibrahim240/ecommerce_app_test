@@ -122,11 +122,15 @@ class CartContllors extends GetxController {
   }
 
   bool isINCartInitial(Productmodels product) {
-    return authControllers.usermodels.value.cart
-        .where(
-          (item) => item.productId == product.productId,
-        )
-        .isNotEmpty;
+    if (authControllers.usermodels.value.cart == null) {
+      return false;
+    } else {
+      return authControllers.usermodels.value.cart
+          .where(
+            (item) => item.productId == product.productId,
+          )
+          .isNotEmpty;
+    }
   }
 
   increaseQuantity(int index) {

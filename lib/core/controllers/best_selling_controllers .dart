@@ -1,34 +1,54 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ecommerce_app/core/constans/constans.dart';
 import 'package:ecommerce_app/models/models.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class BestSellingControllers extends GetxController {
   static BestSellingControllers instance = Get.find();
-  var productmodels = [].obs;
+  Rx<List<Productmodels>> productList = Rx<List<Productmodels>>([]);
+  List<Productmodels> get productmodels => productList.value;
   final CollectionReference _collectionReference =
       firebaseFirestore.collection("BestSellingProdect");
-  getBestProduct() async {
-    productmodels.value = [];
-    await _collectionReference.get().then(
-      (value) async {
-        for (int i = 0; i < value.docs.length; i++) {
-          Productmodels product = Productmodels.fromJson(
-            value.docs[i].data(),
-          );
-          product.inCart = cartContllors.isINCartInitial(
-            product,
-          );
-          product.isFavorite = productControllers.isFavoriteProduct(
-            product,
-          );
-          productmodels.add(
-            product,
-          );
-        }
+  void onInit() {
+    super.onInit();
+    ever(authControllers.firebaseUser!, _setBestProductData);
+  }
+
+  _setBestProductData(User? user) {
+    if (user == null) {
+      debugPrint('wating user login in ');
+    } else {
+      productList.bindStream(bestProductStream(user.uid));
+    }
+
+    update();
+  }
+
+  Stream<List<Productmodels>> bestProductStream(String uid) {
+    return _collectionReference.snapshots().map(
+      (query) {
+        List<Productmodels> retVal = [];
+        query.docs.forEach(
+          (product) {
+            Productmodels newProduct = Productmodels.fromJson(
+              product,
+            );
+            // newProduct.inCart = cartContllors.isINCartInitial(
+            //   newProduct,
+            // );
+            // newProduct.isFavorite = productControllers.isFavoriteProduct(
+            //   newProduct,
+            // ) ;
+            retVal.add(
+              newProduct,
+            );
+          },
+        );
+        return retVal;
       },
     );
-    update();
   }
 
   Productmodels getBestProductById(String id) {

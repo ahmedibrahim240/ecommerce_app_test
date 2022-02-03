@@ -6,7 +6,7 @@ import 'package:ecommerce_app/core/services/network_services/network_sensitive.d
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class AllProcutScreen extends GetWidget<BestSellingControllers> {
+class AllProcutScreen extends StatelessWidget {
   // final List<Productmodels> productlist;
 
   const AllProcutScreen({
@@ -21,8 +21,11 @@ class AllProcutScreen extends GetWidget<BestSellingControllers> {
         title: Text('Best Selling'),
       ),
       body: NetworkSensitive(
-        child: AllProductBody(
-          productlist: controller.productmodels,
+        child: GetX(
+          init: Get.put<BestSellingControllers>(BestSellingControllers()),
+          builder: (BestSellingControllers bestControllers) => AllProductBody(
+            productlist: bestControllers.productmodels,
+          ),
         ),
       ),
     );

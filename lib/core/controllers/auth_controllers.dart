@@ -140,6 +140,68 @@ class AuthControllers extends GetxController {
   }
 
   //! end goole sign in nethods
+  void signOut() async {
+    name = null;
+    email = null;
+    password = null;
+    splachController.isStart.value = false;
+    googleSignIn.signOut();
+    auth.signOut();
+  }
+
+  //? end facebook sign in methods
+
+  _setInitialScreen(User? user) async {
+    if (splachController.isStart.value) {
+      await Future.delayed(
+        Duration(seconds: 5),
+        () {
+          _checkUser(user);
+        },
+      );
+    } else {
+      _checkUser(user);
+    }
+  }
+
+  void _checkUser(User? user) async {
+    if (user == null) {
+      dismissLoadingWidget();
+      routeController.routePage(
+        type: 'offAll',
+        page: Authenticate(),
+      );
+      await MySharedPreferences.saveUserID('null');
+      userToken = await MySharedPreferences.getGetuserID();
+    } else {
+      usermodels.bindStream(listenToUser());
+      dismissLoadingWidget();
+      routeController.routePage(
+        type: 'offAll',
+        page: CustonNavBar(),
+        arguments: 0.obs,
+      );
+      await MySharedPreferences.saveUserID(user.uid.toString());
+      userToken = await MySharedPreferences.getGetuserID();
+
+      // await bestSellingControllers.getBestProduct();
+      await orderController.getAllOderHistory();
+      await categoriesControllers.getCategory();
+      await allProductController.getAllPrductList();
+    }
+  }
+
+  Stream<Usermodels> listenToUser() {
+    return firebaseFirestore
+        .collection(usersCollection)
+        .doc(firebaseUser!.value!.uid)
+        .snapshots()
+        .map(
+          (snapshot) => Usermodels.fromJson(
+            snapshot.data(),
+          ),
+        );
+  }
 
   //? facebook sign in methods
   // void faceBookSignInMethod() async {
@@ -184,66 +246,4 @@ class AuthControllers extends GetxController {
   //   print("faceBookUser:$faceBookUser");
   // }
 
-  void signOut() async {
-    name = null;
-    email = null;
-    password = null;
-    splachController.isStart.value = false;
-    googleSignIn.signOut();
-    auth.signOut();
-  }
-
-  //? end facebook sign in methods
-
-  _setInitialScreen(User? user) async {
-    if (splachController.isStart.value) {
-      await Future.delayed(
-        Duration(seconds: 5),
-        () {
-          _checkUser(user);
-        },
-      );
-    } else {
-      _checkUser(user);
-    }
-  }
-
-  void _checkUser(User? user) async {
-    if (user == null) {
-      dismissLoadingWidget();
-      routeController.routePage(
-        type: 'offAll',
-        page: Authenticate(),
-      );
-      await MySharedPreferences.saveUserID('null');
-      userToken = await MySharedPreferences.getGetuserID();
-    } else {
-      usermodels.bindStream(listenToUser());
-      dismissLoadingWidget();
-      routeController.routePage(
-        type: 'offAll',
-        page: CustonNavBar(),
-        arguments: 0.obs,
-      );
-      await MySharedPreferences.saveUserID(user.uid.toString());
-      userToken = await MySharedPreferences.getGetuserID();
-      // await addressController.getAllUserAdress();
-      await orderController.getAllOderHistory();
-      await bestSellingControllers.getBestProduct();
-      await categoriesControllers.getCategory();
-      await allProductController.getAllPrductList();
-    }
-  }
-
-  Stream<Usermodels> listenToUser() {
-    return firebaseFirestore
-        .collection(usersCollection)
-        .doc(firebaseUser!.value!.uid)
-        .snapshots()
-        .map(
-          (snapshot) => Usermodels.fromJson(
-            snapshot.data(),
-          ),
-        );
-  }
 }
