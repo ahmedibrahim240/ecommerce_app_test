@@ -1,3 +1,4 @@
+// import 'package:ecommerce_app/core/constans/constans.dart';
 import 'package:ecommerce_app/core/constans/constans.dart';
 import 'package:ecommerce_app/models/product_models.dart';
 
@@ -31,6 +32,7 @@ class Categoriesmodels {
         //   product,
         // )as bool;
         _result.add(product);
+        allProductController.productList.value.add(product);
       });
     }
     return _result;

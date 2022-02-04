@@ -15,7 +15,7 @@ class FavoritesConttroller extends GetxController {
 
   getAllFavorieitems(Usermodels user) async {
     if (allProductController.allProductList.isEmpty) {
-      await allProductController.getAllPrductList();
+      // await allProductController.getAllPrductList();
       await Future.delayed(
         Duration(seconds: 2),
         () async {

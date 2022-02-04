@@ -185,9 +185,9 @@ class AuthControllers extends GetxController {
       userToken = await MySharedPreferences.getGetuserID();
 
       // await bestSellingControllers.getBestProduct();
-      await orderController.getAllOderHistory();
+      // await orderController.getAllOderHistory();
       // await categoriesControllers.getCategory();
-      await allProductController.getAllPrductList();
+      // await allProductController.getAllPrductList();
     }
   }
 

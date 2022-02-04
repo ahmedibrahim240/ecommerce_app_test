@@ -14,8 +14,8 @@ void main() async {
     Get.put(AuthControllers());
     Get.put(RouteController());
     Get.put(BestSellingControllers());
-    Get.put(NavBarController());
     Get.put(CategoriesControllers());
+    Get.put(NavBarController());
     Get.put(RefreshContrllors());
     Get.put(AccountController());
     Get.put(CheckoutController());

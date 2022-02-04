@@ -1,30 +1,11 @@
-import 'package:ecommerce_app/core/constans/constans.dart';
+import 'package:ecommerce_app/models/models.dart';
 
 import 'package:get/get.dart';
 
 class AllProductController extends GetxController {
   static AllProductController instance = Get.find();
-  var allProductList = [];
-
-  getAllPrductList() {
-    allProductList.clear();
-    bestSellingControllers.productmodels.forEach(
-      (product) {
-        allProductList.add(product);
-      },
-    );
-    categoriesControllers.categoriesmodels.forEach(
-      (category) {
-        if (category.productList!.isNotEmpty) {
-          category.productList!.forEach(
-            (product) {
-              allProductList.add(product);
-            },
-          );
-        }
-      },
-    );
-  }
+  Rx<List<Productmodels>> productList = Rx<List<Productmodels>>([]);
+  List<Productmodels> get allProductList => productList.value;
 
   bool chechIsProductIsExisting(String id) {
     return allProductList
