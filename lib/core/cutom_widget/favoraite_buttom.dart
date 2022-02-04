@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ecommerce_app/core/constans/constans.dart';
 import 'package:ecommerce_app/core/controllers/controllers.dart';
 import 'package:ecommerce_app/models/models.dart';
@@ -19,19 +20,18 @@ class FavoraiteButtom extends GetWidget<AccountController> {
       builder: (procontroller) => CircleButton(
         onPressed: () {
           if (!product.isFavorite!) {
+            FavouriteModels favourite = new FavouriteModels(
+              productId: product.productId,
+              dateCreated: Timestamp.now(),
+            );
             favoritesConttroller.addFavoriteProdcut(
-              product.productId!,
+              favourite,
             );
           } else {
             favoritesConttroller.removeFavoriteProdcut(
-              product.productId!,
+              prodectID: product.productId!,
             );
           }
-          productControllers.updateIsForiteProduct(
-            isFavorite: !product.isFavorite!,
-            type: "id",
-            id: product.productId,
-          );
         },
         icon: (product.isFavorite!)
             ? FontAwesomeIcons.solidHeart

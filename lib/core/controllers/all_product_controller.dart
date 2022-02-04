@@ -12,4 +12,8 @@ class AllProductController extends GetxController {
         .where((product) => (product.productId == id))
         .isNotEmpty;
   }
+
+  Productmodels getProductByid(String id) {
+    return allProductList.where((product) => (product.productId == id)).last;
+  }
 }

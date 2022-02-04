@@ -30,7 +30,7 @@ class Usermodels {
     email = snapshot[EMAIL];
     id = snapshot[ID];
     image = snapshot[IMAGE];
-    favoriteList = _convertfavoritesItems(snapshot[FAVORITElIST] ?? []);
+    // favoriteList = _convertfavoritesItems(snapshot[FAVORITElIST] ?? []);
     cart = _convertCartItems(snapshot[DBCARTNAME] ?? []);
   }
   toJson() {
@@ -40,19 +40,19 @@ class Usermodels {
       EMAIL: email,
       IMAGE: image,
       DBCARTNAME: cart,
-      FAVORITElIST: favoriteList,
+      // FAVORITElIST: favoriteList,
     };
   }
 
-  List<String> _convertfavoritesItems(List favoritesDB) {
-    List<String> _result = [];
-    if (favoritesDB.length > 0) {
-      favoritesDB.forEach((element) {
-        _result.add(element.toString());
-      });
-    }
-    return _result;
-  }
+  // List<String> _convertfavoritesItems(List favoritesDB) {
+  //   List<String> _result = [];
+  //   if (favoritesDB.length > 0) {
+  //     favoritesDB.forEach((element) {
+  //       _result.add(element.toString());
+  //     });
+  //   }
+  //   return _result;
+  // }
 
   List<CartItemmodels> _convertCartItems(List cartFomDb) {
     List<CartItemmodels> _result = [];

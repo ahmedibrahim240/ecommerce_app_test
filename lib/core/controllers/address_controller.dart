@@ -99,7 +99,6 @@ class AddressController extends GetxController {
   delateAddress(Addressmodels address) async {
     String userId = authControllers.usermodels.value.id!;
     try {
-      print(address.toJson());
       await firebaseFirestore
           .collection("users")
           .doc(userId)

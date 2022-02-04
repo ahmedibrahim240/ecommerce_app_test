@@ -44,27 +44,29 @@ class ProductControllers extends GetxController {
       {required bool isFavorite, String? id, required String type}) {
     switch (type) {
       case 'id':
-        if (!bestSellingControllers.chcekIsBestProduct(id!)) {
-          _updateAllCategoryList(
-            id: id,
-            isFavorite: isFavorite,
-            type: 1,
-          );
-        } else {
-          _updateAllBestProductList(
-            id: id,
-            isFavorite: isFavorite,
-            type: 1,
-          );
+        {
+          if (!bestSellingControllers.chcekIsBestProduct(id!)) {
+            _updateAllCategoryList(
+              id: id,
+              isFavorite: isFavorite,
+              type: 1,
+            );
+          } else {
+            _updateAllBestProductList(
+              id: id,
+              isFavorite: isFavorite,
+              type: 1,
+            );
+          }
+          update();
         }
-        update();
-
         break;
       case 'all':
-        _updateAllBestProductList(type: 1);
-        _updateAllCategoryList(type: 1);
-        update();
-
+        {
+          _updateAllBestProductList(type: 1);
+          _updateAllCategoryList(type: 1);
+          update();
+        }
         break;
     }
   }

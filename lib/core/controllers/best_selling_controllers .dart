@@ -47,6 +47,7 @@ class BestSellingControllers extends GetxController {
             allProductController.productList.value.add(newProduct);
           },
         );
+
         return retVal;
       },
     );

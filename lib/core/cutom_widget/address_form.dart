@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ecommerce_app/core/constans/constans.dart';
 import 'package:ecommerce_app/core/controllers/controllers.dart';
 import 'package:ecommerce_app/core/cutom_widget/cutom_widget.dart';
@@ -110,7 +111,9 @@ class AddressForm extends GetWidget<AddressController> {
         city: controller.city,
         state: controller.state,
         country: controller.country,
-        dateCreated: controller.addressEditing.value.dateCreated,
+        dateCreated: controller.editAddress.value
+            ? controller.addressEditing.value.dateCreated
+            : Timestamp.now(),
         isARLang: false,
         // id: controller.adreesLenght.value,
       );

@@ -93,7 +93,7 @@ class AuthControllers extends GetxController {
       email: user.email,
       image: user.photoURL ?? "",
       cart: [],
-      favoriteList: [],
+      // favoriteList: [],
     );
     return await firebaseFirestore
         .collection(usersCollection)
