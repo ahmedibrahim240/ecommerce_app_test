@@ -102,7 +102,7 @@ class ProductControllers extends GetxController {
     categoriesControllers.categoriesmodels.forEach(
       (categoriesmodels) {
         if (categoriesmodels.productList != []) {
-          categoriesmodels.productList.forEach(
+          categoriesmodels.productList!.forEach(
             (productModels) {
               if (id != null) {
                 if (productModels.productId == id) {

@@ -67,9 +67,9 @@ class SearchController extends GetxController {
         if (category.name.toString().toLowerCase().contains(
               text.toLowerCase(),
             )) {
-          if (category.productList != []) {
+          if (category.productList != [] && category.productList != null) {
             searchList.clear();
-            category.productList.forEach(
+            category.productList!.forEach(
               (product) {
                 searchList.add(product);
               },

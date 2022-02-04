@@ -186,7 +186,7 @@ class AuthControllers extends GetxController {
 
       // await bestSellingControllers.getBestProduct();
       await orderController.getAllOderHistory();
-      await categoriesControllers.getCategory();
+      // await categoriesControllers.getCategory();
       await allProductController.getAllPrductList();
     }
   }

@@ -24,12 +24,12 @@ class Categoriesmodels {
         Productmodels product = Productmodels.fromJson(
           element,
         );
-        product.inCart = cartContllors.isINCartInitial(
-          product,
-        );
-        product.isFavorite = productControllers.isFavoriteProduct(
-          product,
-        );
+        // product.inCart = cartContllors.isINCartInitial(
+        //   product,
+        // );
+        // product.isFavorite = productControllers.isFavoriteProduct(
+        //   product,
+        // )as bool;
         _result.add(product);
       });
     }

@@ -6,7 +6,7 @@ class RefreshContrllors extends GetxController {
   var loading = false.obs;
   void onRefresh() async {
     loading.value = !loading.value;
-    await categoriesControllers.getCategory();
+    // await categoriesControllers.getCategory();
     // await bestSellingControllers.getBestProduct();
     await allProductController.getAllPrductList();
     loading.value = !loading.value;

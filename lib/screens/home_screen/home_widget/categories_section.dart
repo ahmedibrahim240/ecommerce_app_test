@@ -1,4 +1,5 @@
 import 'package:ecommerce_app/core/constans/constans.dart';
+import 'package:ecommerce_app/core/controllers/categories_controllers.dart';
 import 'package:ecommerce_app/core/cutom_widget/cutom_widget.dart';
 import 'package:ecommerce_app/screens/categories_page_item/categories_page_item.dart';
 import 'package:flutter/material.dart';
@@ -12,8 +13,9 @@ class CategoriesSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(
-      () {
+    return GetX(
+      init: Get.put<CategoriesControllers>(CategoriesControllers()),
+      builder: (CategoriesControllers catController) {
         return Column(
           children: [
             CustomText(
@@ -26,11 +28,10 @@ class CategoriesSection extends StatelessWidget {
               child: ListView.separated(
                 scrollDirection: Axis.horizontal,
                 shrinkWrap: true,
-                itemCount: categoriesControllers.categoriesmodels.length,
+                itemCount: catController.categoriesmodels.length,
                 itemBuilder: (_, index) {
                   return _BuildCategorsItem(
-                    categoriesmodels:
-                        categoriesControllers.categoriesmodels[index],
+                    categoriesmodels: catController.categoriesmodels[index],
                   );
                 },
                 separatorBuilder: (BuildContext context, int index) =>

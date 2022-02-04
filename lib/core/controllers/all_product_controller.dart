@@ -15,8 +15,8 @@ class AllProductController extends GetxController {
     );
     categoriesControllers.categoriesmodels.forEach(
       (category) {
-        if (category.productList.isNotEmpty) {
-          category.productList.forEach(
+        if (category.productList!.isNotEmpty) {
+          category.productList!.forEach(
             (product) {
               allProductList.add(product);
             },
