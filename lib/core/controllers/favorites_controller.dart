@@ -43,13 +43,8 @@ class FavoritesConttroller extends GetxController {
         query.docs.forEach(
           (favourite) {
             FavouriteModels newFav = FavouriteModels.fromJson(favourite);
-            if (!allProductController
-                .chechIsProductIsExisting(newFav.productId!)) {
-              debugPrint('Product wass delate');
-              removeFavoriteProdcut(id: newFav.id);
-            } else {
-              retVal.add(newFav);
-            }
+
+            retVal.add(newFav);
           },
         );
         return retVal;
@@ -58,11 +53,6 @@ class FavoritesConttroller extends GetxController {
   }
 
   getAllFavoriteItmesDate(List<FavouriteModels> favList) {
-    print("______________________");
-    print(getfavouriteList.length);
-    print("______________________");
-    print(favList.length);
-    print("______________________");
     if (favList.isEmpty) {
       favouriteProductList.value = [];
       productControllers.updateIsForiteProduct(
@@ -81,18 +71,22 @@ class FavoritesConttroller extends GetxController {
   }
 
   _addItemTolist(String id) {
-    debugPrint('Product wass add');
+    if (!allProductController.chechIsProductIsExisting(id)) {
+      debugPrint('Product wass delate');
+      removeFavoriteProdcut(id);
+    } else {
+      debugPrint('Product wass add');
 
-    productControllers.updateIsForiteProduct(
-      isFavorite: true,
-      type: 'id',
-      id: id,
-    );
+      productControllers.updateIsForiteProduct(
+        isFavorite: true,
+        type: 'id',
+        id: id,
+      );
 
-    favouriteProductList.value.add(
-      allProductController.getProductByid(id),
-    );
-
+      favouriteProductList.value.add(
+        allProductController.getProductByid(id),
+      );
+    }
     update();
   }
 
@@ -116,11 +110,10 @@ class FavoritesConttroller extends GetxController {
     update();
   }
 
-  removeFavoriteProdcut({String? prodectID, String? id}) async {
+  removeFavoriteProdcut(String? prodectID) async {
     try {
       String userId = authControllers.usermodels.value.id!;
-      String favId =
-          prodectID == null ? id! : getFavoriteItemByProductID(prodectID).id!;
+      String favId = getFavoriteItemByProductID(prodectID!).id!;
 
       await firebaseFirestore
           .collection("users")
@@ -158,13 +151,9 @@ class FavoritesConttroller extends GetxController {
           }
         },
       );
-
-      print('_____________________________________');
-      print(getfavouriteList.length);
-      print('_____________________________________');
-    } catch (e) {
+    } on FirebaseException catch (e) {
       customErrorSnakBar(
-        error: "Cannot remove this item , try again later\n$e",
+        error: "Can't clear data , try again later\n$e",
       );
     }
     update();
@@ -172,5 +161,9 @@ class FavoritesConttroller extends GetxController {
 
   FavouriteModels getFavoriteItemByProductID(String id) {
     return getfavouriteList.where((fav) => fav.productId == id).last;
+  }
+
+  checkupDateProductInbestSelling(List<Productmodels> proList) {
+    getAllFavoriteItmesDate(getfavouriteList);
   }
 }

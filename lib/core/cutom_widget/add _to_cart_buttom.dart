@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ecommerce_app/core/constans/constans.dart';
 import 'package:ecommerce_app/core/controllers/controllers.dart';
 import 'package:ecommerce_app/models/models.dart';
@@ -32,26 +33,17 @@ class AddtoCartButtom extends StatelessWidget {
               : Icons.remove_shopping_cart,
           color: (!product.inCart!) ? kPrimaryColor : Colors.redAccent,
         ),
-
-        // CustomText(
-        //   text: (!product.inCart!) ? "Add to Cart" : "Remove from Cart",
-        //   color: Colors.white,
-        //   fontSize: 12,
-        //   alignment: Alignment.center,
-        // ),
         onPreessed: () {
           if (product.inCart!) {
-            cartContllors.delateProduct(
-              product: product,
+            cartContllors.delateCartProduct(
+              product.productId,
             );
           } else {
-            cartContllors.addProduct(
-              CartItemmodels(
-                image: product.image,
+            cartContllors.addCartProduct(
+              CartFireBaseModel(
                 productId: product.productId,
                 quantity: 1,
-                price: product.price,
-                title: product.title,
+                dateCreated: Timestamp.now(),
               ),
             );
 

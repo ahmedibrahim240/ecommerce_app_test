@@ -126,24 +126,27 @@ class _BuildSummerItemList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() {
-      return ListView.separated(
-        shrinkWrap: true,
-        scrollDirection: Axis.horizontal,
-        itemCount: authControllers.usermodels.value.cart.length,
-        padding:
-            EdgeInsets.fromLTRB(defaultSize, defaultSize * 2, defaultSize, 0),
-        itemBuilder: (context, index) {
-          CartItemmodels product = authControllers.usermodels.value.cart[index];
-          return _ProductCard(
-            index: index,
-            product: product,
-          );
-        },
-        separatorBuilder: (BuildContext context, int index) =>
-            SizedBox(width: defaultSize),
-      );
-    });
+    return GetX(
+      init: Get.put<CartContllors>(CartContllors()),
+      builder: (CartContllors contllors) {
+        return ListView.separated(
+          shrinkWrap: true,
+          scrollDirection: Axis.horizontal,
+          itemCount: contllors.cartItemList.length,
+          padding:
+              EdgeInsets.fromLTRB(defaultSize, defaultSize * 2, defaultSize, 0),
+          itemBuilder: (context, index) {
+            CartItemmodels product = contllors.cartItemList[index];
+            return _ProductCard(
+              index: index,
+              product: product,
+            );
+          },
+          separatorBuilder: (BuildContext context, int index) =>
+              SizedBox(width: defaultSize),
+        );
+      },
+    );
   }
 }
 

@@ -1,10 +1,11 @@
-import 'package:ecommerce_app/core/constans/constans.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+// import 'package:ecommerce_app/core/constans/constans.dart';
 
 class CartItemmodels {
   String? title;
   String? image;
   double? price;
-  String? productId;
+  String? productId, id;
   late int quantity;
 
   CartItemmodels({
@@ -13,21 +14,37 @@ class CartItemmodels {
     this.price,
     this.quantity = 0,
     this.productId,
+    required this.id,
   });
-  CartItemmodels.fromjson(data) {
-    title = data[CARTPRODUCTTITLE];
-    image = data[CARTPRODUCTIMAGE];
-    price = double.parse(data[CARTPRODUCTPRICE].toString());
-    quantity = data[CARTPRODUCTQUANTITIY];
-    productId = data[CARTPRODUCTID];
+}
+
+class CartFireBaseModel {
+  String? productId, id;
+  Timestamp? dateCreated;
+  int? quantity;
+
+  static const PRODUCTID = "productId";
+  static const ID = "Id";
+  static const DATECREATED = "dateCreated";
+  static const QUANTITIY = 'quantity';
+
+  CartFireBaseModel({
+    this.productId,
+    this.id,
+    this.dateCreated,
+    this.quantity,
+  });
+  CartFireBaseModel.fromJson(DocumentSnapshot snapshot) {
+    productId = snapshot[PRODUCTID];
+    id = snapshot.id;
+    dateCreated = snapshot[DATECREATED];
+    quantity = snapshot[QUANTITIY];
   }
   toJson() {
     return {
-      CARTPRODUCTTITLE: title,
-      CARTPRODUCTIMAGE: image,
-      CARTPRODUCTQUANTITIY: quantity,
-      CARTPRODUCTPRICE: price,
-      CARTPRODUCTID: productId,
+      PRODUCTID: productId,
+      DATECREATED: dateCreated,
+      QUANTITIY: quantity,
     };
   }
 }

@@ -10,7 +10,7 @@ import 'core/services/network_services/connectivity_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await initialization.then((value) {
+  await initializationFireBase.then((value) {
     Get.put(AuthControllers());
     Get.put(RouteController());
     Get.put(BestSellingControllers());

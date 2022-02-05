@@ -1,16 +1,8 @@
-import 'package:ecommerce_app/models/product_models.dart';
 import 'package:get/get.dart';
 import 'package:ecommerce_app/core/constans/constans.dart';
 
 class ProductControllers extends GetxController {
   static ProductControllers instance = Get.find();
-  isFavoriteProduct(Productmodels product) {
-    return authControllers.usermodels.value.favoriteList
-        .where(
-          (id) => id.toString() == product.productId,
-        )
-        .isNotEmpty;
-  }
 
   updataInCartProduct({required var inCart, String? id, required String type}) {
     switch (type) {

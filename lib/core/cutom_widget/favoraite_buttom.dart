@@ -29,7 +29,7 @@ class FavoraiteButtom extends GetWidget<AccountController> {
             );
           } else {
             favoritesConttroller.removeFavoriteProdcut(
-              prodectID: product.productId!,
+              product.productId!,
             );
           }
         },

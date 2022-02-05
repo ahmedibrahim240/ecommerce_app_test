@@ -5,10 +5,8 @@ import 'package:ecommerce_app/models/models.dart';
 import 'package:ecommerce_app/screens/screens.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-// import 'package:flutter_login_facebook/flutter_login_facebook.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-// import 'package:uuid/uuid.dart';
 
 class AuthControllers extends GetxController {
   static AuthControllers instance = Get.find();
@@ -92,8 +90,6 @@ class AuthControllers extends GetxController {
       name: user.displayName ?? name,
       email: user.email,
       image: user.photoURL ?? "",
-      cart: [],
-      // favoriteList: [],
     );
     return await firebaseFirestore
         .collection(usersCollection)
@@ -183,11 +179,6 @@ class AuthControllers extends GetxController {
       );
       await MySharedPreferences.saveUserID(user.uid.toString());
       userToken = await MySharedPreferences.getGetuserID();
-
-      // await bestSellingControllers.getBestProduct();
-      // await orderController.getAllOderHistory();
-      // await categoriesControllers.getCategory();
-      // await allProductController.getAllPrductList();
     }
   }
 

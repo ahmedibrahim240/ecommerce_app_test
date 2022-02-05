@@ -42,7 +42,7 @@ class BuildFavouriteItem extends StatelessWidget {
                 IconButton(
                   onPressed: () {
                     favoritesConttroller.removeFavoriteProdcut(
-                      prodectID: product.productId!,
+                      product.productId!,
                     );
                     productControllers.updateIsForiteProduct(
                       isFavorite: false,
