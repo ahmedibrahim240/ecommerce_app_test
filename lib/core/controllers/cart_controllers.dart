@@ -25,7 +25,7 @@ class CartContllors extends GetxController {
     super.onReady();
 
     ever(authControllers.firebaseUser!, _setFavoriteDate);
-    ever(cartFireBase, _getCartItemListDate);
+    ever(cartFireBase, getCartItemListDate);
   }
 
   _setFavoriteDate(User? user) {
@@ -59,7 +59,7 @@ class CartContllors extends GetxController {
     );
   }
 
-  _getCartItemListDate(List<CartFireBaseModel> cartList) {
+  getCartItemListDate(List<CartFireBaseModel> cartList) {
     if (cartList.isEmpty) {
       cartProductList.value = [];
       productControllers.updataInCartProduct(

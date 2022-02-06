@@ -26,23 +26,11 @@ class CategoriesControllers extends GetxController {
   }
 
   Stream<List<Categoriesmodels>> categoryStream() {
-    // print('____________________');
-    // print('STRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRREEEEEEEEEEEMING');
     return _collectionReference.snapshots().map(
       (query) {
         List<Categoriesmodels> retVal = [];
         query.docs.forEach(
           (category) {
-            // Productmodels newProduct = Productmodels.fromJson(
-            //   product,
-            // );
-            // newProduct.inCart = cartContllors.isINCartInitial(
-            //   newProduct,
-            // );
-            // newProduct.isFavorite = productControllers.isFavoriteProduct(
-            //   newProduct,
-            // ) ;
-            // print(Categoriesmodels.fromJson(category.data()));
             retVal.add(
               Categoriesmodels.fromJson(category.data()),
             );

@@ -35,13 +35,14 @@ class BestSellingControllers extends GetxController {
             Productmodels newProduct = Productmodels.fromJson(
               product,
             );
-          
+
             retVal.add(
               newProduct,
             );
-            allProductController.productList.value.add(newProduct);
+            // allProductController.productList.value.add(newProduct);
           },
         );
+        update();
 
         return retVal;
       },

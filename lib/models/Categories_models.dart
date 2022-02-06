@@ -1,5 +1,3 @@
-// import 'package:ecommerce_app/core/constans/constans.dart';
-import 'package:ecommerce_app/core/constans/constans.dart';
 import 'package:ecommerce_app/models/product_models.dart';
 
 class Categoriesmodels {
@@ -25,14 +23,8 @@ class Categoriesmodels {
         Productmodels product = Productmodels.fromJson(
           element,
         );
-        // product.inCart = cartContllors.isINCartInitial(
-        //   product,
-        // );
-        // product.isFavorite = productControllers.isFavoriteProduct(
-        //   product,
-        // )as bool;
+
         _result.add(product);
-        allProductController.productList.value.add(product);
       });
     }
     return _result;
