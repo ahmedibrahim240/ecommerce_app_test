@@ -112,36 +112,45 @@ class AccountController extends GetxController {
   routePages(int index) {
     switch (index) {
       case 0:
-        routeController.routePage(
-          type: 'to',
-          page: OrderHistoryPage(),
-        );
-        break;
+        {
+          routeController.routePage(
+            type: 'to',
+            page: OrderHistoryPage(),
+          );
+          return;
+        }
       case 1:
-        routeController.routePage(
-          type: 'to',
-          page: FavouriteScreen(),
-        );
-        break;
+        {
+          routeController.routePage(
+            type: 'to',
+            page: FavouriteScreen(),
+          );
+          return;
+        }
       case 2:
-        routeController.routePage(
-          type: 'to',
-          page: AddressScreen(),
-        );
-        break;
+        {
+          routeController.routePage(
+            type: 'to',
+            page: AddressScreen(),
+          );
+          return;
+        }
 
       case 3:
-        onChangedDarKMode(!darkMode.value);
-
-        break;
+        {
+          onChangedDarKMode(!darkMode.value);
+          return;
+        }
       case 4:
-        onChangedSystemMode(!isSystemMode.value);
-
-        break;
+        {
+          onChangedSystemMode(!isSystemMode.value);
+          return;
+        }
       default:
-        authControllers.signOut();
-
-        break;
+        {
+          authControllers.signOut();
+          return;
+        }
     }
   }
 
