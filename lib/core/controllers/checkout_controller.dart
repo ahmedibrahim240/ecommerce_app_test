@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ecommerce_app/core/constans/constans.dart';
 import 'package:ecommerce_app/models/models.dart';
 import 'package:ecommerce_app/models/order_history_models.dart';
@@ -14,7 +15,7 @@ class CheckoutController extends GetxController {
   late Rx<String> deliveryDate = ''.obs;
   nextPage() {
     if (pageIndex.value == 2) {
-      getOderDEtails();
+      getOderDetails();
       return;
     } else {
       pageIndex.value++;
@@ -42,22 +43,14 @@ class CheckoutController extends GetxController {
     update();
   }
 
-  getOderDEtails() {
-    Addressmodels address = checkoutController.userAddress.value;
-    orderController.address =
-        '${address.country}-${address.state}-${address.city}-' +
-            '${address.street1}-${address.street2}';
-    orderController.orrderDate = checkoutController.deliveryDate.value;
-    orderController.getOrderID();
-    for (var item in cartContllors.cartItemList) {
-      orderController.titles.add(item.title);
-    }
-
+  getOderDetails() {
     OrderHistorymodels order = OrderHistorymodels(
-      titles: orderController.titles,
-      address: orderController.address,
-      orderDate: orderController.orrderDate,
-      id: orderController.orderID.value,
+      titles: OrderHistorymodels.getOrderTitleList(),
+      address: getFullAddress(
+        checkoutController.userAddress.value,
+      ),
+      orderDate: checkoutController.deliveryDate.value,
+      dateCreated: Timestamp.now(),
     );
 
     pageIndex.value = 0;

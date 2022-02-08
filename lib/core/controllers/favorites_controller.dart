@@ -24,7 +24,7 @@ class FavoritesConttroller extends GetxController {
 
   _setFavoriteDate(User? user) {
     if (user == null) {
-      debugPrint('wating user login in ');
+      debugPrint('wating user login in....');
     } else {
       favouriteList.bindStream(favoriteStream(user.uid));
     }

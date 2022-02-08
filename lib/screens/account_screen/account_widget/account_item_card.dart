@@ -19,78 +19,81 @@ class AccountItemCard extends GetWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<AccountController>(
-      builder: (controller) => Container(
-        child: Row(
-          children: [
-            Expanded(
-              child: Row(
-                children: [
-                  Container(
-                    height: defaultSize * 5,
-                    width: defaultSize * 5,
-                    padding: (data.icon == null)
-                        ? EdgeInsets.fromLTRB(defaultSize / 2, defaultSize / 2,
-                            defaultSize - 2, defaultSize)
-                        : EdgeInsets.all(defaultSize - 2),
-                    decoration: BoxDecoration(
-                      color: controller.darkMode.value
-                          ? Colors.grey.shade200
-                          : Color(0xff00C569).withOpacity(0.1),
-                      borderRadius: const BorderRadius.all(
-                        Radius.circular(5),
+    return InkWell(
+      onTap: () => accountController.routePages(index),
+      child: GetBuilder<AccountController>(
+        builder: (controller) => Container(
+          child: Row(
+            children: [
+              Expanded(
+                child: Row(
+                  children: [
+                    Container(
+                      height: defaultSize * 5,
+                      width: defaultSize * 5,
+                      padding: (data.icon == null)
+                          ? EdgeInsets.fromLTRB(defaultSize / 2,
+                              defaultSize / 2, defaultSize - 2, defaultSize)
+                          : EdgeInsets.all(defaultSize - 2),
+                      decoration: BoxDecoration(
+                        color: controller.darkMode.value
+                            ? Colors.grey.shade200
+                            : Color(0xff00C569).withOpacity(0.1),
+                        borderRadius: const BorderRadius.all(
+                          Radius.circular(5),
+                        ),
+                      ),
+                      child: buidIcons(
+                        index: index,
+                        icon: data.icon,
                       ),
                     ),
-                    child: buidIcons(
-                      index: index,
-                      icon: data.icon,
-                    ),
-                  ),
-                  SizedBox(width: defaultSize * 2),
-                  (index == accountList.length - 3) &&
-                          (controller.darkMode.value)
-                      ? CustomText(
-                          text: 'Light',
-                          fontSize: 15,
-                        )
-                      : CustomText(
-                          text: data.title,
-                          fontSize: 15,
-                        ),
-                ],
-              ),
-            ),
-            if (index == accountList.length - 3)
-              Switch(
-                value: accountController.darkMode.value,
-                activeColor: kPrimaryColor,
-                onChanged: (value) => controller.onChangedDarKMode(value),
-              ),
-            if (index == accountList.length - 2)
-              Switch(
-                value: accountController.isSystemMode.value,
-                activeColor: kPrimaryColor,
-                onChanged: (value) => controller.onChangedSystemMode(value),
-              ),
-            if ((index != accountList.length - 1) &&
-                (index != accountList.length - 2) &&
-                (index != accountList.length - 3))
-              Transform.rotate(
-                angle: 180 * math.pi / 180,
-                child: Icon(
-                  Icons.arrow_back_ios,
-                  color:
-                      controller.darkMode.value ? Colors.white : Colors.black,
-                  size: defaultSize * 2,
+                    SizedBox(width: defaultSize * 2),
+                    (index == accountList.length - 3) &&
+                            (controller.darkMode.value)
+                        ? CustomText(
+                            text: 'Light',
+                            fontSize: 15,
+                          )
+                        : CustomText(
+                            text: data.title,
+                            fontSize: 15,
+                          ),
+                  ],
                 ),
               ),
-            SizedBox(
-              width: (index == accountList.length - 2) ||
-                      (index == accountList.length - 3)
-                  ? defaultSize / 2
-                  : defaultSize * 2,
-            ),
-          ],
+              if (index == accountList.length - 3)
+                Switch(
+                  value: accountController.darkMode.value,
+                  activeColor: kPrimaryColor,
+                  onChanged: (value) => controller.onChangedDarKMode(value),
+                ),
+              if (index == accountList.length - 2)
+                Switch(
+                  value: accountController.isSystemMode.value,
+                  activeColor: kPrimaryColor,
+                  onChanged: (value) => controller.onChangedSystemMode(value),
+                ),
+              if ((index != accountList.length - 1) &&
+                  (index != accountList.length - 2) &&
+                  (index != accountList.length - 3))
+                Transform.rotate(
+                  angle: 180 * math.pi / 180,
+                  child: Icon(
+                    Icons.arrow_back_ios,
+                    color:
+                        controller.darkMode.value ? Colors.white : Colors.black,
+                    size: defaultSize * 2,
+                  ),
+                ),
+              SizedBox(
+                width: (index == accountList.length - 2) ||
+                        (index == accountList.length - 3)
+                    ? defaultSize / 2
+                    : defaultSize * 2,
+              ),
+            ],
+          ),
         ),
       ),
     );

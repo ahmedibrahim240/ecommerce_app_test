@@ -52,6 +52,12 @@ String getCompleteAddress(Addressmodels address) {
       "-${address.street2}";
 }
 
+String getFullAddress(Addressmodels address) {
+  return "${address.country}-${address.state}-" +
+      "${address.city}-${address.street1}-" +
+      "${address.street2}";
+}
+
 isARText(String text) async {
   final translator = GoogleTranslator();
   bool isAR = false;

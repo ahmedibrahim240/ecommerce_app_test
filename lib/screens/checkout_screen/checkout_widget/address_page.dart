@@ -19,8 +19,7 @@ class AddressPage extends StatelessWidget {
           primary: true,
           children: [
             _BillingAddressText(),
-            (addressController.listOfAdress.isNotEmpty) &&
-                    (addressController.listOfAdress != [])
+            (addressController.listOfAdress.isNotEmpty)
                 ? ChooseEXAddress()
                 : AddressForm(),
           ],
@@ -123,8 +122,7 @@ class AddressListView extends StatelessWidget {
           primary: false,
           itemCount: addressController.listOfAdress.length,
           itemBuilder: (context, index) {
-            int revIndex = addressController.listOfAdress.length - 1 - index;
-            Addressmodels address = addressController.listOfAdress[revIndex];
+            Addressmodels address = addressController.listOfAdress[index];
             return Obx(
               () => Theme(
                 data: ThemeData(
@@ -144,14 +142,13 @@ class AddressListView extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                   subtitle: CustomText(
-                    text:
-                        '${address.country}-${address.state}-${address.city}-${address.street1}-${address.street2}',
+                    text: getFullAddress(address),
                     maxLines: 3,
                     fontSize: 12,
                   ),
                   onChanged: (value) {
                     Addressmodels newAddress =
-                        addressController.listOfAdress[revIndex];
+                        addressController.listOfAdress[index];
                     checkoutController.updataAddressVale(value);
                     checkoutController.userAddress.value = newAddress;
                   },

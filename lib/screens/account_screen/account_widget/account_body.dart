@@ -38,15 +38,16 @@ class _BuildAccountItems extends StatelessWidget {
     return ListView.separated(
       itemCount: accountList.length,
       padding: EdgeInsets.fromLTRB(
-          defaultSize * 2, defaultSize * 6, defaultSize * 2, 0),
+        defaultSize * 2,
+        defaultSize * 6,
+        defaultSize * 2,
+        0,
+      ),
       itemBuilder: (context, index) {
         Accountmodels data = accountList[index];
-        return GestureDetector(
-          onTap: () => accountController.routePages(index),
-          child: AccountItemCard(
-            data: data,
-            index: index,
-          ),
+        return AccountItemCard(
+          data: data,
+          index: index,
         );
       },
       separatorBuilder: (context, index) => SizedBox(height: defaultSize * 3),
