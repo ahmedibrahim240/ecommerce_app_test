@@ -29,7 +29,6 @@ class CustomSearchTextForm extends GetWidget<AccountController> {
                   padding: const EdgeInsets.only(left: 16),
                   child: searchController.isSearch.value
                       ? TextFormField(
-                          // controller: searchController.searshText,
                           onChanged: (text) =>
                               searchController.searchByName(text),
                           onEditingComplete: () {
@@ -45,6 +44,9 @@ class CustomSearchTextForm extends GetWidget<AccountController> {
                               return;
                             }
                           },
+                          style: TextStyle(
+                            color: Colors.blueAccent,
+                          ),
                           decoration: InputDecoration(
                             hintText: 'Search..',
                             hintStyle: TextStyle(
