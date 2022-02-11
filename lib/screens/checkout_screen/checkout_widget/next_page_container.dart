@@ -55,7 +55,8 @@ class NextPageContainer extends StatelessWidget {
                           error: 'Create Address first',
                         );
                       } else if (checkoutController.addressGroupValue.value ==
-                          0) {
+                              0 &&
+                          addressController.shippingAddress.value == '') {
                         customErrorSnakBar(
                           error: 'Choose Address first',
                         );

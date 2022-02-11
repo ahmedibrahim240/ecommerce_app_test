@@ -10,19 +10,16 @@ class SummerPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() {
-      Addressmodels address = checkoutController.userAddress.value;
-      return Column(
-        children: [
-          _productsReview(),
-          productList(),
-          _totalPrice(),
-          newDivider(),
-          _userAddrees(address),
-          _userDeliveryDatetime(),
-        ],
-      );
-    });
+    return Column(
+      children: [
+        _productsReview(),
+        productList(),
+        _totalPrice(),
+        newDivider(),
+        _userAddrees(),
+        _userDeliveryDatetime(),
+      ],
+    );
   }
 
   Row _totalPrice() {
@@ -54,9 +51,7 @@ class SummerPage extends StatelessWidget {
     );
   }
 
-  ListTile _userAddrees(Addressmodels address) {
-    String userAddress =
-        '${address.country}-${address.state}-${address.city}-${address.street1}-${address.street2}';
+  ListTile _userAddrees() {
     return ListTile(
       title: CustomText(
         text: 'Address',
@@ -65,7 +60,7 @@ class SummerPage extends StatelessWidget {
         fontWeight: FontWeight.bold,
       ),
       subtitle: CustomText(
-        text: userAddress,
+        text: addressController.shippingAddress.value,
         maxLines: 3,
         fontSize: 12,
       ),

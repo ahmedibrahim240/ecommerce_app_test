@@ -1,4 +1,5 @@
 import 'package:ecommerce_app/core/constans/constans.dart';
+import 'package:ecommerce_app/core/controllers/controllers.dart';
 import 'package:ecommerce_app/core/cutom_widget/cutom_widget.dart';
 import 'package:ecommerce_app/models/user_addrees_models.dart';
 import 'package:flutter/material.dart';
@@ -10,22 +11,96 @@ class AddressPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() {
-      return Container(
-        height: double.infinity,
-        width: double.infinity,
-        child: ListView(
-          shrinkWrap: true,
-          primary: true,
-          children: [
-            _BillingAddressText(),
-            (addressController.listOfAdress.isNotEmpty)
-                ? ChooseEXAddress()
-                : AddressForm(),
-          ],
+    return GetX(
+      init: Get.put<AddressController>(AddressController()),
+      builder: (AddressController controller) {
+        return Container(
+          height: double.infinity,
+          width: double.infinity,
+          child: ListView(
+            shrinkWrap: true,
+            primary: true,
+            children: [
+              billingAddressText(
+                'Billing address is the same as delivery address',
+              ),
+
+              (controller.shippingAddress.value == '')
+                  ? Container()
+                  : Column(
+                      children: [
+                        SizedBox(height: defaultSize),
+                        Row(
+                          children: [
+                            Icon(
+                              Icons.location_on,
+                              color: kPrimaryColor,
+                              size: 30,
+                            ),
+                            SizedBox(width: 5),
+                            CustomText(text: 'Shipping Address'),
+                            SizedBox(width: defaultSize),
+                          ],
+                        ),
+                        billingAddressText(
+                          controller.shippingAddress.value,
+                        ),
+                        SizedBox(width: defaultSize),
+                      ],
+                    ),
+
+              // CheckboxListTile(
+              //   controlAffinity: ListTileControlAffinity.leading,
+              //   contentPadding: EdgeInsets.zero,
+              //   activeColor: Colors.lightBlueAccent,
+              //   value: controller.shippingAddress!.isShopping,
+              //   onChanged: (value) {},
+              //   title: CustomText(
+              //     text: 'Use as the shipping address',
+              //     fontSize: 13,
+              //   ),
+              // ),
+
+              (controller.listOfAdress.isNotEmpty)
+                  ? ChooseEXAddress()
+                  : AddressForm(),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  billingAddressText(String text) {
+    return ListTile(
+      contentPadding: const EdgeInsets.only(left: 4),
+      minVerticalPadding: 0,
+      minLeadingWidth: 20,
+      leading: Container(
+        height: 25,
+        width: 25,
+        child: DotIndicator(
+          size: 35.0,
+          color: Colors.green,
+          child: Container(
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: Colors.green,
+            ),
+            child: Icon(
+              Icons.check,
+              color: Colors.white,
+              size: 20,
+            ).paddingZero,
+          ),
         ),
-      );
-    });
+      ),
+      title: CustomText(
+        text: text,
+        fontSize: 12,
+        maxLines: 2,
+      ),
+    );
   }
 }
 
@@ -39,19 +114,20 @@ class ChooseEXAddress extends StatelessWidget {
         shrinkWrap: true,
         primary: false,
         children: [
-          TextButton.icon(
-            icon: Icon(
-              (addressController.shooseNewAddress.value)
-                  ? Icons.arrow_circle_up
-                  : Icons.arrow_circle_down,
-              color: kPrimaryColor,
-              size: 20,
+          if (addressController.listOfAdress.length > 1)
+            TextButton.icon(
+              icon: Icon(
+                (addressController.shooseNewAddress.value)
+                    ? Icons.arrow_circle_up
+                    : Icons.arrow_circle_down,
+                color: kPrimaryColor,
+                size: 20,
+              ),
+              onPressed: () => addressController.funshooseNewAddress(),
+              label: CustomText(
+                text: 'Choose Another Address',
+              ),
             ),
-            onPressed: () => addressController.funshooseNewAddress(),
-            label: CustomText(
-              text: 'Choose an address',
-            ),
-          ),
           if (addressController.shooseNewAddress.value) AddressListView(),
           TextButton.icon(
             icon: Icon(
@@ -68,43 +144,6 @@ class ChooseEXAddress extends StatelessWidget {
           ),
           if (addressController.addNewAddress.value) AddressForm(),
         ],
-      ),
-    );
-  }
-}
-
-class _BillingAddressText extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return ListTile(
-      contentPadding: const EdgeInsets.only(left: 4),
-      minVerticalPadding: 0,
-      leading: Container(
-        height: 30,
-        width: 30,
-        child: DotIndicator(
-          size: 35.0,
-          color: Colors.green,
-          child: Padding(
-            padding: const EdgeInsets.all(6.0),
-            child: Container(
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: Colors.green,
-              ),
-              child: Icon(
-                Icons.check,
-                color: Colors.white,
-                size: 20,
-              ),
-            ),
-          ),
-        ),
-      ),
-      title: CustomText(
-        text: 'Billing address is the same as delivery address',
-        fontSize: 12,
-        maxLines: 2,
       ),
     );
   }
@@ -149,8 +188,13 @@ class AddressListView extends StatelessWidget {
                   onChanged: (value) {
                     Addressmodels newAddress =
                         addressController.listOfAdress[index];
+                    addressController.updateAddress(
+                      address: newAddress,
+                      isShopping: true,
+                      value: true,
+                    );
                     checkoutController.updataAddressVale(value);
-                    checkoutController.userAddress.value = newAddress;
+                    addressController.shooseNewAddress.value = false;
                   },
                 ),
               ),

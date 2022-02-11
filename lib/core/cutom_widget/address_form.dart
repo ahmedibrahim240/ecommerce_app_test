@@ -118,7 +118,7 @@ class AddressForm extends GetWidget<AddressController> {
         // id: controller.adreesLenght.value,
       );
       if (controller.editAddress.value) {
-        await controller.updateAddress(address);
+        await controller.updateAddress(address: address);
       } else {
         await controller.createNewaddress(address);
       }

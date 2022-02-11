@@ -11,8 +11,15 @@ class CheckoutController extends GetxController {
   var deliveryGroupValue = 0.obs;
   var addressGroupValue = 0.obs;
   var deliveryRadioListmodels = Deliverymodels().obs;
-  Rx<Addressmodels> userAddress = Addressmodels().obs;
   late Rx<String> deliveryDate = ''.obs;
+  setInitData() {
+    pageIndex.value = 0;
+    deliveryGroupValue.value = 0;
+    addressGroupValue.value = 0;
+    deliveryDate.value = '';
+    update();
+  }
+
   nextPage() {
     if (pageIndex.value == 2) {
       getOderDetails();
@@ -38,17 +45,10 @@ class CheckoutController extends GetxController {
     update();
   }
 
-  createUsercheckOutAddress(Addressmodels address) {
-    userAddress.value = address;
-    update();
-  }
-
   getOderDetails() {
     OrderHistorymodels order = OrderHistorymodels(
       titles: OrderHistorymodels.getOrderTitleList(),
-      address: getFullAddress(
-        checkoutController.userAddress.value,
-      ),
+      address: addressController.shippingAddress.value,
       orderDate: checkoutController.deliveryDate.value,
       dateCreated: Timestamp.now(),
     );

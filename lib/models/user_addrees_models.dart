@@ -9,6 +9,7 @@ class Addressmodels {
   static const ID = "id";
   static const ISARLANG = "isARLang";
   static const DATECREATED = "dateCreated";
+  static const ISSHOPPING = "isShopping";
 
   String? street1;
   String? street2;
@@ -18,6 +19,7 @@ class Addressmodels {
   String? id;
   Timestamp? dateCreated;
   bool? isARLang;
+  late bool isShopping;
 
   Addressmodels({
     this.street1,
@@ -28,6 +30,7 @@ class Addressmodels {
     this.id,
     this.dateCreated,
     this.isARLang,
+    this.isShopping = true,
   });
 
   Addressmodels.fromJson(DocumentSnapshot snapshot) {
@@ -39,6 +42,7 @@ class Addressmodels {
     id = snapshot.id;
     dateCreated = snapshot[DATECREATED];
     isARLang = snapshot[ISARLANG];
+    isShopping = snapshot[ISSHOPPING];
   }
   toJson() {
     return {
@@ -49,6 +53,7 @@ class Addressmodels {
       COUNTRY: country,
       DATECREATED: dateCreated,
       ISARLANG: isARLang,
+      ISSHOPPING: isShopping,
     };
   }
 }

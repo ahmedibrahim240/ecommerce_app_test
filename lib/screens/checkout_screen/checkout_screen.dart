@@ -7,26 +7,32 @@ class CheckOutScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text(
-          'Checkout',
+    return WillPopScope(
+      onWillPop: () async {
+        checkoutController.setInitData();
+        return true;
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          centerTitle: true,
+          title: Text(
+            'Checkout',
+          ),
         ),
-      ),
-      body: Container(
-        padding: EdgeInsets.symmetric(
-            horizontal: defaultSize, vertical: defaultSize),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            CustomTimeLineCart(),
-            SizedBox(height: defaultSize * 5.5),
-            Expanded(
-              child: TimeLinePages(),
-            ),
-            NextPageContainer(),
-          ],
+        body: Container(
+          padding: EdgeInsets.symmetric(
+              horizontal: defaultSize, vertical: defaultSize),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              CustomTimeLineCart(),
+              SizedBox(height: defaultSize * 5.5),
+              Expanded(
+                child: TimeLinePages(),
+              ),
+              NextPageContainer(),
+            ],
+          ),
         ),
       ),
     );

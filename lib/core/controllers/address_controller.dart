@@ -18,20 +18,13 @@ class AddressController extends GetxController {
   RxBool shooseNewAddress = false.obs;
   String addressCollection = "address";
   Rx<Addressmodels> addressEditing = Addressmodels().obs;
+  Rx<String> shippingAddress = ''.obs;
   // var adreesLenght = 0.obs;
 
   @override
   void onInit() {
     super.onInit();
-
-    setInitControllerData();
-
     ever(authControllers.firebaseUser!, _setInitialStremData);
-  }
-
-  void onReady() {
-    super.onReady();
-    setInitControllerData();
   }
 
   _setInitialStremData(User? user) {
@@ -39,19 +32,18 @@ class AddressController extends GetxController {
       debugPrint('wating user login in ');
     } else {
       addressList.bindStream(addressStreem(user.uid));
-      if ((listOfAdress.isNotEmpty) && (listOfAdress != [])) {
-        shooseNewAddress.value = true;
-        addNewAddress.value = false;
-      }
     }
   }
 
   setInitControllerData() {
-    if ((listOfAdress.isNotEmpty) && (listOfAdress != [])) {
+    if (shippingAddress.value != '') {
+      shooseNewAddress.value = false;
+    } else {
       shooseNewAddress.value = true;
     }
     addNewAddress.value = false;
     editAddress.value = false;
+
     update();
   }
 
@@ -83,6 +75,14 @@ class AddressController extends GetxController {
 
       addNewAddress.value = false;
       dismissLoadingWidget();
+      if (listOfAdress.length == 1) {
+        return;
+      } else {
+        for (int i = 1; i < listOfAdress.length; i++) {
+          shippingAddress.value = getFullAddress(listOfAdress[0]);
+          _updateIsShopping(false, userId, listOfAdress[i].id!);
+        }
+      }
 
       customSnakBar(mass: 'Address Was Added..');
     } catch (e) {
@@ -99,6 +99,9 @@ class AddressController extends GetxController {
   delateAddress(Addressmodels address) async {
     String userId = authControllers.usermodels.value.id!;
     try {
+      if (address.isShopping == true) {
+        shippingAddress.value = '';
+      }
       await firebaseFirestore
           .collection("users")
           .doc(userId)
@@ -112,33 +115,66 @@ class AddressController extends GetxController {
     update();
   }
 
-  updateAddress(Addressmodels address) async {
+  updateAddress({
+    bool isShopping = false,
+    bool? value,
+    required Addressmodels address,
+  }) async {
     String userId = authControllers.usermodels.value.id!;
-    print('Userid:$userId\naddressid:${addressEditing.value.id}');
-    print(address.toJson());
+
     try {
       address.isARLang = await isARText(getCompleteAddress(address)) as bool;
-      showLoading();
+      if (isShopping) {
+        listOfAdress.forEach(
+          (item) async {
+            if (item.id == address.id) {
+              _updateIsShopping(value!, userId, address.id!);
+            } else {
+              if (item.isShopping) {
+                _updateIsShopping(false, userId, item.id!);
+              }
+            }
+          },
+        );
+        if (value == true) {
+          shippingAddress.value = getFullAddress(address);
+        } else {
+          shippingAddress.value = '';
+        }
+      } else {
+        showLoading();
 
-      await firebaseFirestore
-          .collection("users")
-          .doc(userId)
-          .collection(addressCollection)
-          .doc(addressEditing.value.id)
-          .update(
-            address.toJson(),
-          );
-      editAddress.value = false;
-      dismissLoadingWidget();
-
-      customSnakBar(mass: 'Success Editing..');
+        await firebaseFirestore
+            .collection("users")
+            .doc(userId)
+            .collection(addressCollection)
+            .doc(addressEditing.value.id)
+            .update(
+              address.toJson(),
+            );
+        editAddress.value = false;
+        dismissLoadingWidget();
+        customSnakBar(mass: 'Success Editing..');
+      }
     } on FirebaseException catch (e) {
       dismissLoadingWidget();
-      debugPrint(e.message);
-      customErrorSnakBar(error: 'Failed please try again');
+      customErrorSnakBar(error: 'Failed please try again\n${e.message}');
     }
 
     update();
+  }
+
+  _updateIsShopping(
+    bool value,
+    String userId,
+    String id,
+  ) {
+    firebaseFirestore
+        .collection("users")
+        .doc(userId)
+        .collection(addressCollection)
+        .doc(id)
+        .update({Addressmodels.ISSHOPPING: value});
   }
 
   Stream<List<Addressmodels>> addressStreem(String uid) {
@@ -156,12 +192,16 @@ class AddressController extends GetxController {
             retVal.add(Addressmodels.fromJson(address));
           },
         );
+        retVal.forEach(
+          (item) {
+            if (item.isShopping) {
+              shippingAddress.value = getFullAddress(item);
+            }
+          },
+        );
+        setInitControllerData();
         return retVal;
       },
     );
   }
-
-  // getAddressLength() {
-  //   adreesLenght.value = listOfAdress.length;
-  // }
 }
