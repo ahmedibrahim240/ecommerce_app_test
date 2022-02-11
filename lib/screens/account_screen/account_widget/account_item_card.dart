@@ -101,7 +101,7 @@ class AccountItemCard extends GetWidget {
 
   buidIcons({String? icon, required int index}) {
     if (icon == null) {
-      if ((index == accountList.length - 4)) {
+      if ((index == 1)) {
         return Icon(
           Icons.favorite,
           color: Colors.red,
