@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:connectivity/connectivity.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:ecommerce_app/core/services/enums/connectivity_status.dart';
 
 class ConnectivityService {
