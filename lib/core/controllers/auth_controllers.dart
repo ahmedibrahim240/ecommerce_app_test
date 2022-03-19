@@ -194,47 +194,6 @@ class AuthControllers extends GetxController {
         );
   }
 
-  //? facebook sign in methods
-  // void faceBookSignInMethod() async {
-  //   splachController.isStart.value = false;
-
-  //   FacebookLoginResult faceBookUser =
-  //       await facebookLogin.logIn(permissions: [FacebookPermission.email]);
-  //   final accessToken = faceBookUser.accessToken!.token;
-  //   showLoading();
-  //   switch (faceBookUser.status) {
-  //     case FacebookLoginStatus.success:
-  //       //ToDo: save user login with FackBooke in firebase user data
-
-  //       final faceCredential = FacebookAuthProvider.credential(accessToken);
-  //       // ignore: unused_local_variable
-  //       final UserCredential? _userCredential =
-  //           await auth.signInWithCredential(faceCredential).then(
-  //         (value) async {
-  //           return await _addUserToFirestore(value.user!);
-  //         },
-  //       );
-
-  //       //ToDo: End save
-  //       break;
-  //     case FacebookLoginStatus.cancel:
-  //       dismissLoadingWidget();
-  //       Get.snackbar(
-  //         "Sign Up Failed",
-  //         "Try again",
-  //         titleText: CustomText(
-  //           text: "Sign Up Failed",
-  //           color: kPrimaryColor,
-  //         ),
-  //         colorText: Colors.black,
-  //         snackPosition: SnackPosition.BOTTOM,
-  //       );
-  //       break;
-
-  //     default:
-  //   }
-
-  //   print("faceBookUser:$faceBookUser");
-  // }
+  
 
 }
