@@ -17,7 +17,7 @@ class BuildFavouriteItem extends StatelessWidget {
       onTap: () {
         routeController.routePage(
           type: 'to',
-          page: ProductScreen(
+          page: () => ProductScreen(
             product: product,
           ),
         );

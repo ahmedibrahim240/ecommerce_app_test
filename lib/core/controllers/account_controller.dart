@@ -115,7 +115,7 @@ class AccountController extends GetxController {
         {
           routeController.routePage(
             type: 'to',
-            page: OrderHistoryPage(),
+            page: () => OrderHistoryPage(),
           );
           return;
         }
@@ -123,7 +123,7 @@ class AccountController extends GetxController {
         {
           routeController.routePage(
             type: 'to',
-            page: FavouriteScreen(),
+            page: () => FavouriteScreen(),
           );
           return;
         }
@@ -131,7 +131,7 @@ class AccountController extends GetxController {
         {
           routeController.routePage(
             type: 'to',
-            page: AddressScreen(),
+            page: () => AddressScreen(),
           );
           return;
         }

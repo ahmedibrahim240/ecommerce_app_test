@@ -72,7 +72,7 @@ showFailedDialog() {
           orderController.updateCheckOutParameter();
           routeController.routePage(
             type: 'offAll',
-            page: CustonNavBar(),
+            page: () => CustonNavBar(),
             arguments: 1.obs,
           );
         },

@@ -56,7 +56,7 @@ class CheckoutController extends GetxController {
     pageIndex.value = 0;
     routeController.routePage(
       type: "offAll",
-      page: FinishScreen(),
+      page: () => FinishScreen(),
       arguments: order,
     );
   }

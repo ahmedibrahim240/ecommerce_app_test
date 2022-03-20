@@ -3,7 +3,11 @@ import 'package:get/get.dart';
 
 class RouteController extends GetxController {
   static RouteController instance = Get.find();
-  routePage({required String type, required dynamic page, dynamic arguments}) {
+  routePage({
+    required String type,
+    required dynamic page,
+    dynamic arguments,
+  }) {
     switch (type) {
       case 'offAll':
         Get.offAll(

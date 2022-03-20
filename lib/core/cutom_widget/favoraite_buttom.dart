@@ -11,10 +11,8 @@ class FavoraiteButtom extends GetWidget<AccountController> {
   const FavoraiteButtom({
     Key? key,
     required this.product,
-    this.isViewProduct = false,
   }) : super(key: key);
   final Productmodels product;
-  final bool isViewProduct;
 
   @override
   Widget build(BuildContext context) {
@@ -39,11 +37,12 @@ class FavoraiteButtom extends GetWidget<AccountController> {
             ? FontAwesomeIcons.solidHeart
             : FontAwesomeIcons.heart,
         iconSize: defaultSize * 3.5,
-        iconColor: (product.isFavorite! || isViewProduct)
-            ? Colors.red
-            : (controller.darkMode.value)
-                ? Colors.white
-                : Colors.black,
+        iconColor: Colors.red,
+        // (product.isFavorite! || isViewProduct)
+        //     ? Colors.red
+        //     : (controller.darkMode.value)
+        //         ? Colors.white
+        //         : Colors.black,
         bgColor: Colors.transparent,
       ),
     );

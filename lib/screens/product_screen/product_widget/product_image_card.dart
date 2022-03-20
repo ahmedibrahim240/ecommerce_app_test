@@ -61,7 +61,6 @@ class ProductImageCard extends StatelessWidget {
                           ),
                           FavoraiteButtom(
                             product: product,
-                            isViewProduct: true,
                           ),
                         ],
                       ),

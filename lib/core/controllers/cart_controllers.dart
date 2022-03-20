@@ -244,13 +244,13 @@ class CartContllors extends GetxController {
     if (cartItemList.isEmpty) {
       routeController.routePage(
         type: 'offAll',
-        page: CustonNavBar(),
+        page: () => CustonNavBar(),
         arguments: 0.obs,
       );
     } else {
       routeController.routePage(
         type: 'to',
-        page: CheckOutScreen(),
+        page: () => CheckOutScreen(),
       );
     }
   }

@@ -58,7 +58,7 @@ class _BuildCategorsItem extends StatelessWidget {
     return GestureDetector(
       onTap: () => routeController.routePage(
         type: 'to',
-        page: CategoriesPageItem(
+        page: () => CategoriesPageItem(
           categoriesmodels: categoriesmodels,
         ),
       ),

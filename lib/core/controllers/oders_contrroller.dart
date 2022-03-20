@@ -68,7 +68,7 @@ class OrderController extends GetxController {
       dismissLoadingWidget();
       routeController.routePage(
         type: 'offAll',
-        page: CustonNavBar(),
+        page: () => CustonNavBar(),
         arguments: 0.obs,
       );
       customSnakBar(mass: 'Order Was Added..');
@@ -77,7 +77,7 @@ class OrderController extends GetxController {
       dismissLoadingWidget();
       routeController.routePage(
         type: 'offAll',
-        page: CustonNavBar(),
+        page: () => CustonNavBar(),
         arguments: 0.obs,
       );
       customSnakBar(
