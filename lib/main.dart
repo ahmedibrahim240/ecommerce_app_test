@@ -84,7 +84,7 @@ class _MainPageState extends State<MyApp> with WidgetsBindingObserver {
     return Obx(() {
       return GetMaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Ecommerce App',
+        title: 'E-Cart',
         themeMode: accountController.themeMode.value,
         theme: accountController.switchDartMode(),
         darkTheme: AppTheme.darkTheme,

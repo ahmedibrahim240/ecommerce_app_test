@@ -3,7 +3,7 @@
  
      <uses-permission android:name="android.permission.INTERNET"/>
    <application
-        android:label="ecommerce_app"
+        android:label="E-Cart"
         android:usesCleartextTraffic="true"
         android:icon="@mipmap/ic_launcher">
         <activity
